@@ -1,7 +1,7 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:ealanat_baladna/controller/homecontroller.dart';
+import 'package:ealanat_baladna/views/dropdownlist.dart';
 import 'package:ealanat_baladna/widgets/components.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -90,6 +90,7 @@ class AddProduct extends StatelessWidget {
                                           backgroundColor: Colors.deepPurple,
                                           foregroundColor: Colors.white),
                                       onPressed: () {
+                                        controller.addCompanies();
                                         Get.back();
                                       },
                                       child: const Text(
@@ -111,53 +112,9 @@ class AddProduct extends StatelessWidget {
                         icon: const Icon(Icons.add, size: 30)),
                     const Text("اضف شركه"),
                     const SizedBox(height: 10.0),
-                    Center(
-                        child: DropdownButtonHideUnderline(
-                            child: DropdownButton2<String>(
-                      isExpanded: true,
-                      hint: const Row(
-                        children: [
-                          Icon(
-                            Icons.add,
-                            size: 16,
-                            color: Colors.black,
-                          ),
-                          SizedBox(
-                            width: 4,
-                          ),
-                          Expanded(
-                            child: Text(
-                              'اختر اسم الشركه',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ],
-                      ),
-                      items: controller.companies
-                          .map((String item) => DropdownMenuItem<String>(
-                                value: item,
-                                child: Text(
-                                  item,
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                  ),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ))
-                          .toList(),
-                      value: controller.selectedValue,
-                      onChanged: (String? value) {
-                        controller.selectedValue = value;
-                        controller.update();
-                      },
-                    ))),
+
+                    const FirebaseDropdownMenuItem(),
+
                     const SizedBox(height: 20.0),
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(

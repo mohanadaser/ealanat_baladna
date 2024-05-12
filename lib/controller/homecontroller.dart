@@ -10,9 +10,9 @@ import 'package:uuid/uuid.dart';
 class HomeController extends GetxController {
   TextEditingController productname = TextEditingController();
   TextEditingController productdesc = TextEditingController();
- TextEditingController companyname = TextEditingController();
+  TextEditingController companyname = TextEditingController();
   TextEditingController productprice = TextEditingController();
-  List<String> companies = ['محل 3', 'محل 2', 'محل 1'];
+
   String? selectedValue;
   File? imageSelected;
   @override
@@ -48,7 +48,7 @@ class HomeController extends GetxController {
 
   void pickedImage() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
-        type: FileType.custom, allowedExtensions: ['jpg', 'pdf', 'doc']);
+        type: FileType.custom, allowedExtensions: ['jpg', 'pdf', 'doc', 'png']);
 
     if (result == null) {
       print("No file selected");
@@ -63,6 +63,24 @@ class HomeController extends GetxController {
     productdesc.clear();
     productprice.clear();
     imageSelected = null;
-    selectedValue = null;
+    selectedValue;
+  }
+
+  //============اضافة الشركات==================
+  void addCompanies() async {
+    final uuid = const Uuid().v4();
+    try {
+      await FirebaseFirestore.instance
+          .collection("companies")
+          .doc(uuid)
+          .set({"compid": uuid, "companyname": companyname.text});
+
+      Get.snackbar("Success", "تم الحفظ بنجاح",
+          backgroundColor: Colors.deepPurple, colorText: Colors.white);
+
+      update();
+    } on FirebaseException catch (e) {
+      Get.snackbar("faild", e.toString(), colorText: Colors.red);
+    }
   }
 }
