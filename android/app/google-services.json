@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "637719028278",
+    "project_id": "ealanat-baladna",
+    "storage_bucket": "ealanat-baladna.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:637719028278:android:a86cc7b6efccbce4cc2e97",
+        "android_client_info": {
+          "package_name": "com.example.ealanat_baladna"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPHdIAk_HlrGT99xx0LsxqNMCUbBtqlg0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
