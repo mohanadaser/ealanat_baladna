@@ -7,15 +7,20 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
 class HomeController extends GetxController {
   List<QueryDocumentSnapshot> data = [];
   bool isLoading = true;
+  final DateTime now = DateTime.now();
+  final DateFormat formatter = DateFormat('yyyy-MM-dd');
   TextEditingController productname = TextEditingController();
   TextEditingController productdesc = TextEditingController();
   TextEditingController companyname = TextEditingController();
   TextEditingController productprice = TextEditingController();
+  TextEditingController addresscompany = TextEditingController();
+  TextEditingController phoncompany = TextEditingController();
 
   String? selectedValue;
   File? imageSelected;
@@ -35,11 +40,13 @@ class HomeController extends GetxController {
       await FirebaseFirestore.instance.collection("products").doc(uuid).set({
         "proid": uuid,
         "productname": productname.text,
+        "addresscompany": addresscompany.text,
+        "phoncompany": phoncompany.text,
         "productdesc": productdesc.text,
         "proimg": imageurl,
         "productprice": double.parse(productprice.text),
         "company": selectedValue,
-        "date_creation": DateTime.now()
+        "date_creation": formatter.format(now)
       });
 
       Get.snackbar("Success", "تم الحفظ بنجاح",
@@ -67,6 +74,8 @@ class HomeController extends GetxController {
     productname.clear();
     productdesc.clear();
     productprice.clear();
+    addresscompany.clear();
+    phoncompany.clear();
     imageSelected = null;
     selectedValue;
   }

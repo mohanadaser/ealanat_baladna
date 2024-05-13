@@ -38,8 +38,20 @@ class HomeAdmin extends StatelessWidget {
                     leading: Image.network(
                         "${snapshot.data?.docs[index]['proimg']}"),
                     title: Text("${snapshot.data?.docs[index]['productname']}"),
-                    subtitle: Text(
-                        "الشركه :${snapshot.data?.docs[index]['company']}"),
+                    subtitle: RichText(
+                        text: TextSpan(children: [
+                      TextSpan(
+                          text: "${snapshot.data?.docs[index]['company']} - ",
+                          style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold)),
+                      TextSpan(
+                          text:
+                              "${snapshot.data?.docs[index]['date_creation']}",
+                          style: const TextStyle(
+                              color: Colors.red, fontWeight: FontWeight.bold))
+                    ])),
                     trailing: IconButton(
                         onPressed: () {
                           ctrl.deleteproduct(

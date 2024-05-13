@@ -39,10 +39,20 @@ class AddProduct extends StatelessWidget {
                     ),
                     const SizedBox(height: 10.0),
                     CustomForm(
+                        text: "العنوان",
+                        type: TextInputType.streetAddress,
+                        name: controller.addresscompany),
+                    const SizedBox(height: 10.0),
+                    CustomForm(
+                        text: "رقم التليفون",
+                        type: TextInputType.phone,
+                        name: controller.phoncompany),
+                    const SizedBox(height: 10.0),
+                    CustomForm(
                         text: "وصف المنتج",
                         type: TextInputType.name,
                         name: controller.productdesc,
-                        maxLines: 4),
+                        maxLines: 2),
                     const SizedBox(height: 10.0),
                     CustomForm(
                         text: "سعر المنتج",
