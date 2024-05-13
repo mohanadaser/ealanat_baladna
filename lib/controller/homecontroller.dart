@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -8,6 +10,8 @@ import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
 class HomeController extends GetxController {
+  List<QueryDocumentSnapshot> data = [];
+  bool isLoading = true;
   TextEditingController productname = TextEditingController();
   TextEditingController productdesc = TextEditingController();
   TextEditingController companyname = TextEditingController();
@@ -18,6 +22,7 @@ class HomeController extends GetxController {
   @override
   // ignore: unnecessary_overrides
   void onInit() {
+    getproducts();
     super.onInit();
   }
 
@@ -80,6 +85,33 @@ class HomeController extends GetxController {
 
       update();
     } on FirebaseException catch (e) {
+      Get.snackbar("faild", e.toString(), colorText: Colors.red);
+    }
+  }
+
+//=================fetch products========================
+  void getproducts() async {
+    try {
+      QuerySnapshot q =
+          await FirebaseFirestore.instance.collection("products").get();
+
+      await Future.delayed(const Duration(seconds: 1));
+      data.addAll(q.docs);
+      update();
+      isLoading = false;
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  //=========deletproducts======
+  void deleteproduct(id, url) async {
+    try {
+      await FirebaseFirestore.instance.collection("products").doc(id).delete();
+      await FirebaseStorage.instance.refFromURL(url).delete();
+      update();
+    } on FirebaseException catch (e) {
+      print(e.toString());
       Get.snackbar("faild", e.toString(), colorText: Colors.red);
     }
   }
