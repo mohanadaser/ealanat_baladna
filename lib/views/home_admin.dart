@@ -36,7 +36,11 @@ class HomeAdmin extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return ListTile(
                     leading: Image.network(
-                        "${snapshot.data?.docs[index]['proimg']}"),
+                      "${snapshot.data?.docs[index]['proimg']}",
+                      width: 40,
+                      height: 50,
+                      fit: BoxFit.cover,
+                    ),
                     title: Text("${snapshot.data?.docs[index]['productname']}"),
                     subtitle: RichText(
                         text: TextSpan(children: [
