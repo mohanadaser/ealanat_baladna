@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ealanat_baladna/controller/homecontroller.dart';
-import 'package:ealanat_baladna/views/add_product.dart';
+import 'package:ealanat_baladna/views/admin_panel/add_product.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

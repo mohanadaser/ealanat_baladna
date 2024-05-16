@@ -1,7 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:ealanat_baladna/controller/homecontroller.dart';
-import 'package:ealanat_baladna/views/dropdownlist.dart';
+import 'package:ealanat_baladna/views/admin_panel/dropdownlist.dart';
 import 'package:ealanat_baladna/widgets/components.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -72,7 +72,7 @@ class AddProduct extends StatelessWidget {
                           Icons.upload,
                           size: 30,
                         )),
-                    const Text("Upload Image"),
+                    const Text("تحميل صورة المنتج"),
                     SizedBox(
                       height: h * 0.05,
                     ),
