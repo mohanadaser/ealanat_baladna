@@ -1,7 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:ealanat_baladna/controller/homecontroller.dart';
-import 'package:ealanat_baladna/views/admin_panel/dropdownlist.dart';
+import 'package:ealanat_baladna/widgets/dropdownlist.dart';
 import 'package:ealanat_baladna/widgets/components.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

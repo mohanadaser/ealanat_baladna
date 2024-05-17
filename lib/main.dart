@@ -1,6 +1,6 @@
 import 'package:ealanat_baladna/controller/homecontroller.dart';
 import 'package:ealanat_baladna/firebase_options.dart';
-import 'package:ealanat_baladna/views/admin_panel/home_admin.dart';
+import 'package:ealanat_baladna/views/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const Directionality(
-          textDirection: TextDirection.rtl, child: HomeAdmin()),
+          textDirection: TextDirection.rtl, child: SplashScreen()),
     );
   }
 }
