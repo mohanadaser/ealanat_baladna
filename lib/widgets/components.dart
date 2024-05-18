@@ -7,17 +7,17 @@ Widget CustomForm(
         required TextInputType type,
         final String? Function(String?)? validator,
         final int? maxLines,
-        required TextEditingController name}) =>
+        required TextEditingController name,
+        Icon? sufxicon}) =>
     TextFormField(
       controller: name,
       maxLines: maxLines,
       validator: validator,
       keyboardType: type,
       decoration: InputDecoration(
-          hintText: text,
-          filled: true,
-          fillColor: Colors.white,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-          )),
+        suffixIcon: sufxicon,
+        hintText: text,
+        filled: true,
+        fillColor: Colors.white,
+      ),
     );
