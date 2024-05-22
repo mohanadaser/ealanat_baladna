@@ -33,6 +33,12 @@ class RegisterScreen extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: CustomForm(
+                      validator: (val) {
+                          if (val == null || val.isEmpty) {
+                            return "يجب ادخال الاسم";
+                          }
+                          return null;
+                        },
                         text: " الاسم ...",
                         type: TextInputType.name,
                         name: username,
@@ -45,6 +51,12 @@ class RegisterScreen extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: CustomForm(
+                      validator: (val) {
+                          if (val == null || val.isEmpty) {
+                            return "يجب ادخال رقم التليفون";
+                          }
+                          return null;
+                        },
                         text: "رقم الهاتف",
                         formating: [LengthLimitingTextInputFormatter(11)],
                         type: TextInputType.phone,
