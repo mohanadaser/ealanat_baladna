@@ -2,6 +2,7 @@
 
 import 'package:ealanat_baladna/widgets/components.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -45,6 +46,7 @@ class RegisterScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: CustomForm(
                         text: "رقم الهاتف",
+                        formating: [LengthLimitingTextInputFormatter(11)],
                         type: TextInputType.phone,
                         name: phonenum,
                         sufxicon: const Icon(Icons.phone_android)),

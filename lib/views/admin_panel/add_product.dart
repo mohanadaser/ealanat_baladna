@@ -4,6 +4,7 @@ import 'package:ealanat_baladna/controller/homecontroller.dart';
 import 'package:ealanat_baladna/widgets/dropdownlist.dart';
 import 'package:ealanat_baladna/widgets/components.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class AddProduct extends StatelessWidget {
@@ -44,6 +45,7 @@ class AddProduct extends StatelessWidget {
                         name: controller.addresscompany),
                     const SizedBox(height: 10.0),
                     CustomForm(
+                        formating:[LengthLimitingTextInputFormatter(11)],
                         text: "رقم التليفون",
                         type: TextInputType.phone,
                         name: controller.phoncompany),

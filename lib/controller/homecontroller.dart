@@ -32,6 +32,11 @@ class HomeController extends GetxController {
   }
 
   void addproduct() async {
+    //=========================convert currency to egypt==========
+    final number = double.parse(productprice.text);
+    final curency = NumberFormat.currency(locale: 'ar_EG', symbol: 'ج.م.');
+    final formattedCurrency = curency.format(number);
+//==================================================================================
     final uuid = const Uuid().v4();
     final ref = FirebaseStorage.instance.ref().child("proimg").child(uuid);
     await ref.putFile(imageSelected!);
@@ -44,7 +49,7 @@ class HomeController extends GetxController {
         "phoncompany": phoncompany.text,
         "productdesc": productdesc.text,
         "proimg": imageurl,
-        "productprice": double.parse(productprice.text),
+        "productprice": formattedCurrency,
         "company": selectedValue,
         "date_creation": formatter.format(now)
       });
