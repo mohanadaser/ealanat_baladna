@@ -8,7 +8,7 @@ class OtpText extends StatelessWidget {
 
   OtpText(
       {super.key,
-      required OtpFieldControllerV2 otpController,
+      required TextEditingController otpController,
       required this.isshow,
       required this.onComplete});
 

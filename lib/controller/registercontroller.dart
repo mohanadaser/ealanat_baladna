@@ -1,26 +1,80 @@
+// ignore_for_file: unrelated_type_equality_checks, unnecessary_overrides
 
-
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ealanat_baladna/models/users.dart';
+import 'package:ealanat_baladna/views/admin_panel/home_admin.dart';
+import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
+import 'package:ealanat_baladna/views/user_panel/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:otp_text_field_v2/otp_field_v2.dart';
-import 'package:uuid/uuid.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class RegisterController extends GetxController {
-  TextEditingController phonenum = TextEditingController();
-  TextEditingController username = TextEditingController();
-  OtpFieldControllerV2 otpController = OtpFieldControllerV2();
-  final formKey = GlobalKey<FormState>();
-  bool otpisshow = false;
-  int? otpsent;
-  int? otpentered;
-  late UserModel userdata;
-  //====================================================
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  @override
+  void onInit() {
+    super.onInit();
+  }
 
-   String verifyId = "";
+  bool isloading = false;
+
+  Future signInWithGoogle() async {
+    // Trigger the authentication flow
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      if (googleUser == null) {
+        isloading = false;
+        update();
+        return;
+      }
+      isloading = true;
+      update();
+      // Obtain the auth details from the request
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+
+      // Create a new credential
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      // Once signed in, return the UserCredential
+      await FirebaseAuth.instance.signInWithCredential(credential);
+      User? user = FirebaseAuth.instance.currentUser;
+      String? email = user?.uid;
+      if (email == "TyUZKejPZtNHW2rDmGppwmSJHd03") {
+        Get.offAll(() => const HomeAdmin());
+      } else {
+        Get.offAll(() => const HomeScreen());
+      }
+
+      isloading = false;
+      update();
+    } on FirebaseException catch (e) {
+      Get.snackbar("firebase faild", e.toString(),
+          colorText: Colors.red, backgroundColor: Colors.deepPurple);
+    } catch (e) {
+      Get.snackbar("something wrong", e.toString(),
+          colorText: Colors.red, backgroundColor: Colors.deepPurple);
+    }
+  }
+
+  Future logout() async {
+    await FirebaseAuth.instance.signOut();
+    Get.offAll(() => const LoginScreen());
+  }
+
+  // TextEditingController phonenum = TextEditingController();
+  // TextEditingController username = TextEditingController();
+  // TextEditingController otpController = TextEditingController();
+  // final formKey = GlobalKey<FormState>();
+  // bool otpisshow = false;
+  // int? otpsent;
+  // int? otpentered;
+  // late UserModel userdata;
+  // //====================================================
+  // final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
+  // String verifyId = "";
 //=====================================================adduser
   // Future<void> addUser() async {
   //   try {
@@ -50,35 +104,54 @@ class RegisterController extends GetxController {
   //   update();
   // }
   //======================================================================================= send OTP
-  Future sentOtp({
-    required int phone,
-    required Function errorStep,
-    required Function nextStep,
-  }) async {
-    await _firebaseAuth
-        .verifyPhoneNumber(
-      timeout: Duration(seconds: 30),
-      phoneNumber: phone.toString(),
-      verificationCompleted: (phoneAuthCredential) async {
-        return;
-      },
-      verificationFailed: (error) async {
-        return;
-      },
-      codeSent: (verificationId, forceResendingToken) async {
-        verifyId = verificationId;
-        nextStep();
-      },
-      codeAutoRetrievalTimeout: (verificationId) async {
-        return;
-      },
-    )
-        .onError((error, stackTrace) {
-      errorStep();
-    });
-  }
-  //==========================================================================
-  
+  // Future sentOtp({
+  //   required String phone,
+  // }) async {
+  //   await _firebaseAuth
+  //       .verifyPhoneNumber(
+  //     timeout: const Duration(seconds: 30),
+  //     phoneNumber: phone.toString(),
+  //     verificationCompleted: (phoneAuthCredential) async {
+  //       return;
+  //     },
+  //     verificationFailed: (error) async {
+  //       return;
+  //     },
+  //     codeSent: (verificationId, forceResendingToken) async {
+  //       verifyId = verificationId;
+  //       otpisshow = true;
+  //       update();
+  //     },
+  //     codeAutoRetrievalTimeout: (verificationId) async {
+  //       return;
+  //     },
+  //   )
+  //       .onError((error, stackTrace) {
+  //     // errorStep();
+  //   });
+  //   update();
+  // }
+
+  // //==========================================================================
+  // Future loginWithOtp({required String otp}) async {
+  //   final cred =
+  //       PhoneAuthProvider.credential(verificationId: verifyId, smsCode: otp);
+
+  //   try {
+  //     final user = await _firebaseAuth.signInWithCredential(cred);
+  //     if (user.user != null) {
+  //       return Get.snackbar("Success", "تم الدخول بنجاح",
+  //           backgroundColor: Colors.deepPurple, colorText: Colors.white);
+  //     } else {
+  //       return Get.snackbar("Error", "الرمز الذى ادخلته غير صحيج",
+  //           colorText: Colors.red);
+  //     }
+  //   } on FirebaseAuthException catch (e) {
+  //     return e.message.toString();
+  //   } catch (e) {
+  //     return e.toString();
+  //   }
+  // }
 
   // sendOtp() {
   //   try {
@@ -103,9 +176,9 @@ class RegisterController extends GetxController {
   // }
 
   //========================================================================cleartxt
-  clearfields() {
-    username.clear();
-    phonenum.clear();
-    otpisshow = false;
-  }
+  // clearfields() {
+  //   username.clear();
+  //   phonenum.clear();
+  //   otpisshow = false;
+  // }
 }

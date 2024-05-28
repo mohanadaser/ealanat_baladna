@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 6), () {
-      Get.offAll(() =>  LoginScreen());
+      Get.offAll(() => const LoginScreen());
     });
   }
 
@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
-            width: Get.width ,
+            width: Get.width,
             child: Lottie.asset("assets/animations/logo.json.json"),
           )
         ],

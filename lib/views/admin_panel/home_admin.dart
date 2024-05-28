@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ealanat_baladna/controller/homecontroller.dart';
 import 'package:ealanat_baladna/views/admin_panel/add_product.dart';
+import 'package:ealanat_baladna/views/user_panel/login_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,6 +20,14 @@ class HomeAdmin extends StatelessWidget {
                 color: Colors.deepPurple, fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
+          leading: IconButton(
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut();
+              Get.offAll(() => const LoginScreen());
+            },
+            icon: const Icon(Icons.logout),
+            color: Colors.red,
+          ),
         ),
         body: StreamBuilder<QuerySnapshot>(
             stream:
