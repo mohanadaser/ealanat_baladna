@@ -3,6 +3,7 @@
 import 'package:ealanat_baladna/controller/registercontroller.dart';
 import 'package:ealanat_baladna/widgets/card_products.dart';
 import 'package:ealanat_baladna/widgets/components.dart';
+import 'package:ealanat_baladna/widgets/drawer.dart';
 import 'package:ealanat_baladna/widgets/textrich.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,6 +29,7 @@ class HomeScreen extends StatelessWidget {
               icon: const Icon(Icons.logout),
               color: Colors.red,
             ),
+            actions: const [MyDrawer()],
           ),
           body: SingleChildScrollView(
             scrollDirection: Axis.vertical,
