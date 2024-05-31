@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -11,12 +12,12 @@ class MyDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
-            accountName: const Text('Oflutter.com'),
-            accountEmail: const Text('example@gmail.com'),
+            accountName: const Text('مهند عبد الحميد حسانى'),
+            accountEmail: const Text('للتواصل واتس اب : 01556997194 '),
             currentAccountPicture: CircleAvatar(
               child: ClipOval(
-                child: Image.network(
-                  'https://oflutter.com/wp-content/uploads/2021/02/girl-profile.png',
+                child: Image.asset(
+                  'assets/animations/profile.jpeg',
                   fit: BoxFit.cover,
                   width: 90,
                   height: 90,
@@ -27,8 +28,7 @@ class MyDrawer extends StatelessWidget {
               color: Colors.blue,
               image: DecorationImage(
                   fit: BoxFit.fill,
-                  image: NetworkImage(
-                      'https://oflutter.com/wp-content/uploads/2021/02/profile-bg3.jpg')),
+                  image: AssetImage('assets/animations/sertup.jpg')),
             ),
           ),
           ListTile(
@@ -63,9 +63,11 @@ class MyDrawer extends StatelessWidget {
           ),
           const Divider(),
           ListTile(
-            title: const Text('Exit'),
+            title: const Text('العوده للصفحة الرئيسيه'),
             leading: const Icon(Icons.exit_to_app),
-            onTap: () {},
+            onTap: () {
+              Get.back();
+            },
           ),
         ],
       ),

@@ -2,7 +2,8 @@
 
 import 'package:ealanat_baladna/controller/homecontroller.dart';
 import 'package:ealanat_baladna/firebase_options.dart';
-import 'package:ealanat_baladna/views/user_panel/login_screen.dart';
+
+import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -49,6 +50,6 @@ class _MyAppState extends State<MyApp> {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: LoginScreen());
+        home: HomeScreen());
   }
 }

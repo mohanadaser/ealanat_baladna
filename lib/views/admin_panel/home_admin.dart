@@ -13,6 +13,7 @@ class HomeAdmin extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
       builder: (HomeController ctrl) => Scaffold(
+      
         appBar: AppBar(
           title: const Text(
             "قائمة المنتجات",
