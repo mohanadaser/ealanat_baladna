@@ -1,9 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:ealanat_baladna/controller/homecontroller.dart';
+import 'package:ealanat_baladna/controller/maincontroller.dart';
 import 'package:ealanat_baladna/firebase_options.dart';
-
 import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   Get.put(HomeController());
+  Get.put(MainController());
   runApp(const MyApp());
 }
 

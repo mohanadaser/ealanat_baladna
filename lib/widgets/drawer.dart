@@ -1,3 +1,4 @@
+import 'package:ealanat_baladna/controller/maincontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -7,6 +8,7 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      
       child: ListView(
         // Remove padding
         padding: EdgeInsets.zero,

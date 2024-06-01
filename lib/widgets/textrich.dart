@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 
 class TextRich extends StatelessWidget {
-  const TextRich({Key? key}) : super(key: key);
+  const TextRich({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +18,7 @@ class TextRich extends StatelessWidget {
       TextSpan(
           text: "بلدنا",
           style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.bold,
-              color: Colors.deepPurple))
+              fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white))
     ]));
   }
 }

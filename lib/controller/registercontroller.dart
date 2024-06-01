@@ -58,10 +58,7 @@ class RegisterController extends GetxController {
     }
   }
 
-  Future logout() async {
-    await FirebaseAuth.instance.signOut();
-    Get.offAll(() => const LoginScreen());
-  }
+  
 
   // TextEditingController phonenum = TextEditingController();
   // TextEditingController username = TextEditingController();
