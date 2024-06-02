@@ -19,7 +19,7 @@ class CardProducts extends StatelessWidget {
               width: Get.width,
               height: Get.height * 0.4,
               decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Colors.grey[100],
                   borderRadius: BorderRadius.circular(30),
                   boxShadow: [
                     BoxShadow(

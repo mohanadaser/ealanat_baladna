@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_types_as_parameter_names, unused_local_variable, prefer_const_constructors
+// ignore_for_file: avoid_types_as_parameter_names, unused_local_variable, prefer_const_constructors, body_might_complete_normally_nullable
 
 import 'package:ealanat_baladna/controller/maincontroller.dart';
 import 'package:ealanat_baladna/views/user_panel/login_screen.dart';
@@ -54,6 +54,9 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   //==============================Search============================
                   CustomForm(
+                      onchange: (Value) {
+                        controller.filterCompanies(controller.searchtxt.text);
+                      },
                       text: "البحث عن محلات ومطاعم وعيادات",
                       type: TextInputType.name,
                       name: controller.searchtxt,
@@ -65,7 +68,7 @@ class HomeScreen extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         itemBuilder: ((context, index) => Padding(
                               padding: EdgeInsets.all(3.0),
-                              child: Chip(
+                              child: FilterChip(
                                 materialTapTargetSize:
                                     MaterialTapTargetSize.shrinkWrap,
                                 label: Text(
@@ -74,7 +77,15 @@ class HomeScreen extends StatelessWidget {
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                backgroundColor: Colors.deepPurple,
+                                backgroundColor: controller.data[index]
+                                            ["companyname"] ==
+                                        "الكل"
+                                    ? Colors.black
+                                    : Colors.deepPurple,
+                                onSelected: (bool value) {
+                                  controller.filterProductsByCompany(
+                                      controller.data[index]["companyname"]);
+                                },
                               ),
                             )),
                         separatorBuilder: (context, index) => const Divider(),

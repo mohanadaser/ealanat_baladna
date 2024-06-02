@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_overrides, unused_field
+// ignore_for_file: unnecessary_overrides, unused_field, unrelated_type_equality_checks
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -28,6 +28,7 @@ class MainController extends GetxController {
 
       await Future.delayed(const Duration(seconds: 1));
       data.addAll(q.docs);
+
       isLoading = false;
       update();
     } catch (e) {
@@ -38,13 +39,53 @@ class MainController extends GetxController {
   //============================products=================
   void fetchProducts() async {
     try {
+      pro.clear();
       QuerySnapshot q =
           await FirebaseFirestore.instance.collection("products").get();
-
-      await Future.delayed(const Duration(seconds: 1));
       pro.addAll(q.docs);
       isLoading = false;
       update();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  //===============================filter companies==========
+  filterCompanies(name) async {
+    try {
+      if (name != null) {
+        QuerySnapshot q =
+            await FirebaseFirestore.instance.collection("companies").get();
+
+        data.clear();
+        update();
+        data.addAll(q.docs
+            .where((element) => element['companyname'].contains(name))
+            .toList());
+        update();
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  //==========================filter products by company========================
+  void filterProductsByCompany(datacomp) async {
+    try {
+      pro.clear();
+      if (datacomp == "الكل") {
+        QuerySnapshot q =
+            await FirebaseFirestore.instance.collection("products").get();
+        pro.addAll(q.docs);
+        update();
+      } else {
+        QuerySnapshot q = await FirebaseFirestore.instance
+            .collection("products")
+            .where("company", isEqualTo: datacomp)
+            .get();
+        pro.addAll(q.docs);
+        update();
+      }
     } catch (e) {
       print(e.toString());
     }
