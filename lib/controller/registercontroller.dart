@@ -13,9 +13,10 @@ class RegisterController extends GetxController {
   void onInit() {
     super.onInit();
   }
-
+ TextEditingController username = TextEditingController();
+  TextEditingController password = TextEditingController();
   bool isloading = false;
-
+//===========================================Google Sign in=====================
   Future signInWithGoogle() async {
     // Trigger the authentication flow
     try {
@@ -57,6 +58,7 @@ class RegisterController extends GetxController {
           colorText: Colors.red, backgroundColor: Colors.deepPurple);
     }
   }
+//=============================================================================================================
 
   
 

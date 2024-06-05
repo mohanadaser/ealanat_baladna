@@ -7,15 +7,15 @@ Widget CustomForm(
         {required String text,
         required TextInputType type,
         final String? Function(String?)? validator,
-          final String?Function(String?)?onchange,
+        final String? Function(String?)? onchange,
         final int? maxLines,
         required TextEditingController name,
-       List<TextInputFormatter>? formating,
+        List<TextInputFormatter>? formating,
         Icon? sufxicon}) =>
     TextFormField(
       controller: name,
       onChanged: onchange,
-    inputFormatters: formating,
+      inputFormatters: formating,
       maxLines: maxLines,
       validator: validator,
       keyboardType: type,

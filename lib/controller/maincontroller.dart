@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_overrides, unused_field, unrelated_type_equality_checks
+// ignore_for_file: unnecessary_overrides, unused_field, unrelated_type_equality_checks, unused_element
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -84,10 +84,21 @@ class MainController extends GetxController {
             .where("company", isEqualTo: datacomp)
             .get();
         pro.addAll(q.docs);
-        update();
+      
       }
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  //==============================refresh indicator============
+  Future<void> refreshProducts() async {
+    await Future.delayed(const Duration(seconds: 2));
+    pro.clear();
+    QuerySnapshot q =
+        await FirebaseFirestore.instance.collection("products").get();
+    pro.addAll(q.docs);
+
+    update();
   }
 }

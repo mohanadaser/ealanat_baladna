@@ -95,13 +95,18 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(height: 10.0),
                   SizedBox(
                     height: Get.height * 0.75,
-                    child: ListView.separated(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        itemCount: controller.pro.length,
-                        separatorBuilder: (context, index) => const Divider(),
-                        itemBuilder: (context, index) =>
-                            CardProducts(index: index)),
+                    child: RefreshIndicator(
+                      onRefresh: () {
+                      return controller.refreshProducts();
+                      },
+                      child: ListView.separated(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.vertical,
+                          itemCount: controller.pro.length,
+                          separatorBuilder: (context, index) => const Divider(),
+                          itemBuilder: (context, index) =>
+                              CardProducts(index: index)),
+                    ),
                   ),
                 ],
               ),
