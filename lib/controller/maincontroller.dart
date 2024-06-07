@@ -73,18 +73,13 @@ class MainController extends GetxController {
   void filterProductsByCompany(datacomp) async {
     try {
       pro.clear();
-      if (datacomp == "الكل") {
-        QuerySnapshot q =
-            await FirebaseFirestore.instance.collection("products").get();
-        pro.addAll(q.docs);
-        update();
-      } else {
-        QuerySnapshot q = await FirebaseFirestore.instance
-            .collection("products")
-            .where("company", isEqualTo: datacomp)
-            .get();
-        pro.addAll(q.docs);
-      }
+
+      QuerySnapshot q = await FirebaseFirestore.instance
+          .collection("products")
+          .where("company", isEqualTo: datacomp)
+          .get();
+      pro.addAll(q.docs);
+      update();
     } catch (e) {
       print(e.toString());
     }

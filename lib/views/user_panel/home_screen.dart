@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_types_as_parameter_names, unused_local_variable, prefer_const_constructors, body_might_complete_normally_nullable
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ealanat_baladna/controller/maincontroller.dart';
 import 'package:ealanat_baladna/views/user_panel/login_screen.dart';
 import 'package:ealanat_baladna/widgets/card_products.dart';
@@ -10,8 +11,19 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +67,7 @@ class HomeScreen extends StatelessWidget {
                   //==============================Search============================
                   CustomForm(
                       onchange: (Value) {
-                        controller.filterCompanies(controller.searchtxt.text);
+                        setState(() {});
                       },
                       text: "البحث عن محلات ومطاعم وعيادات",
                       type: TextInputType.name,
@@ -64,32 +76,64 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(
                     height: Get.height * 0.05,
                     //========================companies===================================
-                    child: ListView.separated(
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: ((context, index) => Padding(
-                              padding: EdgeInsets.all(3.0),
-                              child: FilterChip(
-                                materialTapTargetSize:
-                                    MaterialTapTargetSize.shrinkWrap,
-                                label: Text(
-                                  controller.data[index]["companyname"],
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                backgroundColor: controller.data[index]
-                                            ["companyname"] ==
-                                        "الكل"
-                                    ? Colors.black
-                                    : Colors.deepPurple,
-                                onSelected: (bool value) {
-                                  controller.filterProductsByCompany(
-                                      controller.data[index]["companyname"]);
-                                },
-                              ),
-                            )),
-                        separatorBuilder: (context, index) => const Divider(),
-                        itemCount: controller.data.length),
+                    child: StreamBuilder<QuerySnapshot>(
+                        stream: FirebaseFirestore.instance
+                            .collection("companies")
+                            .snapshots(),
+                        builder:
+                            (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                          if (snapshot.hasError) {
+                            return const Text('Something went wrong');
+                          }
+                          // if (snapshot.connectionState ==
+                          //     ConnectionState.waiting) {
+                          //   return const Center(
+                          //       child: CircularProgressIndicator());
+                          // }
+                          if (snapshot.hasData) {
+                            List<DocumentSnapshot> filteredDocuments =
+                                snapshot.data!.docs.where((doc) {
+                              // Replace 'fieldName' and the condition as needed
+                              return doc['companyname']
+                                  .contains(controller.searchtxt.text);
+                            }).toList();
+
+                            return ListView.separated(
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: ((context, index) {
+                                  var doc = filteredDocuments[index];
+                                  return Padding(
+                                    padding: EdgeInsets.all(3.0),
+                                    child: FilterChip(
+                                      onSelected: (bool val) {
+                                        controller.filterProductsByCompany(
+                                            doc["companyname"]);
+                                      }, //======Select to Sgow Products
+                                      materialTapTargetSize:
+                                          MaterialTapTargetSize.shrinkWrap,
+                                      label: controller.searchtxt.text.isEmpty
+                                          ? Text(
+                                              doc["companyname"],
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold),
+                                            )
+                                          : Text(
+                                              doc["companyname"],
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                    ),
+                                  );
+                                }),
+                                separatorBuilder: (context, index) =>
+                                    const Divider(),
+                                itemCount: filteredDocuments.length);
+                          } else {
+                            return Text('No data available');
+                          }
+                        }),
                   ),
                   //=================================================menu=========================
                   const SizedBox(height: 10.0),
@@ -97,7 +141,7 @@ class HomeScreen extends StatelessWidget {
                     height: Get.height * 0.75,
                     child: RefreshIndicator(
                       onRefresh: () {
-                      return controller.refreshProducts();
+                        return controller.refreshProducts();
                       },
                       child: ListView.separated(
                           shrinkWrap: true,
