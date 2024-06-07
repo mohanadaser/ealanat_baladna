@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:ealanat_baladna/controller/maincontroller.dart';
+import 'package:ealanat_baladna/views/admin_panel/admin_login.dart';
 import 'package:ealanat_baladna/views/admin_panel/home_admin.dart';
 import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +63,7 @@ class MyDrawer extends StatelessWidget {
             leading: const Icon(Icons.settings),
             title: const Text('الاعدادات'),
             onTap: () {
-              Get.to(() => HomeAdmin());
+              Get.to(() => AdminLogin());
             },
           ),
           const Divider(),

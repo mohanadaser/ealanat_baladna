@@ -84,7 +84,6 @@ class MainController extends GetxController {
             .where("company", isEqualTo: datacomp)
             .get();
         pro.addAll(q.docs);
-      
       }
     } catch (e) {
       print(e.toString());

@@ -1,8 +1,9 @@
 // ignore_for_file: unrelated_type_equality_checks, unnecessary_overrides
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ealanat_baladna/views/admin_panel/home_admin.dart';
 import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
-import 'package:ealanat_baladna/views/user_panel/login_screen.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,9 +14,29 @@ class RegisterController extends GetxController {
   void onInit() {
     super.onInit();
   }
- TextEditingController username = TextEditingController();
+
+  TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
+     final keyform = GlobalKey<FormState>();
   bool isloading = false;
+
+  //================================Login admin===================
+  void loginadmin() async {
+    try {
+     await FirebaseFirestore.instance
+          .collection("adminusers")
+          .where("name", isEqualTo: username.text)
+          .where("password", isEqualTo: password.text)
+          .get();
+      Get.to(() => const HomeAdmin());
+      update();
+    } on FirebaseAuthException catch (e) {
+      Get.snackbar("faild", e.toString(), colorText: Colors.red);
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
 //===========================================Google Sign in=====================
   Future signInWithGoogle() async {
     // Trigger the authentication flow
@@ -59,8 +80,6 @@ class RegisterController extends GetxController {
     }
   }
 //=============================================================================================================
-
-  
 
   // TextEditingController phonenum = TextEditingController();
   // TextEditingController username = TextEditingController();

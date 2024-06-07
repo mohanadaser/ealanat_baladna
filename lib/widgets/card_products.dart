@@ -28,8 +28,10 @@ class CardProducts extends StatelessWidget {
                         blurRadius: 10,
                         offset: const Offset(0, 3))
                   ]),
+                  
               child: Column(
                 children: [
+                 
                   Image.network(
                     ctrl.pro[index]["proimg"] ?? "No Image",
                     height: 100,
@@ -55,6 +57,7 @@ class CardProducts extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         color: Colors.deepPurple),
                   ),
+                 
                   Row(
                     children: [
                       IconButton(
