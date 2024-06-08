@@ -64,7 +64,8 @@ class HomeController extends GetxController {
         "proimg": imageurl,
         "productprice": formattedCurrency,
         "company": selectedValue,
-        "date_creation": formatter.format(now)
+        "date_creation": formatter.format(now),
+        "likes":[]
       });
 
       Get.snackbar("Success", "تم الحفظ بنجاح",
