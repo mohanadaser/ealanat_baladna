@@ -25,7 +25,7 @@ class AdminLogin extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Form(
-                key: controller.keyform,
+                //key: controller.keyform,
                 child: Column(
                   children: [
                     CustomForm(
@@ -39,7 +39,7 @@ class AdminLogin extends StatelessWidget {
                         type: TextInputType.name,
                         name: controller.username),
                     const SizedBox(height: 15),
-                    CustomForm(
+                    CustomPass(
                       validator: (Value) {
                         if (Value == null) {
                           return "wrong";
@@ -49,13 +49,12 @@ class AdminLogin extends StatelessWidget {
                       text: "الرقم السرى",
                       type: TextInputType.visiblePassword,
                       name: controller.password,
+                      issecure: true,
                     ),
                     const SizedBox(height: 15),
                     ElevatedButton(
                         onPressed: () {
-                          if (controller.keyform.currentState!.validate()) {
-                            controller.loginadmin();
-                          }
+                          controller.loginadmin();
                         },
                         child: const Text("تسجيل",
                             style: TextStyle(

@@ -63,7 +63,7 @@ class MyDrawer extends StatelessWidget {
             leading: const Icon(Icons.settings),
             title: const Text('الاعدادات'),
             onTap: () {
-              Get.to(() => AdminLogin());
+              Get.offAll(() => AdminLogin());
             },
           ),
           const Divider(),

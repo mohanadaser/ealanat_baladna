@@ -21,7 +21,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
-    // TODO: implement initState
+  
     super.initState();
   }
 
@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: GetBuilder<MainController>(
         builder: (MainController controller) {
           return Scaffold(
-            key: controller.scaffoldKey,
+            key: controller.scaffoldKey1,
             drawer: const MyDrawer(),
             backgroundColor: Colors.white,
             appBar: AppBar(
@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 //====================================drawer=============================
                 TextButton(
                     onPressed: () {
-                      controller.scaffoldKey.currentState!.openDrawer();
+                      controller.scaffoldKey1.currentState!.openDrawer();
                     },
                     child: Text(
                       "تواصل معنا",

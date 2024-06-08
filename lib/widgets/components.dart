@@ -26,3 +26,22 @@ Widget CustomForm(
         fillColor: Colors.white,
       ),
     );
+Widget CustomPass(
+        {required String text,
+        required TextInputType type,
+        final String? Function(String?)? validator,
+        required bool issecure,
+        required TextEditingController name,
+        Icon? sufxicon}) =>
+    TextFormField(
+      controller: name,
+      obscureText: issecure,
+      validator: validator,
+      keyboardType: type,
+      decoration: InputDecoration(
+        suffixIcon: sufxicon,
+        hintText: text,
+        filled: true,
+        fillColor: Colors.white,
+      ),
+    );

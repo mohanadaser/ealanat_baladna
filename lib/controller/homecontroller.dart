@@ -31,6 +31,19 @@ class HomeController extends GetxController {
     super.onInit();
   }
 
+  @override
+  void dispose() {
+    productname.dispose();
+    productdesc.dispose();
+    companyname.dispose();
+    productprice.dispose();
+    addresscompany.dispose();
+    phoncompany.dispose();
+
+    super.dispose();
+  }
+
+//=============================== Add products=======================
   void addproduct() async {
     //=========================convert currency to egypt==========
     final number = double.parse(productprice.text);

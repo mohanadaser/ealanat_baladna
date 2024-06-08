@@ -10,7 +10,7 @@ class MainController extends GetxController {
   List<QueryDocumentSnapshot> pro = [];
   //List<Companies> compamies = [];
   TextEditingController searchtxt = TextEditingController();
-  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+  final GlobalKey<ScaffoldState> scaffoldKey1 = GlobalKey<ScaffoldState>();
   bool isLoading = true;
 
   @override
@@ -18,6 +18,12 @@ class MainController extends GetxController {
     fetchCompanies();
     fetchProducts();
     super.onInit();
+  }
+
+  @override
+  void dispose() {
+    searchtxt.dispose();
+    super.dispose();
   }
 
 //====================================companies================

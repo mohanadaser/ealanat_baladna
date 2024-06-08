@@ -15,27 +15,46 @@ class RegisterController extends GetxController {
     super.onInit();
   }
 
+  @override
+  void dispose() {
+    username.dispose();
+    password.dispose();
+    super.dispose();
+  }
+
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
-     final keyform = GlobalKey<FormState>();
+  // final keyform = GlobalKey<FormState>();
   bool isloading = false;
 
   //================================Login admin===================
   void loginadmin() async {
     try {
-     await FirebaseFirestore.instance
+      // if (username.text == "ali" && password.text == "ali123") {
+      //   Get.to(() => const HomeAdmin());
+      //   username.clear();
+      //   password.clear();
+      // }
+      QuerySnapshot q = await FirebaseFirestore.instance
           .collection("adminusers")
           .where("name", isEqualTo: username.text)
           .where("password", isEqualTo: password.text)
           .get();
-      Get.to(() => const HomeAdmin());
-      update();
+      if (q.docs.isNotEmpty) {
+        Get.to(() => const HomeAdmin());
+        username.clear();
+        password.clear();
+        update();
+      } else {
+        Get.snackbar("😉", "اطلع بره لو سمحت ", colorText: Colors.red);
+      }
     } on FirebaseAuthException catch (e) {
       Get.snackbar("faild", e.toString(), colorText: Colors.red);
     } catch (e) {
       print(e.toString());
     }
   }
+  //=====================clear textfields=====================
 
 //===========================================Google Sign in=====================
   Future signInWithGoogle() async {
