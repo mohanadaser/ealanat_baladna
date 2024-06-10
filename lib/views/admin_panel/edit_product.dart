@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
- 
 
 class EditProduct extends StatefulWidget {
   final String oldproname;
@@ -36,8 +35,18 @@ class _EditProductState extends State<EditProduct> {
     address.text = widget.oldadress;
     phone.text = widget.oldphone;
     desc.text = widget.oldDesc;
-    price.text = widget.oldprice ;
+    price.text = widget.oldprice;
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    price.dispose();
+    proname.dispose();
+    phone.dispose();
+    desc.dispose();
+    address.dispose();
+    super.dispose();
   }
 
   TextEditingController proname = TextEditingController();
@@ -94,9 +103,7 @@ class _EditProductState extends State<EditProduct> {
               CustomForm(text: "", type: TextInputType.name, name: proname),
               const SizedBox(height: 10.0),
               CustomForm(
-                  text: "",
-                  type: TextInputType.streetAddress,
-                  name: address),
+                  text: "", type: TextInputType.streetAddress, name: address),
               const SizedBox(height: 10.0),
               CustomForm(text: "", type: TextInputType.phone, name: phone),
               const SizedBox(height: 10.0),
@@ -114,8 +121,7 @@ class _EditProductState extends State<EditProduct> {
                   },
                   child: const Text(
                     "تعديل المنتج",
-                    style: TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ))
             ],
           ),

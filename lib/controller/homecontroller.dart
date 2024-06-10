@@ -7,6 +7,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
@@ -65,7 +66,7 @@ class HomeController extends GetxController {
         "productprice": formattedCurrency,
         "company": selectedValue,
         "date_creation": formatter.format(now),
-        "likes":[]
+        "likes": []
       });
 
       Get.snackbar("Success", "تم الحفظ بنجاح",
@@ -77,18 +78,22 @@ class HomeController extends GetxController {
     }
   }
 
+//==========================================picked image=============================================
   void pickedImage() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-        type: FileType.custom, allowedExtensions: ['jpg', 'pdf', 'doc', 'png']);
+    // FilePickerResult? result = await FilePicker.platform.pickFiles(
+    //     type: FileType.custom, allowedExtensions: ['jpg', 'pdf', 'doc', 'png']);
+
+    final result = await ImagePicker().pickImage(source: ImageSource.gallery);
 
     if (result == null) {
       print("No file selected");
     } else {
-      imageSelected = File(result.files.single.path ?? "");
+      imageSelected = File(result.path);
       update();
     }
   }
 
+//==========================================================================================
   void clearcontent() {
     productname.clear();
     productdesc.clear();
