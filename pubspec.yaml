@@ -37,6 +37,7 @@ dependencies:
   firebase_storage: ^11.7.5
   flutter:
     sdk: flutter
+  flutter_phone_direct_caller: ^2.1.1
   get: ^4.6.6
   google_fonts: ^6.2.1
   google_sign_in: ^6.2.1

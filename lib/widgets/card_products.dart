@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ealanat_baladna/controller/maincontroller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
 
 class CardProducts extends StatelessWidget {
@@ -62,30 +64,45 @@ class CardProducts extends StatelessWidget {
                         color: Colors.deepPurple),
                   ),
                   Expanded(
-                    child: Row(
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            ctrl.addLikes(ctrl.pro[index]["proid"]);
-                          },
-                          icon: Icon(Icons.favorite,
-                              color: ctrl.pro[index]["likes"].contains(
-                                      FirebaseAuth.instance.currentUser?.uid)
-                                  ? Colors.red
-                                  : Colors.white),
-                        ),
-                        const Text("44"),
-                        const Spacer(),
-                        const Text("اتصال"),
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.phone,
-                            color: Colors.blue,
-                          ),
-                        ),
-                      ],
-                    ),
+                    child: StreamBuilder<QuerySnapshot>(
+                        stream: FirebaseFirestore.instance
+                            .collection("products")
+                            .snapshots(),
+                        builder:
+                            (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                          List<dynamic> userlikes =
+                              snapshot.data?.docs[index]["likes"] ?? [0, 1];
+                          return Row(
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  ctrl.addLikes(
+                                      snapshot.data?.docs[index].data());
+                                },
+                                icon: Icon(Icons.favorite,
+                                    color: snapshot.data?.docs[index]["likes"]
+                                                .contains(FirebaseAuth.instance
+                                                    .currentUser?.uid) ??
+                                            false
+                                        ? Colors.red
+                                        : Colors.grey),
+                              ),
+                              Text("${userlikes.length}  اعجبنى"),
+                              const Spacer(),
+                              const Text("اتصال"),
+                              IconButton(
+                                onPressed: () {
+                                  FlutterPhoneDirectCaller.callNumber(
+                                      ctrl.pro[index]["phoncompany"]);
+                                },
+                                icon: const Icon(
+                                  Icons.phone,
+                                  color: Colors.blue,
+                                ),
+                              ),
+                            ],
+                          );
+                        }),
                   )
                 ],
               ),

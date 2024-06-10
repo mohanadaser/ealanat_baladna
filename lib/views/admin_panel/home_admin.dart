@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ealanat_baladna/controller/homecontroller.dart';
 import 'package:ealanat_baladna/views/admin_panel/add_product.dart';
+import 'package:ealanat_baladna/views/admin_panel/edit_product.dart';
 import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
 import 'package:ealanat_baladna/views/user_panel/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -50,38 +51,55 @@ class HomeAdmin extends StatelessWidget {
                       separatorBuilder: (context, index) => const Divider(),
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (context, index) {
-                        return ListTile(
-                          leading: Image.network(
-                            "${snapshot.data?.docs[index]['proimg']}",
-                            width: 40,
-                            height: 50,
-                            fit: BoxFit.cover,
+                        return InkWell(
+                          onTap: () {
+                            Get.to(() => EditProduct(
+                                oldproname: snapshot.data?.docs[index]
+                                    ['productname'],
+                                oldphone: snapshot.data?.docs[index]
+                                    ['phoncompany'],
+                                oldDesc: snapshot.data?.docs[index]
+                                    ['productdesc'],
+                                oldprice: snapshot
+                                        .data?.docs[index]['productprice'],
+                                    
+                                oldadress: snapshot.data?.docs[index]
+                                    ['addresscompany'],
+                                proid: snapshot.data?.docs[index]['proid']));
+                          },
+                          child: ListTile(
+                            leading: Image.network(
+                              "${snapshot.data?.docs[index]['proimg']}",
+                              width: 40,
+                              height: 50,
+                              fit: BoxFit.cover,
+                            ),
+                            title: Text(
+                                "${snapshot.data?.docs[index]['productname']}"),
+                            subtitle: RichText(
+                                text: TextSpan(children: [
+                              TextSpan(
+                                  text:
+                                      "${snapshot.data?.docs[index]['company']} - ",
+                                  style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold)),
+                              TextSpan(
+                                  text:
+                                      "${snapshot.data?.docs[index]['date_creation']}",
+                                  style: const TextStyle(
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold))
+                            ])),
+                            trailing: IconButton(
+                                onPressed: () {
+                                  ctrl.deleteproduct(
+                                      snapshot.data?.docs[index]['proid'],
+                                      snapshot.data?.docs[index]['proimg']);
+                                },
+                                icon: const Icon(Icons.delete)),
                           ),
-                          title: Text(
-                              "${snapshot.data?.docs[index]['productname']}"),
-                          subtitle: RichText(
-                              text: TextSpan(children: [
-                            TextSpan(
-                                text:
-                                    "${snapshot.data?.docs[index]['company']} - ",
-                                style: const TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold)),
-                            TextSpan(
-                                text:
-                                    "${snapshot.data?.docs[index]['date_creation']}",
-                                style: const TextStyle(
-                                    color: Colors.red,
-                                    fontWeight: FontWeight.bold))
-                          ])),
-                          trailing: IconButton(
-                              onPressed: () {
-                                ctrl.deleteproduct(
-                                    snapshot.data?.docs[index]['proid'],
-                                    snapshot.data?.docs[index]['proimg']);
-                              },
-                              icon: const Icon(Icons.delete)),
                         );
                       },
                     ),

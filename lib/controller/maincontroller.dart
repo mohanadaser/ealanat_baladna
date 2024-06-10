@@ -105,45 +105,49 @@ class MainController extends GetxController {
   }
 
   //=======================Add likes==============================
-  void addLikes(String productid) async {
-    QuerySnapshot q = await FirebaseFirestore.instance
-        .collection("products")
-        .where("likes")
-        .get();
-    if (q.docs.contains(await FirebaseAuth.instance.currentUser?.uid)) {
+  void addLikes(prolikes) async {
+    //   QuerySnapshot q = await FirebaseFirestore.instance
+    //       .collection("products")
+    //       .where("likes")
+    //       .get();
+    //   if (q.docs.contains(await FirebaseAuth.instance.currentUser?.uid)) {
+    //     await FirebaseFirestore.instance
+    //         .collection("products")
+    //         .doc(productid)
+    //         .update({
+    //       "likes":
+    //           FieldValue.arrayRemove([FirebaseAuth.instance.currentUser?.uid])
+    //     });
+    //     update();
+    //   } else {
+    //     await FirebaseFirestore.instance
+    //         .collection("products")
+    //         .doc(productid)
+    //         .update({
+    //       "likes": FieldValue.arrayUnion([FirebaseAuth.instance.currentUser?.uid])
+    //     });
+    //     update();
+    //   }
+    // }
+
+    if (prolikes['likes'].contains(FirebaseAuth.instance.currentUser?.uid)) {
       await FirebaseFirestore.instance
           .collection("products")
-          .doc(productid)
+          .doc(prolikes["proid"])
           .update({
         "likes":
             FieldValue.arrayRemove([FirebaseAuth.instance.currentUser?.uid])
       });
-      update();
     } else {
       await FirebaseFirestore.instance
           .collection("products")
-          .doc(productid)
+          .doc(prolikes["proid"])
           .update({
         "likes": FieldValue.arrayUnion([FirebaseAuth.instance.currentUser?.uid])
       });
-      update();
     }
   }
 
-  //   if (prolikes['likes'].contains(FirebaseAuth.instance.currentUser?.uid)) {
-  //     await FirebaseFirestore.instance
-  //         .collection("products")
-  //         .doc(prolikes["proid"])
-  //         .update({
-  //       "likes":
-  //           FieldValue.arrayRemove([FirebaseAuth.instance.currentUser?.uid])
-  //     });
-  //   } else {
-  //     await FirebaseFirestore.instance
-  //         .collection("products")
-  //         .doc("proid")
-  //         .update({
-  //       "likes": FieldValue.arrayUnion([FirebaseAuth.instance.currentUser?.uid])
-  //     });
-  // }
+  //==========================Get length of likes=========
+ 
 }
