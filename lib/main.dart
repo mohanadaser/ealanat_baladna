@@ -2,6 +2,7 @@
 
 import 'package:ealanat_baladna/controller/homecontroller.dart';
 import 'package:ealanat_baladna/controller/maincontroller.dart';
+
 import 'package:ealanat_baladna/firebase_options.dart';
 import 'package:ealanat_baladna/views/admin_panel/admin_login.dart';
 import 'package:ealanat_baladna/views/admin_panel/home_admin.dart';
@@ -9,6 +10,7 @@ import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -48,12 +50,25 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
+        themeMode: ThemeMode.system,
         title: 'Flutter Demo',
         theme: ThemeData(
           textTheme: GoogleFonts.cairoTextTheme(Theme.of(context).textTheme),
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          brightness: Brightness.light,
           useMaterial3: true,
         ),
+        //  darkTheme: ThemeData.dark().copyWith(
+        //    textTheme: GoogleFonts.cairoTextTheme(Theme.of(context).textTheme),
+        //   brightness: Brightness.dark,
+        //    primaryColor: Colors.amber,
+        //  buttonTheme: ButtonThemeData(
+        //    buttonColor: Colors.amber,
+        //   disabledColor: Colors.grey,
+        //  ),
+        // ),
         home: HomeAdmin());
+
+    //darkTheme: ThemeData.dark(),
   }
 }

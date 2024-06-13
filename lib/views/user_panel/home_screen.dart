@@ -21,7 +21,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
-  
     super.initState();
   }
 
@@ -104,6 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   var doc = filteredDocuments[index];
                                   return Padding(
                                     padding: EdgeInsets.all(3.0),
+                                    //=======================================filter chips=============
                                     child: FilterChip(
                                       onSelected: (bool val) {
                                         controller.filterProductsByCompany(
@@ -115,13 +115,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ? Text(
                                               doc["companyname"],
                                               style: TextStyle(
-                                                  color: Colors.black,
+                                                  fontSize: 15.0,
+                                                  //color: Colors.black,
                                                   fontWeight: FontWeight.bold),
                                             )
                                           : Text(
                                               doc["companyname"],
                                               style: TextStyle(
-                                                  color: Colors.black,
+                                                  fontSize: 15.0,
+                                                  // color: Colors.black,
                                                   fontWeight: FontWeight.bold),
                                             ),
                                     ),
@@ -149,7 +151,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           itemCount: controller.pro.length,
                           separatorBuilder: (context, index) => const Divider(),
                           itemBuilder: (context, index) =>
-                          
                               CardProducts(index: index)),
                     ),
                   ),

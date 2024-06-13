@@ -7,9 +7,14 @@ import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class MyDrawer extends StatelessWidget {
+class MyDrawer extends StatefulWidget {
   const MyDrawer({super.key});
 
+  @override
+  State<MyDrawer> createState() => _MyDrawerState();
+}
+
+class _MyDrawerState extends State<MyDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -45,18 +50,24 @@ class MyDrawer extends StatelessWidget {
             onTap: () {},
           ),
           ListTile(
-            leading: const Icon(Icons.person),
-            title: const Text('Friends'),
-            onTap: () {},
+            leading: const Icon(Icons.dark_mode),
+            title: const Text('تغير المظهر'),
+            onTap: () {
+              setState(() {
+                 Get.changeThemeMode(
+                  Get.isDarkMode ? ThemeMode.light: ThemeMode.dark);
+              });
+             
+            },
           ),
           ListTile(
             leading: const Icon(Icons.share),
-            title: const Text('Share'),
+            title: const Text('مشاركة تطبيقنا مع الغير'),
             onTap: () {},
           ),
           const ListTile(
             leading: Icon(Icons.notifications),
-            title: Text('Request'),
+            title: Text('ارسال الاشعارات'),
           ),
           const Divider(),
           ListTile(

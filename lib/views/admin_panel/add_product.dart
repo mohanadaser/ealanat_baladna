@@ -45,7 +45,7 @@ class AddProduct extends StatelessWidget {
                         name: controller.addresscompany),
                     const SizedBox(height: 10.0),
                     CustomForm(
-                        formating:[LengthLimitingTextInputFormatter(11)],
+                        formating: [LengthLimitingTextInputFormatter(11)],
                         text: "رقم التليفون",
                         type: TextInputType.phone,
                         name: controller.phoncompany),
@@ -63,7 +63,7 @@ class AddProduct extends StatelessWidget {
                     const SizedBox(height: 10.0),
                     //======مكان تحميل الصوره
                     controller.imageSelected == null
-                        ? SizedBox(height: h * 0.04)
+                        ? const Text("يجب اختيار صوره اولا")
                         : Image.file(controller.imageSelected!,
                             height: h * 0.3, width: w * 0.3),
                     IconButton(

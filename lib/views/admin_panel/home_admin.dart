@@ -8,9 +8,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HomeAdmin extends StatelessWidget {
+class HomeAdmin extends StatefulWidget {
   const HomeAdmin({super.key});
 
+  @override
+  State<HomeAdmin> createState() => _HomeAdminState();
+}
+
+class _HomeAdminState extends State<HomeAdmin> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
@@ -60,9 +65,8 @@ class HomeAdmin extends StatelessWidget {
                                     ['phoncompany'],
                                 oldDesc: snapshot.data?.docs[index]
                                     ['productdesc'],
-                                oldprice: snapshot
-                                        .data?.docs[index]['productprice'],
-                                    
+                                oldprice: snapshot.data?.docs[index]
+                                    ['productprice'],
                                 oldadress: snapshot.data?.docs[index]
                                     ['addresscompany'],
                                 proid: snapshot.data?.docs[index]['proid']));
@@ -82,7 +86,7 @@ class HomeAdmin extends StatelessWidget {
                                   text:
                                       "${snapshot.data?.docs[index]['company']} - ",
                                   style: const TextStyle(
-                                      color: Colors.black,
+                                      //color: Colors.black,
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold)),
                               TextSpan(
@@ -108,7 +112,13 @@ class HomeAdmin extends StatelessWidget {
             const SizedBox(height: 15),
             Row(
               children: [
-                ElevatedButton(onPressed: () {}, child: const Text("الشركات")),
+                ElevatedButton(
+                    onPressed: () {
+                      Get.changeTheme(Get.isDarkMode
+                          ? ThemeData.light()
+                          : ThemeData.dark());
+                    },
+                    child: const Text("الشركات")),
                 const SizedBox(
                   width: 10,
                 ),
