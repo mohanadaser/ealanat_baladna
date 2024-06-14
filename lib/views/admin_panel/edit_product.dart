@@ -56,13 +56,14 @@ class _EditProductState extends State<EditProduct> {
   TextEditingController price = TextEditingController();
 
   //=====================================update products=====================
+
   void updateproducts() async {
     //=========================convert currency to egypt==========
-    final number = double.parse(price.text);
+    final number = double.parse(price.text.replaceAll(RegExp(r'[^0-9.]'),''));
     final curency = NumberFormat.currency(locale: 'ar_EG', symbol: 'ج.م.');
     final formattedCurrency = curency.format(number);
 //==================================================================================
-    // Call the user's CollectionReference to add a new user
+
     try {
       await FirebaseFirestore.instance
           .collection('products')
@@ -97,33 +98,44 @@ class _EditProductState extends State<EditProduct> {
         ),
         body: Padding(
           padding: const EdgeInsets.all(10.0),
-          child: Column(
-            children: [
-              const SizedBox(height: 10.0),
-              CustomForm(text: "", type: TextInputType.name, name: proname),
-              const SizedBox(height: 10.0),
-              CustomForm(
-                  text: "", type: TextInputType.streetAddress, name: address),
-              const SizedBox(height: 10.0),
-              CustomForm(text: "", type: TextInputType.phone, name: phone),
-              const SizedBox(height: 10.0),
-              CustomForm(text: "", type: TextInputType.text, name: desc),
-              const SizedBox(height: 10.0),
-              CustomForm(text: "", type: TextInputType.number, name: price),
-              const SizedBox(height: 20.0),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.deepPurple,
-                      foregroundColor: Colors.white),
-                  onPressed: () {
-                    updateproducts();
-                    Get.back();
-                  },
-                  child: const Text(
-                    "تعديل المنتج",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ))
-            ],
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: [
+                const SizedBox(height: 10.0),
+                CustomForm(text: "", type: TextInputType.name, name: proname),
+                const SizedBox(height: 10.0),
+                CustomForm(
+                  text: "",
+                  type: TextInputType.streetAddress,
+                  name: address,
+                ),
+                const SizedBox(height: 10.0),
+                CustomForm(text: "", type: TextInputType.phone, name: phone),
+                const SizedBox(height: 10.0),
+                CustomForm(
+                    text: "",
+                    type: TextInputType.text,
+                    name: desc,
+                    maxLines: 3,
+                    maxlentgh: 150),
+                const SizedBox(height: 10.0),
+                CustomForm(text: "", type: TextInputType.number, name: price),
+                const SizedBox(height: 20.0),
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.deepPurple,
+                        foregroundColor: Colors.white),
+                    onPressed: () {
+                      updateproducts();
+                      Get.back();
+                    },
+                    child: const Text(
+                      "تعديل المنتج",
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ))
+              ],
+            ),
           ),
         ));
   }

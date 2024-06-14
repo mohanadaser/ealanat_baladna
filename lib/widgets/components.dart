@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 Widget CustomForm(
         {required String text,
@@ -10,6 +11,7 @@ Widget CustomForm(
         final String? Function(String?)? validator,
         final String? Function(String?)? onchange,
         final int? maxLines,
+        final int? maxlentgh,
         required TextEditingController name,
         List<TextInputFormatter>? formating,
         Icon? sufxicon}) =>
@@ -18,14 +20,14 @@ Widget CustomForm(
       onChanged: onchange,
       inputFormatters: formating,
       maxLines: maxLines,
+      maxLength: maxlentgh,
       validator: validator,
       keyboardType: type,
       decoration: InputDecoration(
-        suffixIcon: sufxicon,
-        hintText: text,
-        filled: true,
-        fillColor: Colors.white,
-      ),
+          suffixIcon: sufxicon,
+          hintText: text,
+          filled: true,
+          fillColor: HexColor('F7F9F9')),
     );
 Widget CustomPass(
         {required String text,

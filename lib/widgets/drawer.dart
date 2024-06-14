@@ -5,7 +5,9 @@ import 'package:ealanat_baladna/views/admin_panel/admin_login.dart';
 import 'package:ealanat_baladna/views/admin_panel/home_admin.dart';
 import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:icony/icony_gameicons.dart';
 
 class MyDrawer extends StatefulWidget {
   const MyDrawer({super.key});
@@ -50,15 +52,12 @@ class _MyDrawerState extends State<MyDrawer> {
             onTap: () {},
           ),
           ListTile(
-            leading: const Icon(Icons.dark_mode),
-            title: const Text('تغير المظهر'),
-            onTap: () {
-              setState(() {
-                 Get.changeThemeMode(
-                  Get.isDarkMode ? ThemeMode.light: ThemeMode.dark);
-              });
-             
-            },
+            leading: Icon(
+              FontAwesomeIcons.playstation,
+              color: Colors.black,
+            ),
+            title: const Text('لعبة Tic Tac Toe'),
+            onTap: () {},
           ),
           ListTile(
             leading: const Icon(Icons.share),

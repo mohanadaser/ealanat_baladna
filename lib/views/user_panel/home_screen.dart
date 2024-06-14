@@ -92,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           if (snapshot.hasData) {
                             List<DocumentSnapshot> filteredDocuments =
                                 snapshot.data!.docs.where((doc) {
-                              // Replace 'fieldName' and the condition as needed
+                             
                               return doc['companyname']
                                   .contains(controller.searchtxt.text);
                             }).toList();
@@ -116,14 +116,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                               doc["companyname"],
                                               style: TextStyle(
                                                   fontSize: 15.0,
-                                                  //color: Colors.black,
+                                                  color: Colors.black,
                                                   fontWeight: FontWeight.bold),
                                             )
                                           : Text(
                                               doc["companyname"],
                                               style: TextStyle(
                                                   fontSize: 15.0,
-                                                  // color: Colors.black,
+                                                  color: Colors.black,
                                                   fontWeight: FontWeight.bold),
                                             ),
                                     ),

@@ -86,7 +86,7 @@ class _HomeAdminState extends State<HomeAdmin> {
                                   text:
                                       "${snapshot.data?.docs[index]['company']} - ",
                                   style: const TextStyle(
-                                      //color: Colors.black,
+                                      color: Colors.black,
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold)),
                               TextSpan(

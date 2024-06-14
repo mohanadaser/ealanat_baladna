@@ -29,10 +29,11 @@ class AdminLogin extends StatelessWidget {
           body: Directionality(
             textDirection: TextDirection.rtl,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(20.0),
               child: Form(
                 //key: controller.keyform,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CustomForm(
                         validator: (Value) {
