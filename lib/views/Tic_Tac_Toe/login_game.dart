@@ -1,5 +1,7 @@
+import 'package:ealanat_baladna/views/Tic_Tac_Toe/tic_tac_scren.dart';
 import 'package:ealanat_baladna/widgets/components.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LoginGame extends StatefulWidget {
   const LoginGame({super.key});
@@ -61,7 +63,8 @@ class _LoginGameState extends State<LoginGame> {
               ElevatedButton(
                   onPressed: () {
                     if (fkey.currentState!.validate()) {
-                      print("ok");
+                      Get.to(() =>
+                          TicTacScreen(pl1: player1.text, pl2: player2.text));
                     }
                   },
                   child: const Text("Start Game",
