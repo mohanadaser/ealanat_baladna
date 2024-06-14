@@ -27,7 +27,7 @@ Widget CustomForm(
           suffixIcon: sufxicon,
           hintText: text,
           filled: true,
-          fillColor: HexColor('F7F9F9')),
+          fillColor: HexColor('FFFFFF')),
     );
 Widget CustomPass(
         {required String text,

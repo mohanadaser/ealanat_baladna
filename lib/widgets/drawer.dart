@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:ealanat_baladna/controller/maincontroller.dart';
+import 'package:ealanat_baladna/views/Tic_Tac_Toe/login_game.dart';
 import 'package:ealanat_baladna/views/admin_panel/admin_login.dart';
 import 'package:ealanat_baladna/views/admin_panel/home_admin.dart';
 import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
@@ -57,7 +58,9 @@ class _MyDrawerState extends State<MyDrawer> {
               color: Colors.black,
             ),
             title: const Text('لعبة Tic Tac Toe'),
-            onTap: () {},
+            onTap: () {
+              Get.to(() => LoginGame());
+            },
           ),
           ListTile(
             leading: const Icon(Icons.share),

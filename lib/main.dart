@@ -14,6 +14,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,7 +56,9 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
           textTheme: GoogleFonts.cairoTextTheme(Theme.of(context).textTheme),
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          brightness: Brightness.light,
+          scaffoldBackgroundColor: HexColor('F5F5F5'),
+
+          // brightness: Brightness.light,
           useMaterial3: true,
         ),
         //  darkTheme: ThemeData.dark().copyWith(
