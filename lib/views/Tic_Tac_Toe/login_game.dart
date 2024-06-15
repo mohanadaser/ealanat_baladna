@@ -63,7 +63,7 @@ class _LoginGameState extends State<LoginGame> {
               ElevatedButton(
                   onPressed: () {
                     if (fkey.currentState!.validate()) {
-                      Get.to(() =>
+                      Get.off(() =>
                           TicTacScreen(pl1: player1.text, pl2: player2.text));
                     }
                   },

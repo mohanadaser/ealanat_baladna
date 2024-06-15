@@ -1,9 +1,12 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:ealanat_baladna/views/Tic_Tac_Toe/login_game.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class TicTacScreen extends StatefulWidget {
-  final String pl1, pl2;
-  const TicTacScreen({super.key, required this.pl1, required this.pl2});
+  String pl1, pl2;
+  TicTacScreen({super.key, required this.pl1, required this.pl2});
 
   @override
   State<TicTacScreen> createState() => _TicTacScreenState();
@@ -17,7 +20,7 @@ class _TicTacScreenState extends State<TicTacScreen> {
   @override
   void initState() {
     forms = List.generate(3, (_) => List.generate(3, (_) => ""));
-    currentplayer = "x";
+    currentplayer = "الحمد لله";
     winner = "";
     gameover = false;
     super.initState();
@@ -27,7 +30,7 @@ class _TicTacScreenState extends State<TicTacScreen> {
   void resetGame() {
     setState(() {
       forms = List.generate(3, (_) => List.generate(3, (_) => ""));
-      currentplayer = "x";
+      currentplayer = "الحمد لله";
       winner = "";
       gameover = false;
     });
@@ -39,9 +42,10 @@ class _TicTacScreenState extends State<TicTacScreen> {
       return;
     }
     setState(() {
+      forms[row][col] = currentplayer;
       if (forms[row][0] == currentplayer &&
           forms[row][1] == currentplayer &&
-          forms[row][1] == currentplayer) {
+          forms[row][2] == currentplayer) {
         winner = currentplayer;
         gameover = true;
       } else if (forms[0][col] == currentplayer &&
@@ -60,25 +64,36 @@ class _TicTacScreenState extends State<TicTacScreen> {
         winner = currentplayer;
         gameover = true;
       }
-      currentplayer = currentplayer == "x" ? "o" : "x";
+      currentplayer = currentplayer == "الحمد لله" ? "الله اكبر" : "الحمد لله";
       if (!forms.any((row) => row.any((cell) => cell == ""))) {
         gameover = true;
         winner = "TieToc";
       }
       if (winner != "") {
-        AwesomeDialog(
-            context: context,
-            animType: AnimType.rightSlide,
-            dialogType: DialogType.success,
-            title: winner == "x"
-                ? "${widget.pl1}win"
-                : winner == "o"
-                    ? "${widget.pl2}win"
-                    : "win",
-            btnOkText: "Play Again",
-            btnOkOnPress: () {
-              resetGame();
-            }).show();
+        Get.snackbar(
+            snackStyle: SnackStyle.FLOATING,
+            duration: const Duration(seconds: 5),
+            "Congrats!",
+            winner == "الحمد لله"
+                ? "ًWinner is ${widget.pl1}"
+                : winner == "الله اكبر"
+                    ? "Winner is ${widget.pl2} "
+                    : "No Winner  ",
+            backgroundColor: Colors.deepPurple,
+            colorText: Colors.white);
+        // AwesomeDialog(
+        //     context: context,
+        //     animType: AnimType.bottomSlide,
+        //     dialogType: DialogType.success,
+        //     title: winner == "x"
+        //         ? "${widget.pl1} is Win"
+        //         : winner == "o"
+        //             ? "${widget.pl2} is Win"
+        //             : "win",
+        //     btnOkText: "Play Again",
+        //     btnOkOnPress: () {
+        //       resetGame();
+        //     }).show();
       }
     });
   }
@@ -93,24 +108,25 @@ class _TicTacScreenState extends State<TicTacScreen> {
               height: 70,
             ),
             SizedBox(
-              height: 120,
+              height: 100,
               child: Column(
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        "turn ",
+                        "turn is : ",
                         style: TextStyle(
                             fontSize: 25, fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        currentplayer == "x"
-                            ? "${widget.pl1}$currentplayer"
-                            : "${widget.pl2}$currentplayer",
+                        currentplayer == "الحمد لله"
+                            ? "${widget.pl1} ($currentplayer)"
+                            : "${widget.pl2} ($currentplayer)",
                         style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
-                            color: currentplayer == "x"
+                            color: currentplayer == "الحمد لله"
                                 ? Colors.red
                                 : Colors.green),
                       ),
@@ -120,7 +136,6 @@ class _TicTacScreenState extends State<TicTacScreen> {
                 ],
               ),
             ),
-            const SizedBox(height: 20.0),
             Container(
               margin: const EdgeInsets.all(5),
               decoration: BoxDecoration(
@@ -140,9 +155,57 @@ class _TicTacScreenState extends State<TicTacScreen> {
                     onTap: () {
                       makemove(row, col);
                     },
+                    child: Container(
+                      margin: const EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        color: HexColor('1f2937'),
+                      ),
+                      child: Center(
+                        child: Text(forms[row][col],
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: forms[row][col] == "الحمد لله"
+                                    ? Colors.red
+                                    : Colors.green)),
+                      ),
+                    ),
                   );
                 },
               ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                    onPressed: () {
+                      resetGame();
+                    },
+                    child: const Text("ResetGame",
+                        style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white))),
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.deepPurple),
+                    onPressed: () {
+                      Get.off(() => const LoginGame());
+                      widget.pl1 = "";
+                      widget.pl2 = "";
+                    },
+                    child: const Text("Start Game",
+                        style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white)))
+              ],
             )
           ],
         ),
