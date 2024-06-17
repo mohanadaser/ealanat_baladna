@@ -81,7 +81,6 @@ class MainController extends GetxController {
   void filterProductsByCompany(datacomp) async {
     try {
       pro.clear();
-
       QuerySnapshot q = await FirebaseFirestore.instance
           .collection("products")
           .where("company", isEqualTo: datacomp)
@@ -149,5 +148,4 @@ class MainController extends GetxController {
   }
 
   //==========================Get length of likes=========
- 
 }

@@ -7,6 +7,7 @@ import 'package:ealanat_baladna/firebase_options.dart';
 import 'package:ealanat_baladna/views/admin_panel/admin_login.dart';
 import 'package:ealanat_baladna/views/admin_panel/home_admin.dart';
 import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
+import 'package:ealanat_baladna/views/user_panel/login_screen.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -50,27 +51,49 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        themeMode: ThemeMode.system,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          textTheme: GoogleFonts.cairoTextTheme(Theme.of(context).textTheme),
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          scaffoldBackgroundColor: HexColor('F5F5F5'),
+      debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.system,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        textTheme: GoogleFonts.cairoTextTheme(Theme.of(context).textTheme),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        scaffoldBackgroundColor: HexColor('F5F5F5'),
 
-          // brightness: Brightness.light,
-          useMaterial3: true,
-        ),
-        //  darkTheme: ThemeData.dark().copyWith(
-        //    textTheme: GoogleFonts.cairoTextTheme(Theme.of(context).textTheme),
-        //   brightness: Brightness.dark,
-        //    primaryColor: Colors.amber,
-        //  buttonTheme: ButtonThemeData(
-        //    buttonColor: Colors.amber,
-        //   disabledColor: Colors.grey,
-        //  ),
-        // ),
-        home: HomeAdmin());
+        // brightness: Brightness.light,
+        useMaterial3: true,
+      ),
+      //  darkTheme: ThemeData.dark().copyWith(
+      //    textTheme: GoogleFonts.cairoTextTheme(Theme.of(context).textTheme),
+      //   brightness: Brightness.dark,
+      //    primaryColor: Colors.amber,
+      //  buttonTheme: ButtonThemeData(
+      //    buttonColor: Colors.amber,
+      //   disabledColor: Colors.grey,
+      //  ),
+      // ),
+      home: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const CircularProgressIndicator();
+          }
+          if (snapshot.hasError) {
+            return const Text("there Error");
+          }
+          // ignore: unnecessary_null_comparison
+          if (snapshot.data == null) {
+            return const LoginScreen();
+          }
+          if (snapshot.hasData) {
+            return const HomeScreen();
+          }
+          return const Text("");
+        },
+      ),
+    
+
+      getPages: [GetPage(name: '/home', page: () => HomeScreen())],
+    );
 
     //darkTheme: ThemeData.dark(),
   }

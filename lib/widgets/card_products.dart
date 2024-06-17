@@ -22,6 +22,7 @@ class _CardProductsState extends State<CardProducts> {
   TapDownDetails? _doubleTapDetails;
   @override
   Widget build(BuildContext context) {
+    //======================== canera zoom===============================
     void handleDoubleTap() {
       if (_transformationController.value != Matrix4.identity()) {
         _transformationController.value = Matrix4.identity();
@@ -58,6 +59,7 @@ class _CardProductsState extends State<CardProducts> {
                     ]),
                 child: Column(
                   children: [
+                    //=============================================camera zoom=========
                     GestureDetector(
                       onDoubleTapDown: (details) => _doubleTapDetails = details,
                       onDoubleTap: handleDoubleTap,
@@ -75,6 +77,8 @@ class _CardProductsState extends State<CardProducts> {
                         ),
                       ),
                     ),
+
+                    ///==============================================================
                     Text(
                       ctrl.pro[widget.index]["company"] ?? "=======",
                       style: const TextStyle(
@@ -114,7 +118,8 @@ class _CardProductsState extends State<CardProducts> {
                               (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                             List<dynamic> userlikes =
                                 snapshot.data?.docs[widget.index]["likes"] ??
-                                    [0, 1];
+                                    [];
+
                             return Row(
                               children: [
                                 IconButton(

@@ -1,5 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:ealanat_baladna/views/Tic_Tac_Toe/login_game.dart';
+import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -70,30 +71,30 @@ class _TicTacScreenState extends State<TicTacScreen> {
         winner = "TieToc";
       }
       if (winner != "") {
-        Get.snackbar(
-            snackStyle: SnackStyle.FLOATING,
-            duration: const Duration(seconds: 5),
-            "Congrats!",
-            winner == "الحمد لله"
-                ? "ًWinner is ${widget.pl1}"
+        // Get.snackbar(
+        //     snackStyle: SnackStyle.FLOATING,
+        //     duration: const Duration(seconds: 5),
+        //     "Congrats!",
+        //     winner == "الحمد لله"
+        //         ? "ًWinner is ${widget.pl1}"
+        //         : winner == "الله اكبر"
+        //             ? "Winner is ${widget.pl2} "
+        //             : "No Winner  ",
+        //     backgroundColor: Colors.deepPurple,
+        //     colorText: Colors.white);
+        AwesomeDialog(
+            context: context,
+            animType: AnimType.bottomSlide,
+            dialogType: DialogType.success,
+            title: winner == "الحمد لله"
+                ? "${widget.pl1} مبرووووووك يا"
                 : winner == "الله اكبر"
-                    ? "Winner is ${widget.pl2} "
-                    : "No Winner  ",
-            backgroundColor: Colors.deepPurple,
-            colorText: Colors.white);
-        // AwesomeDialog(
-        //     context: context,
-        //     animType: AnimType.bottomSlide,
-        //     dialogType: DialogType.success,
-        //     title: winner == "x"
-        //         ? "${widget.pl1} is Win"
-        //         : winner == "o"
-        //             ? "${widget.pl2} is Win"
-        //             : "win",
-        //     btnOkText: "Play Again",
-        //     btnOkOnPress: () {
-        //       resetGame();
-        //     }).show();
+                    ? "${widget.pl2} مبرووووك يا"
+                    : "No One",
+            btnOkText: "Play Again",
+            btnOkOnPress: () {
+              resetGame();
+            }).show();
       }
     });
   }
@@ -206,7 +207,18 @@ class _TicTacScreenState extends State<TicTacScreen> {
                             fontWeight: FontWeight.bold,
                             color: Colors.white)))
               ],
-            )
+            ),
+            const SizedBox(
+              height: 10.0,
+            ),
+            TextButton(
+                onPressed: () {
+                  navigator?.pop(context);
+                },
+                child: const Text(
+                  "الرجوع الى الصفحه الرئيسيه",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ))
           ],
         ),
       ),
