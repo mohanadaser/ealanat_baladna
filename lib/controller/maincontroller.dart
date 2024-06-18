@@ -19,6 +19,7 @@ class MainController extends GetxController {
   void onInit() {
     fetchCompanies();
     fetchProducts();
+
     super.onInit();
   }
 
@@ -81,11 +82,14 @@ class MainController extends GetxController {
   void filterProductsByCompany(datacomp) async {
     try {
       pro.clear();
-      QuerySnapshot q = await FirebaseFirestore.instance
-          .collection("products")
-          .where("company", isEqualTo: datacomp)
-          .get();
-      pro.addAll(q.docs);
+
+      QuerySnapshot q =
+          await FirebaseFirestore.instance.collection("products").get();
+
+      pro.addAll(q.docs
+          .where((element) => element["company"].contains(datacomp))
+          .toList());
+
       update();
     } catch (e) {
       print(e.toString());
@@ -144,6 +148,7 @@ class MainController extends GetxController {
           .update({
         "likes": FieldValue.arrayUnion([FirebaseAuth.instance.currentUser?.uid])
       });
+      update();
     }
   }
 
