@@ -155,7 +155,7 @@ class _CardProductsState extends State<CardProducts> {
                             isliked: isliked,
                           ),
                         ),
-                        //Text("${userlikes.length}  اعجبنى"),
+                        Text("${widget.likes.length}  اعجبنى"),
                         const Spacer(),
                         const Text("اتصال"),
                         IconButton(

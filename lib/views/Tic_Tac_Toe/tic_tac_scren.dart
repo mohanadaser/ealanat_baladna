@@ -21,7 +21,7 @@ class _TicTacScreenState extends State<TicTacScreen> {
   @override
   void initState() {
     forms = List.generate(3, (_) => List.generate(3, (_) => ""));
-    currentplayer = "الحمد لله";
+    currentplayer = "x";
     winner = "";
     gameover = false;
     super.initState();
@@ -31,7 +31,7 @@ class _TicTacScreenState extends State<TicTacScreen> {
   void resetGame() {
     setState(() {
       forms = List.generate(3, (_) => List.generate(3, (_) => ""));
-      currentplayer = "الحمد لله";
+      currentplayer = "x";
       winner = "";
       gameover = false;
     });
@@ -65,7 +65,7 @@ class _TicTacScreenState extends State<TicTacScreen> {
         winner = currentplayer;
         gameover = true;
       }
-      currentplayer = currentplayer == "الحمد لله" ? "الله اكبر" : "الحمد لله";
+      currentplayer = currentplayer == "x" ? "o" : "x";
       if (!forms.any((row) => row.any((cell) => cell == ""))) {
         gameover = true;
         winner = "TieToc";
@@ -86,9 +86,9 @@ class _TicTacScreenState extends State<TicTacScreen> {
             context: context,
             animType: AnimType.bottomSlide,
             dialogType: DialogType.success,
-            title: winner == "الحمد لله"
+            title: winner == " x"
                 ? "${widget.pl1} مبرووووووك "
-                : winner == "الله اكبر"
+                : winner == "o"
                     ? "${widget.pl2} مبرووووك "
                     : "No One",
             btnOkText: "Play Again",
@@ -121,13 +121,13 @@ class _TicTacScreenState extends State<TicTacScreen> {
                             fontSize: 25, fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        currentplayer == "الحمد لله"
+                        currentplayer == "x"
                             ? "${widget.pl1} ($currentplayer)"
                             : "${widget.pl2} ($currentplayer)",
                         style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
-                            color: currentplayer == "الحمد لله"
+                            color: currentplayer == "x"
                                 ? Colors.red
                                 : Colors.green),
                       ),
@@ -167,7 +167,7 @@ class _TicTacScreenState extends State<TicTacScreen> {
                             style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
-                                color: forms[row][col] == "الحمد لله"
+                                color: forms[row][col] == "x"
                                     ? Colors.red
                                     : Colors.green)),
                       ),
