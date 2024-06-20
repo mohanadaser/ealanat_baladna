@@ -1,6 +1,7 @@
-// ignore_for_file: unnecessary_overrides, unused_field, unrelated_type_equality_checks, unused_element, await_only_futures, collection_methods_unrelated_type
+// ignore_for_file: unnecessary_overrides, unused_field, unrelated_type_equality_checks, unused_element, await_only_futures, collection_methods_unrelated_type, void_checks
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ealanat_baladna/models/products.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import 'package:uuid/uuid.dart';
 class MainController extends GetxController {
   List<QueryDocumentSnapshot> data = [];
   List<QueryDocumentSnapshot> pro = [];
+
   //List<Companies> compamies = [];
   TextEditingController searchtxt = TextEditingController();
   final GlobalKey<ScaffoldState> scaffoldKey1 = GlobalKey<ScaffoldState>();
@@ -83,8 +85,11 @@ class MainController extends GetxController {
     try {
       pro.clear();
 
-      QuerySnapshot q =
-          await FirebaseFirestore.instance.collection("products").get();
+      QuerySnapshot q = await FirebaseFirestore.instance
+          .collection("products")
+          // .where("company", isEqualTo: datacomp)
+          .orderBy("likes")
+          .get();
 
       pro.addAll(q.docs
           .where((element) => element["company"].contains(datacomp))
@@ -141,6 +146,7 @@ class MainController extends GetxController {
         "likes":
             FieldValue.arrayRemove([FirebaseAuth.instance.currentUser?.uid])
       });
+      update();
     } else {
       await FirebaseFirestore.instance
           .collection("products")

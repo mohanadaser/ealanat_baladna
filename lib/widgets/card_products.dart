@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:like_button/like_button.dart';
 
 class CardProducts extends StatefulWidget {
   final int index;
@@ -126,7 +127,7 @@ class _CardProductsState extends State<CardProducts> {
                                   onPressed: () {
                                     ctrl.addLikes(snapshot
                                         .data?.docs[widget.index]
-                                        .data());
+                                        );
                                   },
                                   icon: Icon(Icons.favorite,
                                       color: snapshot.data

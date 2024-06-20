@@ -106,30 +106,25 @@ class _HomeScreenState extends State<HomeScreen> {
                                     //=======================================filter chips=============
                                     child: FilterChip(
                                       onSelected: (bool val) {
-                                        
                                         controller.filterProductsByCompany(
                                             doc["companyname"]);
                                       }, //======Select to Sgow Products
                                       materialTapTargetSize:
-                                          MaterialTapTargetSize
-                                              .shrinkWrap,
-                                      label: controller
-                                              .searchtxt.text.isEmpty
+                                          MaterialTapTargetSize.shrinkWrap,
+                                      label: controller.searchtxt.text.isEmpty
                                           ? Text(
                                               doc["companyname"],
                                               style: TextStyle(
                                                   fontSize: 15.0,
                                                   color: Colors.black,
-                                                  fontWeight:
-                                                      FontWeight.bold),
+                                                  fontWeight: FontWeight.bold),
                                             )
                                           : Text(
                                               doc["companyname"],
                                               style: TextStyle(
                                                   fontSize: 15.0,
                                                   color: Colors.black,
-                                                  fontWeight:
-                                                      FontWeight.bold),
+                                                  fontWeight: FontWeight.bold),
                                             ),
                                     ),
                                   );

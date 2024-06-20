@@ -87,9 +87,9 @@ class _TicTacScreenState extends State<TicTacScreen> {
             animType: AnimType.bottomSlide,
             dialogType: DialogType.success,
             title: winner == "الحمد لله"
-                ? "${widget.pl1} مبرووووووك يا"
+                ? "${widget.pl1} مبرووووووك "
                 : winner == "الله اكبر"
-                    ? "${widget.pl2} مبرووووك يا"
+                    ? "${widget.pl2} مبرووووك "
                     : "No One",
             btnOkText: "Play Again",
             btnOkOnPress: () {
