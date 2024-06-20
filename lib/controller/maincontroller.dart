@@ -84,15 +84,14 @@ class MainController extends GetxController {
   //==========================filter products by company========================
   Future<void> filterProductsByCompany(datacomp) async {
     try {
-      // pro.clear();
-     
-      QuerySnapshot q = await FirebaseFirestore.instance
-          .collection("products")
-          .where("likes")
-          .get();
-      pro = q.docs
+      pro.clear();
+      update();
+      QuerySnapshot q =
+          await FirebaseFirestore.instance.collection("products").get();
+
+      pro.addAll(q.docs
           .where((element) => element["company"].contains(datacomp))
-          .toList();
+          .toList());
 
       update();
     } catch (e) {
