@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ealanat_baladna/controller/maincontroller.dart';
+import 'package:ealanat_baladna/widgets/like_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -10,14 +11,48 @@ import 'package:like_button/like_button.dart';
 
 class CardProducts extends StatefulWidget {
   final int index;
-
-  const CardProducts({super.key, required this.index});
+  List<dynamic> likes;
+  final String proid;
+  CardProducts(
+      {super.key,
+      required this.index,
+      required this.likes,
+      required this.proid});
 
   @override
   State<CardProducts> createState() => _CardProductsState();
 }
 
 class _CardProductsState extends State<CardProducts> {
+  bool isliked = false;
+
+  @override
+  void initState() {
+    isliked = widget.likes.contains(FirebaseAuth.instance.currentUser?.uid);
+
+    super.initState();
+  }
+
+//===================================likes void==========================
+  void togglelike() {
+    setState(() {
+      isliked = !isliked;
+    });
+    DocumentReference reflikes =
+        FirebaseFirestore.instance.collection("products").doc(widget.proid);
+    if (isliked) {
+      reflikes.update({
+        "likes": FieldValue.arrayUnion([FirebaseAuth.instance.currentUser?.uid])
+      });
+    } else {
+      reflikes.update({
+        "likes":
+            FieldValue.arrayRemove([FirebaseAuth.instance.currentUser?.uid])
+      });
+    }
+  }
+
+//===============================================================================================
   final TransformationController _transformationController =
       TransformationController();
   TapDownDetails? _doubleTapDetails;
@@ -111,51 +146,30 @@ class _CardProductsState extends State<CardProducts> {
                           color: Colors.deepPurple),
                     ),
                     Expanded(
-                      child: StreamBuilder<QuerySnapshot>(
-                          stream: FirebaseFirestore.instance
-                              .collection("products")
-                              .snapshots(),
-                          builder:
-                              (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                            List<dynamic> userlikes =
-                                snapshot.data?.docs[widget.index]["likes"] ??
-                                    [];
-
-                            return Row(
-                              children: [
-                                IconButton(
-                                  onPressed: () {
-                                    ctrl.addLikes(
-                                        snapshot.data?.docs[widget.index]);
-                                  },
-                                  icon: Icon(Icons.favorite,
-                                      color: snapshot.data
-                                                  ?.docs[widget.index]["likes"]
-                                                  .contains(FirebaseAuth
-                                                      .instance
-                                                      .currentUser
-                                                      ?.uid) ??
-                                              false
-                                          ? Colors.red
-                                          : Colors.grey),
-                                ),
-                                Text("${userlikes.length}  اعجبنى"),
-                                const Spacer(),
-                                const Text("اتصال"),
-                                IconButton(
-                                  onPressed: () {
-                                    FlutterPhoneDirectCaller.callNumber(
-                                        ctrl.pro[widget.index]["phoncompany"]);
-                                  },
-                                  icon: const Icon(
-                                    Icons.phone,
-                                    color: Colors.blue,
-                                  ),
-                                ),
-                              ],
-                            );
-                          }),
-                    )
+                        child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Like_Button(
+                            ontab: togglelike,
+                            isliked: isliked,
+                          ),
+                        ),
+                        //Text("${userlikes.length}  اعجبنى"),
+                        const Spacer(),
+                        const Text("اتصال"),
+                        IconButton(
+                          onPressed: () {
+                            FlutterPhoneDirectCaller.callNumber(
+                                ctrl.pro[widget.index]["phoncompany"]);
+                          },
+                          icon: const Icon(
+                            Icons.phone,
+                            color: Colors.blue,
+                          ),
+                        ),
+                      ],
+                    )),
                   ],
                 ),
               )

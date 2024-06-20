@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_overrides, unused_field, unrelated_type_equality_checks, unused_element, await_only_futures, collection_methods_unrelated_type, void_checks
+// ignore_for_file: unnecessary_overrides, unused_field, unrelated_type_equality_checks, unused_element, await_only_futures, collection_methods_unrelated_type, void_checks, avoid_print
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ealanat_baladna/models/products.dart';
@@ -28,6 +28,7 @@ class MainController extends GetxController {
   @override
   void dispose() {
     searchtxt.dispose();
+
     super.dispose();
   }
 
@@ -81,20 +82,17 @@ class MainController extends GetxController {
   }
 
   //==========================filter products by company========================
- Future< void> filterProductsByCompany(datacomp) async {
+  Future<void> filterProductsByCompany(datacomp) async {
     try {
-    
-      pro.clear();
-
+      // pro.clear();
+     
       QuerySnapshot q = await FirebaseFirestore.instance
           .collection("products")
-          // .where("company", isEqualTo: datacomp)
-          .orderBy("likes",descending: false)
+          .where("likes")
           .get();
-
-      pro.addAll(q.docs
+      pro = q.docs
           .where((element) => element["company"].contains(datacomp))
-          .toList());
+          .toList();
 
       update();
     } catch (e) {

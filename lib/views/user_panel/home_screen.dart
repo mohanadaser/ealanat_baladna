@@ -150,8 +150,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           scrollDirection: Axis.vertical,
                           itemCount: controller.pro.length,
                           separatorBuilder: (context, index) => const Divider(),
-                          itemBuilder: (context, index) =>
-                              CardProducts(index: index)),
+                          itemBuilder: (context, index) => CardProducts(
+                              index: index,
+                              likes: controller.pro[index]["likes"],
+                              proid: controller.pro[index]["proid"])),
                     ),
                   ),
                 ],
