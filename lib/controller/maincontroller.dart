@@ -81,14 +81,15 @@ class MainController extends GetxController {
   }
 
   //==========================filter products by company========================
-  void filterProductsByCompany(datacomp) async {
+ Future< void> filterProductsByCompany(datacomp) async {
     try {
+    
       pro.clear();
 
       QuerySnapshot q = await FirebaseFirestore.instance
           .collection("products")
           // .where("company", isEqualTo: datacomp)
-          .orderBy("likes")
+          .orderBy("likes",descending: false)
           .get();
 
       pro.addAll(q.docs

@@ -125,9 +125,8 @@ class _CardProductsState extends State<CardProducts> {
                               children: [
                                 IconButton(
                                   onPressed: () {
-                                    ctrl.addLikes(snapshot
-                                        .data?.docs[widget.index]
-                                        );
+                                    ctrl.addLikes(
+                                        snapshot.data?.docs[widget.index]);
                                   },
                                   icon: Icon(Icons.favorite,
                                       color: snapshot.data
