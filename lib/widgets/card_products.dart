@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ealanat_baladna/controller/maincontroller.dart';
 import 'package:ealanat_baladna/widgets/like_button.dart';
@@ -24,12 +26,13 @@ class CardProducts extends StatefulWidget {
 }
 
 class _CardProductsState extends State<CardProducts> {
-  bool isliked = false;
+  bool isliked = true;
+  int countlike = 0;
 
   @override
   void initState() {
     isliked = widget.likes.contains(FirebaseAuth.instance.currentUser?.uid);
-
+    countlike = widget.likes.length;
     super.initState();
   }
 
@@ -41,10 +44,12 @@ class _CardProductsState extends State<CardProducts> {
     DocumentReference reflikes =
         FirebaseFirestore.instance.collection("products").doc(widget.proid);
     if (isliked) {
+      countlike++;
       reflikes.update({
         "likes": FieldValue.arrayUnion([FirebaseAuth.instance.currentUser?.uid])
       });
     } else {
+      countlike--;
       reflikes.update({
         "likes":
             FieldValue.arrayRemove([FirebaseAuth.instance.currentUser?.uid])
@@ -155,7 +160,13 @@ class _CardProductsState extends State<CardProducts> {
                             isliked: isliked,
                           ),
                         ),
-                        Text("${widget.likes.length}  اعجبنى"),
+                        StreamBuilder<QuerySnapshot>(
+                            stream: FirebaseFirestore.instance
+                                .collection("products")
+                                .snapshots(),
+                            builder: (context, snapshot) {
+                              return Text("$countlike  اعجبنى");
+                            }),
                         const Spacer(),
                         const Text("اتصال"),
                         IconButton(
