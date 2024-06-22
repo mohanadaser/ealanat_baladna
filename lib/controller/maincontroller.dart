@@ -14,7 +14,7 @@ class MainController extends GetxController {
 
   //List<Companies> compamies = [];
   TextEditingController searchtxt = TextEditingController();
-  final GlobalKey<ScaffoldState> scaffoldKey1 = GlobalKey<ScaffoldState>();
+ 
   bool isLoading = true;
 
   @override

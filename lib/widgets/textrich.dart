@@ -9,14 +9,14 @@ class TextRich extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Text.rich(TextSpan(children: [
       TextSpan(
-          text: "اعلانات",
+          text: "Baladna",
           style: TextStyle(
               fontSize: 25, fontWeight: FontWeight.bold, color: Colors.amber)),
       WidgetSpan(
         child: SizedBox(width: 5),
       ),
       TextSpan(
-          text: "بلدنا",
+          text: "Ads",
           style: TextStyle(
               fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white))
     ]));

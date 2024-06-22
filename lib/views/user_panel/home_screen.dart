@@ -11,6 +11,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+
+import '../../widgets/hexecolor.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -26,12 +29,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> scaffoldKey1 = GlobalKey<ScaffoldState>();
     return Directionality(
       textDirection: TextDirection.rtl,
       child: GetBuilder<MainController>(
         builder: (MainController controller) {
           return Scaffold(
-            key: controller.scaffoldKey1,
+            key: scaffoldKey1,
             drawer: const MyDrawer(),
             backgroundColor: Colors.white,
             appBar: AppBar(
@@ -50,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 //====================================drawer=============================
                 TextButton(
                     onPressed: () {
-                      controller.scaffoldKey1.currentState!.openDrawer();
+                      scaffoldKey1.currentState!.openDrawer();
                     },
                     child: Text(
                       "تواصل معنا",
@@ -105,6 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     padding: EdgeInsets.all(3.0),
                                     //=======================================filter chips=============
                                     child: FilterChip(
+                                      backgroundColor: hexlist[index],
                                       onSelected: (bool val) {
                                         controller.filterProductsByCompany(
                                             doc["companyname"]);

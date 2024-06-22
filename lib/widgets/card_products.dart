@@ -85,6 +85,9 @@ class _CardProductsState extends State<CardProducts> {
           margin: const EdgeInsets.only(left: 5, right: 5),
           child: Column(
             children: [
+              const SizedBox(
+                height: 8.0,
+              ),
               Container(
                 width: Get.width,
                 height: Get.height * 0.5,
@@ -101,6 +104,7 @@ class _CardProductsState extends State<CardProducts> {
                 child: Column(
                   children: [
                     //=============================================camera zoom=========
+                    const SizedBox(height: 15.0),
                     GestureDetector(
                       onDoubleTapDown: (details) => _doubleTapDetails = details,
                       onDoubleTap: handleDoubleTap,
@@ -110,8 +114,10 @@ class _CardProductsState extends State<CardProducts> {
                             80.0), // Margin around the content
                         minScale: 1.0,
                         maxScale: 2.2,
+
                         child: Image.network(
-                          ctrl.pro[widget.index]["proimg"] ?? "No Image",
+                          ctrl.pro[widget.index]["proimg"] ??
+                              Image.asset("assets/animations/noimage.jpg"),
                           width: 200.0, // Width of the initial image
                           height: 100.0, // Height of the initial image
                           fit: BoxFit.fitWidth,
