@@ -86,7 +86,7 @@ class _TicTacScreenState extends State<TicTacScreen> {
             context: context,
             animType: AnimType.bottomSlide,
             dialogType: DialogType.success,
-            title: winner == " x"
+            title: winner == "x"
                 ? "${widget.pl1} مبرووووووك "
                 : winner == "o"
                     ? "${widget.pl2} مبرووووك "
@@ -165,7 +165,7 @@ class _TicTacScreenState extends State<TicTacScreen> {
                       child: Center(
                         child: Text(forms[row][col],
                             style: TextStyle(
-                                fontSize: 20,
+                                fontSize: 75,
                                 fontWeight: FontWeight.bold,
                                 color: forms[row][col] == "x"
                                     ? Colors.red
