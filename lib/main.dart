@@ -2,28 +2,33 @@
 
 import 'package:ealanat_baladna/controller/homecontroller.dart';
 import 'package:ealanat_baladna/controller/maincontroller.dart';
+import 'package:ealanat_baladna/controller/network/network_controller.dart';
 
 import 'package:ealanat_baladna/firebase_options.dart';
-import 'package:ealanat_baladna/views/admin_panel/admin_login.dart';
-import 'package:ealanat_baladna/views/admin_panel/home_admin.dart';
+
 import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
 import 'package:ealanat_baladna/views/user_panel/login_screen.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 
+import 'controller/network/dependency_injection.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   Get.put(HomeController());
   Get.put(MainController());
+
   runApp(const MyApp());
 }
 
@@ -50,6 +55,7 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    DependencyInjection.init();
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.system,
@@ -90,7 +96,6 @@ class _MyAppState extends State<MyApp> {
           return const Text("");
         },
       ),
-    
 
       getPages: [GetPage(name: '/home', page: () => HomeScreen())],
     );

@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: GetBuilder<MainController>(
         builder: (MainController controller) {
           return Scaffold(
-            key: controller.scaffoldKey1,
+            // key: controller.scaffoldKey1,
             drawer: const MyDrawer(),
             backgroundColor: Colors.white,
             appBar: AppBar(
