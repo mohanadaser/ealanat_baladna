@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ealanat_baladna/controller/maincontroller.dart';
 import 'package:ealanat_baladna/views/user_panel/login_screen.dart';
+import 'package:ealanat_baladna/widgets/Ads_container.dart';
 import 'package:ealanat_baladna/widgets/card_products.dart';
 import 'package:ealanat_baladna/widgets/components.dart';
 import 'package:ealanat_baladna/widgets/drawer.dart';
@@ -10,7 +11,6 @@ import 'package:ealanat_baladna/widgets/textrich.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 
 import '../../widgets/hexecolor.dart';
 
@@ -76,6 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       type: TextInputType.name,
                       name: controller.searchtxt,
                       sufxicon: const Icon(Icons.search)),
+
                   SizedBox(
                     height: Get.height * 0.05,
                     //========================companies===================================
