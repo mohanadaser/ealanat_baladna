@@ -14,7 +14,7 @@ class MainController extends GetxController {
 
   //List<Companies> compamies = [];
   TextEditingController searchtxt = TextEditingController();
- 
+
   bool isLoading = true;
 
   @override
@@ -103,6 +103,7 @@ class MainController extends GetxController {
   Future<void> refreshProducts() async {
     await Future.delayed(const Duration(seconds: 2));
     pro.clear();
+    update();
     QuerySnapshot q =
         await FirebaseFirestore.instance.collection("products").get();
     pro.addAll(q.docs);

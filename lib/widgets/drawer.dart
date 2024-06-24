@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
-
 class MyDrawer extends StatefulWidget {
   const MyDrawer({super.key});
 
@@ -40,11 +39,10 @@ class _MyDrawerState extends State<MyDrawer> {
                 ),
               ),
               decoration: BoxDecoration(
-                color: Colors.blue,
-                image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: AssetImage('assets/animations/sertup.jpg')),
-              ),
+                  color: Colors.deepPurple,
+                  image: DecorationImage(
+                      fit: BoxFit.fill,
+                      image: AssetImage('assets/animations/luxor_go.png'))),
             );
           }),
           ListTile(

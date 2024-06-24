@@ -3,7 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ealanat_baladna/controller/maincontroller.dart';
 import 'package:ealanat_baladna/views/user_panel/login_screen.dart';
-import 'package:ealanat_baladna/widgets/Ads_container.dart';
+
 import 'package:ealanat_baladna/widgets/card_products.dart';
 import 'package:ealanat_baladna/widgets/components.dart';
 import 'package:ealanat_baladna/widgets/drawer.dart';
@@ -52,15 +52,22 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               actions: [
                 //====================================drawer=============================
-                TextButton(
-                    onPressed: () {
-                      scaffoldKey1.currentState!.openDrawer();
-                    },
-                    child: Text(
-                      "تواصل معنا",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.purple),
-                    ))
+                IconButton(
+                  onPressed: () {
+                    scaffoldKey1.currentState!.openDrawer();
+                  },
+                  icon: Icon(Icons.list),
+                  color: Colors.white,
+                )
+                // TextButton(
+                //     onPressed: () {
+                //       scaffoldKey1.currentState!.openDrawer();
+                //     },
+                //     child: Text(
+                //       "تواصل معنا",
+                //       style: TextStyle(
+                //           fontWeight: FontWeight.bold, color: Colors.purple),
+                //     ))
               ],
             ),
             body: SingleChildScrollView(
@@ -110,6 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     padding: EdgeInsets.all(3.0),
                                     //=======================================filter chips=============
                                     child: FilterChip(
+                                      
                                       backgroundColor: hexlist[index],
                                       onSelected: (bool val) {
                                         controller.filterProductsByCompany(
