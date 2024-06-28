@@ -12,25 +12,25 @@ class BannerScreen extends StatelessWidget {
       child: Stack(
         children: [
           Container(
-            width: double.infinity,
-            height: double.infinity,
+            width: Get.width,
+            // height: double.infinity,
             padding: const EdgeInsets.all(10.0),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 color: Colors.deepPurple),
             child: const Text(
-              "تطبيق الاقصر جوو يرحب بأعلاناتكم \n يمكنك وضع اعلان لشركتك \nاو مطعمك او عيادتك\nهنا",
+              "تطبيق الاقصر جوو يرحب بأعلاناتكم \n يمكنك وضع اعلان لشركتك \nاو مطعمك او عيادتك\n او اى كان نشاطك",
               style: TextStyle(
                   fontSize: 15,
                   color: Colors.white,
                   fontWeight: FontWeight.bold),
             ),
           ),
-          Positioned(
-              left: 10,
-              bottom: 0,
-              child: ElevatedButton(
-                  onPressed: () {}, child: const Text("للتواصل معنا"))),
+          // Positioned(
+          //     left: 10,
+          //     bottom: 0,
+          //     child: ElevatedButton(
+          //         onPressed: () {}, child: const Text("للتواصل معنا"))),
           Positioned(
               right: 16,
               top: 0,

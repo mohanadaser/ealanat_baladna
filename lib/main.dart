@@ -5,10 +5,11 @@ import 'package:ealanat_baladna/controller/maincontroller.dart';
 import 'package:ealanat_baladna/controller/network/network_controller.dart';
 
 import 'package:ealanat_baladna/firebase_options.dart';
+import 'package:ealanat_baladna/views/chatBot/chat_bot.dart';
 
 import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
 import 'package:ealanat_baladna/views/user_panel/login_screen.dart';
-import 'package:ealanat_baladna/views/user_panel/most_liked.dart';
+import 'package:ealanat_baladna/views/user_panel/main_screen.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -92,7 +93,7 @@ class _MyAppState extends State<MyApp> {
             return const LoginScreen();
           }
           if (snapshot.hasData) {
-            return const MostLiked();
+            return const MainScreen();
           }
           return const Text("");
         },
