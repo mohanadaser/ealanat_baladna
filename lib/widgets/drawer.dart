@@ -5,6 +5,7 @@ import 'package:ealanat_baladna/views/Tic_Tac_Toe/login_game.dart';
 import 'package:ealanat_baladna/views/admin_panel/admin_login.dart';
 import 'package:ealanat_baladna/views/admin_panel/home_admin.dart';
 import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
+import 'package:ealanat_baladna/views/user_panel/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -45,21 +46,17 @@ class _MyDrawerState extends State<MyDrawer> {
                       image: AssetImage('assets/animations/luxor_go.png'))),
             );
           }),
-          ListTile(
-            leading: const Icon(Icons.favorite),
-            title: const Text('Favorites'),
-            onTap: () {},
-          ),
-          ListTile(
-            leading: Icon(
-              FontAwesomeIcons.playstation,
-              color: Colors.black,
-            ),
-            title: const Text('لعبة Tic Tac Toe'),
-            onTap: () {
-              Get.to(() => LoginGame());
-            },
-          ),
+
+          // ListTile(
+          //   leading: Icon(
+          //     FontAwesomeIcons.playstation,
+          //     color: Colors.black,
+          //   ),
+          //   title: const Text('لعبة Tic Tac Toe'),
+          //   onTap: () {
+          //     Get.to(() => LoginGame());
+          //   },
+          // ),
           ListTile(
             leading: const Icon(Icons.share),
             title: const Text('مشاركة تطبيقنا مع الغير'),
@@ -79,12 +76,17 @@ class _MyDrawerState extends State<MyDrawer> {
           ),
           const Divider(),
           ListTile(
-            title: const Text('العوده للصفحة الرئيسيه'),
+            title: const Text('العوده للقائمة الرئيسيه'),
             leading: const Icon(Icons.exit_to_app),
             onTap: () {
-              Get.back();
+              Get.to(() => MainScreen());
             },
           ),
+          IconButton(
+              onPressed: () {
+                Get.back();
+              },
+              icon: Icon(Icons.arrow_back))
         ],
       ),
     );

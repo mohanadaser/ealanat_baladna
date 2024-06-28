@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ealanat_baladna/views/admin_panel/home_admin.dart';
 import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
+import 'package:ealanat_baladna/views/user_panel/main_screen.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -85,7 +86,7 @@ class RegisterController extends GetxController {
       if (email == "TyUZKejPZtNHW2rDmGppwmSJHd03") {
         Get.offAll(() => const HomeAdmin());
       } else {
-        Get.offAll(() => const HomeScreen());
+        Get.offAll(() => const MainScreen());
       }
 
       isloading = false;

@@ -99,7 +99,7 @@ class _MyAppState extends State<MyApp> {
         },
       ),
 
-      getPages: [GetPage(name: '/home', page: () => HomeScreen())],
+      //getPages: [GetPage(name: '/home', page: () => HomeScreen())],
     );
 
     //darkTheme: ThemeData.dark(),

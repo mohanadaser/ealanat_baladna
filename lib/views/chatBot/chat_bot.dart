@@ -54,10 +54,18 @@ class _ChatBotState extends State<ChatBot> {
     }).catchError((err) {});
   }
 
+//=============================================================================
   @override
   Widget build(BuildContext context) {
-    return SafeArea (
+    return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text(
+            "Chat With Ai",
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          ),
+        ),
         backgroundColor: HexColor("f9d9da"),
         body: DashChat(
           typingUsers: typing,
