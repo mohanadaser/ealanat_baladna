@@ -2,20 +2,18 @@
 
 import 'package:ealanat_baladna/controller/homecontroller.dart';
 import 'package:ealanat_baladna/controller/maincontroller.dart';
-import 'package:ealanat_baladna/controller/network/network_controller.dart';
+import 'package:ealanat_baladna/controller/masrofy_controller.dart';
 
 import 'package:ealanat_baladna/firebase_options.dart';
-import 'package:ealanat_baladna/views/chatBot/chat_bot.dart';
+import 'package:ealanat_baladna/views/Masrofy/masrofy_screen.dart';
 
-import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
 import 'package:ealanat_baladna/views/user_panel/login_screen.dart';
-import 'package:ealanat_baladna/views/user_panel/main_screen.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -30,6 +28,7 @@ void main() async {
   );
   Get.put(HomeController());
   Get.put(MainController());
+  Get.put(MasrofyController());
 
   runApp(const MyApp());
 }
@@ -93,7 +92,7 @@ class _MyAppState extends State<MyApp> {
             return const LoginScreen();
           }
           if (snapshot.hasData) {
-            return const MainScreen();
+            return const MasrofyScreen();
           }
           return const Text("");
         },
