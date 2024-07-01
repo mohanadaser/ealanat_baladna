@@ -6,7 +6,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class MasrofyController extends GetxController {
   final TextEditingController credit = TextEditingController();
   final TextEditingController masrof = TextEditingController();
@@ -24,10 +23,7 @@ class MasrofyController extends GetxController {
       //double parsedCurrency = double.parse(formattedCurrency);
 
       if (credit.text.isNotEmpty) {
-        await FirebaseFirestore.instance
-            .collection("credits")
-            .doc(currentuser)
-            .update({
+        await FirebaseFirestore.instance.collection("credits").doc(currentuser).update({
           "credit": FieldValue.increment(int.parse(credit.text)),
         });
         update();

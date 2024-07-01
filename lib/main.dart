@@ -6,6 +6,7 @@ import 'package:ealanat_baladna/controller/masrofy_controller.dart';
 
 import 'package:ealanat_baladna/firebase_options.dart';
 import 'package:ealanat_baladna/views/Masrofy/masrofy_screen.dart';
+import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
 
 import 'package:ealanat_baladna/views/user_panel/login_screen.dart';
 
@@ -69,7 +70,7 @@ class _MyAppState extends State<MyApp> {
         // brightness: Brightness.light,
         useMaterial3: true,
       ),
-      home: MasrofyScreen(),
+      
 
       //  darkTheme: ThemeData.dark().copyWith(
       //    textTheme: GoogleFonts.cairoTextTheme(Theme.of(context).textTheme),
@@ -80,25 +81,25 @@ class _MyAppState extends State<MyApp> {
       //   disabledColor: Colors.grey,
       //  ),
       // ),
-      // home: StreamBuilder(
-      //   stream: FirebaseAuth.instance.authStateChanges(),
-      //   builder: (context, snapshot) {
-      //     if (snapshot.connectionState == ConnectionState.waiting) {
-      //       return const CircularProgressIndicator();
-      //     }
-      //     if (snapshot.hasError) {
-      //       return const Text("there Error");
-      //     }
-      //     // ignore: unnecessary_null_comparison
-      //     if (snapshot.data == null) {
-      //       return const LoginScreen();
-      //     }
-      //     if (snapshot.hasData) {
-      //       return const MasrofyScreen();
-      //     }
-      //     return const Text("");
-      //   },
-      // ),
+      home: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const CircularProgressIndicator();
+          }
+          if (snapshot.hasError) {
+            return const Text("there Error");
+          }
+          // ignore: unnecessary_null_comparison
+          if (snapshot.data == null) {
+            return const LoginScreen();
+          }
+          if (snapshot.hasData) {
+            return const MasrofyScreen();
+          }
+          return const Text("");
+        },
+      ),
 
       //getPages: [GetPage(name: '/home', page: () => HomeScreen())],
     );
