@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
               leading: IconButton(
                 onPressed: () async {
                   await FirebaseAuth.instance.signOut();
-                  Get.offAll(() => const LoginScreen());
+                  Get.offAll(() => LoginScreen());
                 },
                 icon: const Icon(Icons.logout),
                 color: Colors.red,
@@ -117,7 +117,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                     padding: EdgeInsets.all(3.0),
                                     //=======================================filter chips=============
                                     child: FilterChip(
-                                      
                                       backgroundColor: hexlist[index],
                                       onSelected: (bool val) {
                                         controller.filterProductsByCompany(

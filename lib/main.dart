@@ -6,7 +6,7 @@ import 'package:ealanat_baladna/controller/masrofy_controller.dart';
 
 import 'package:ealanat_baladna/firebase_options.dart';
 import 'package:ealanat_baladna/views/Masrofy/masrofy_screen.dart';
-import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
+
 
 import 'package:ealanat_baladna/views/user_panel/login_screen.dart';
 
@@ -70,7 +70,6 @@ class _MyAppState extends State<MyApp> {
         // brightness: Brightness.light,
         useMaterial3: true,
       ),
-      
 
       //  darkTheme: ThemeData.dark().copyWith(
       //    textTheme: GoogleFonts.cairoTextTheme(Theme.of(context).textTheme),
@@ -92,7 +91,7 @@ class _MyAppState extends State<MyApp> {
           }
           // ignore: unnecessary_null_comparison
           if (snapshot.data == null) {
-            return const LoginScreen();
+            return LoginScreen();
           }
           if (snapshot.hasData) {
             return const MasrofyScreen();

@@ -1,167 +1,77 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:ealanat_baladna/controller/registercontroller.dart';
+import 'package:ealanat_baladna/widgets/components.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:lottie/lottie.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
-  //TextEditingController phonenum = TextEditingController();
-
+  LoginScreen({super.key});
+  TextEditingController emailaddress = TextEditingController();
+  TextEditingController password = TextEditingController();
   @override
   Widget build(BuildContext context) {
     Get.put(RegisterController());
     return GetBuilder<RegisterController>(
       builder: (RegisterController ctrl) => Scaffold(
-        backgroundColor: Colors.white,
         //appBar: AppBar(),
         body: SingleChildScrollView(
           child: Stack(children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: Get.width,
-                  height: Get.height * .5,
-                  padding: EdgeInsets.only(top: Get.height * .15, left: 15),
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(colors: [
-                    HexColor("8a2be2"),
-                    HexColor("000080"),
-                    HexColor("101010")
-                  ])),
-                  //child: Lottie.asset("assets/animations/login.json.json"),
-                  child: const Text(
-                    "👋  مرحبا بك",
-                    style: TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white),
-                  ),
-                ),
-
-                // Container(
-                //   color: Colors.lightBlue,
-                //   width: Get.width,
-                //   child: Lottie.asset("assets/animations/login.json.json"),
-                // ),
-                // SizedBox(height: Get.height / 18),
-                // const Text(
-                //   "👋  مرحبا بك",
-                //   style: TextStyle(fontSize: 32, fontWeight: FontWeight.w700),
-                // ),
-                // SizedBox(height: Get.height / 18),
-                // Container(
-                //   margin: const EdgeInsets.all(15),
-                //   child: MaterialButton(
-                //     onPressed: () {
-
-                //       ctrl.signInWithGoogle();
-                //     },
-                //     height: 50,
-                //     shape: RoundedRectangleBorder(
-                //       borderRadius: BorderRadius.circular(30),
-                //     ),
-                //     color: Colors.black,
-                //     textColor: Colors.white,
-                //     child: Row(
-                //       mainAxisAlignment: MainAxisAlignment.center,
-                //       children: [
-                //         const Image(
-                //           image: AssetImage("assets/animations/google.png"),
-                //           height: 30,
-                //           fit: BoxFit.cover,
-                //         ),
-                //         ctrl.isloading
-                //             ? const CircularProgressIndicator(
-                //                 color: Colors.white,
-                //               )
-                //             : const Text(
-                //                 "تسجيل الدخول بواسطة حساب",
-                //                 style: TextStyle(
-                //                   fontSize: 20,
-                //                   fontWeight: FontWeight.bold,
-                //                   color: Colors.white,
-                //                 ),
-                //               ),
-                //         const SizedBox(width: 5),
-                //       ],
-                //     ),
-                //   ),
-                // ),
-                // SizedBox(
-                //   width: Get.width * .9,
-                //   child: Padding(
-                //     padding: const EdgeInsets.all(8.0),
-                //     child: Form(
-                //       key: ctrl.formKey,
-                //       child: CustomForm(
-                //           validator: (val) {
-                //             if (val!.length != 11) {
-                //               return " يجب ادخال رقم التليفون كاملا";
-                //             }
-                //             return null;
-                //           },
-                //           text: "رقم الهاتف",
-                //           formating: [LengthLimitingTextInputFormatter(11)],
-                //           type: TextInputType.phone,
-                //           name: phonenum,
-                //           sufxicon: const Icon(Icons.phone_android)),
-                //     ),
-                //   ),
-                // ),
-                // const SizedBox(height: 10),
-                // OtpText(
-                //   otpController: ctrl.otpController,
-                //   isshow: ctrl.otpisshow,
-                //   onComplete: (otp) {
-                //     ctrl.otpentered = int.parse(otp);
-                //   },
-                // ),
-                // const SizedBox(height: 20),
-                // ElevatedButton(
-                //   style: const ButtonStyle(
-                //       backgroundColor:
-                //           MaterialStatePropertyAll<Color>(Colors.black)),
-                //   onPressed: () {
-                //     if (ctrl.formKey.currentState!.validate()) {
-                //       if (ctrl.otpisshow) {
-                //         ctrl.loginWithOtp(otp: ctrl.otpController.text);
-                //       } else {
-                //         ctrl.sentOtp(phone: ctrl.otpController.text);
-                //       }
-                //     }
-                //   },
-                //   child: Text(
-                //     ctrl.otpisshow ? "   الدخول" : "ارسال ال otp ",
-                //     style: const TextStyle(
-                //         color: Colors.white,
-                //         fontWeight: FontWeight.bold,
-                //         fontSize: 18),
-                //   ),
-                // ),
-                // TextButton(
-                //     onPressed: () {
-                //       Get.to(() => ());
-                //     },
-                //     child: const Text("ليس لديك حساب؟ ",
-                //         style: TextStyle(
-                //           fontWeight: FontWeight.bold,
-                //         )))
-              ],
+            Container(
+              width: Get.width,
+              height: Get.height * .5,
+              padding: EdgeInsets.only(top: Get.height * .15, left: 15),
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(colors: [
+                HexColor("8a2be2"),
+                HexColor("000080"),
+                HexColor("101010")
+              ])),
+              //child: Lottie.asset("assets/animations/login.json.json"),
+              child: const Text(
+                "👋  مرحبا بك",
+                style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white),
+              ),
             ),
             Container(
-                padding: const EdgeInsets.all(15),
-                margin: EdgeInsets.only(top: Get.height * .3),
-                height: Get.height,
-                decoration: BoxDecoration(
-                    color: HexColor("f5f5f5"),
-                    borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(40),
-                        topRight: Radius.circular(40))))
+              padding: const EdgeInsets.all(15),
+              margin: EdgeInsets.only(top: Get.height * .3),
+              height: Get.height,
+              width: Get.width,
+              decoration: BoxDecoration(
+                  color: HexColor("f5f5f5"),
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(40),
+                      topRight: Radius.circular(40))),
+              child: Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Column(children: [
+                    const SizedBox(
+                      height: 30.0,
+                    ),
+                    CustomForm(
+                      text: "ادخل ايميلك",
+                      type: TextInputType.emailAddress,
+                      name: emailaddress,
+                      sufxicon: const Icon(Icons.email),
+                    ),
+                    const SizedBox(
+                      height: 30.0,
+                    ),
+                    CustomPass(
+                        text: "ادخل كلمة المرور",
+                        type: TextInputType.visiblePassword,
+                        issecure: true,
+                        name: password,
+                        sufxicon: const Icon(Icons.password)),
+                        Container()
+                  ])),
+            )
           ]),
         ),
       ),

@@ -24,6 +24,9 @@ Widget CustomForm(
       validator: validator,
       keyboardType: type,
       decoration: InputDecoration(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
           suffixIcon: sufxicon,
           hintText: text,
           filled: true,
@@ -42,6 +45,9 @@ Widget CustomPass(
       validator: validator,
       keyboardType: type,
       decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
         suffixIcon: sufxicon,
         hintText: text,
         filled: true,

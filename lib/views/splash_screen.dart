@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 6), () {
-      Get.offAll(() => const LoginScreen());
+      Get.offAll(() => LoginScreen());
     });
   }
 
