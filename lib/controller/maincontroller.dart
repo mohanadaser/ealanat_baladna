@@ -1,12 +1,12 @@
 // ignore_for_file: unnecessary_overrides, unused_field, unrelated_type_equality_checks, unused_element, await_only_futures, collection_methods_unrelated_type, void_checks, avoid_print
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ealanat_baladna/models/products.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:uuid/uuid.dart';
+
 
 class MainController extends GetxController {
   List<QueryDocumentSnapshot> data = [];

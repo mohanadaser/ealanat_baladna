@@ -69,6 +69,8 @@ class _MyAppState extends State<MyApp> {
         // brightness: Brightness.light,
         useMaterial3: true,
       ),
+      home: MasrofyScreen(),
+
       //  darkTheme: ThemeData.dark().copyWith(
       //    textTheme: GoogleFonts.cairoTextTheme(Theme.of(context).textTheme),
       //   brightness: Brightness.dark,
@@ -78,25 +80,25 @@ class _MyAppState extends State<MyApp> {
       //   disabledColor: Colors.grey,
       //  ),
       // ),
-      home: StreamBuilder(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CircularProgressIndicator();
-          }
-          if (snapshot.hasError) {
-            return const Text("there Error");
-          }
-          // ignore: unnecessary_null_comparison
-          if (snapshot.data == null) {
-            return const LoginScreen();
-          }
-          if (snapshot.hasData) {
-            return const MasrofyScreen();
-          }
-          return const Text("");
-        },
-      ),
+      // home: StreamBuilder(
+      //   stream: FirebaseAuth.instance.authStateChanges(),
+      //   builder: (context, snapshot) {
+      //     if (snapshot.connectionState == ConnectionState.waiting) {
+      //       return const CircularProgressIndicator();
+      //     }
+      //     if (snapshot.hasError) {
+      //       return const Text("there Error");
+      //     }
+      //     // ignore: unnecessary_null_comparison
+      //     if (snapshot.data == null) {
+      //       return const LoginScreen();
+      //     }
+      //     if (snapshot.hasData) {
+      //       return const MasrofyScreen();
+      //     }
+      //     return const Text("");
+      //   },
+      // ),
 
       //getPages: [GetPage(name: '/home', page: () => HomeScreen())],
     );
