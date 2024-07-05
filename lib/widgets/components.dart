@@ -38,7 +38,7 @@ Widget CustomPass(
         final String? Function(String?)? validator,
         required bool issecure,
         required TextEditingController name,
-        Icon? sufxicon}) =>
+        Widget? sufxicon}) =>
     TextFormField(
       controller: name,
       obscureText: issecure,

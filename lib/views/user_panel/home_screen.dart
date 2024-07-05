@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_types_as_parameter_names, unused_local_variable, prefer_const_constructors, body_might_complete_normally_nullable
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ealanat_baladna/Services/auth_service.dart';
 import 'package:ealanat_baladna/controller/maincontroller.dart';
 import 'package:ealanat_baladna/views/user_panel/login_screen.dart';
 
@@ -44,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
               centerTitle: true,
               leading: IconButton(
                 onPressed: () async {
-                  await FirebaseAuth.instance.signOut();
+                  await AuthMethod().signOut();
                   Get.offAll(() => LoginScreen());
                 },
                 icon: const Icon(Icons.logout),

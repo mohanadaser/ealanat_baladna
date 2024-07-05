@@ -6,11 +6,18 @@ import 'package:hexcolor/hexcolor.dart';
 
 import '../../widgets/components.dart';
 
-class RegisterScreen extends StatelessWidget {
-  RegisterScreen({super.key});
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
 
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController emailaddress = TextEditingController();
+
   TextEditingController password = TextEditingController();
+
   TextEditingController username = TextEditingController();
 
   @override
@@ -25,8 +32,8 @@ class RegisterScreen extends StatelessWidget {
             padding: EdgeInsets.only(top: Get.height * .15, left: 15),
             decoration: BoxDecoration(
                 gradient: LinearGradient(colors: [
-              HexColor("8a2be2"),
-              HexColor("000080"),
+              HexColor("666666"),
+              HexColor("333333"),
               HexColor("101010")
             ])),
             //child: Lottie.asset("assets/animations/login.json.json"),
@@ -57,7 +64,7 @@ class RegisterScreen extends StatelessWidget {
                   CustomForm(
                     text: "ادخل اسمك",
                     type: TextInputType.name,
-                    name: emailaddress,
+                    name: username,
                     sufxicon: const Icon(Icons.person),
                   ),
                   const SizedBox(
@@ -75,9 +82,17 @@ class RegisterScreen extends StatelessWidget {
                   CustomPass(
                       text: "ادخل كلمة المرور",
                       type: TextInputType.visiblePassword,
-                      issecure: true,
+                      issecure: AuthMethod.issecure,
                       name: password,
-                      sufxicon: const Icon(Icons.password)),
+                      sufxicon: InkWell(
+                        onTap: () {
+                          AuthMethod.issecure = !AuthMethod.issecure;
+                          setState(() {});
+                        },
+                        child: Icon(AuthMethod.issecure
+                            ? Icons.visibility_off
+                            : Icons.visibility),
+                      )),
                   const SizedBox(
                     height: 30.0,
                   ),
@@ -93,8 +108,8 @@ class RegisterScreen extends StatelessWidget {
                         width: double.infinity,
                         decoration: BoxDecoration(
                             gradient: LinearGradient(colors: [
-                              HexColor("8a2be2"),
-                              HexColor("000080"),
+                              HexColor("666666"),
+                              HexColor("333333"),
                               HexColor("101010")
                             ]),
                             borderRadius: BorderRadius.circular(30)),
@@ -120,7 +135,7 @@ class RegisterScreen extends StatelessWidget {
                       )),
                       TextButton(
                           onPressed: () {
-                            Get.to(() => LoginScreen());
+                            Get.to(() => const LoginScreen());
                           },
                           child: const Text("تسجيل الدخول",
                               style: TextStyle(fontWeight: FontWeight.bold)))

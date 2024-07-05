@@ -25,44 +25,25 @@ class BalanceScreen extends StatelessWidget {
             borderRadius: BorderRadius.circular(20.0)),
         child: Row(
           children: [
-            Column(
+            const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   " رصيدك حاليا",
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                       color: Colors.white),
                 ),
-                const SizedBox(
+                SizedBox(
                   height: 10.0,
                 ),
-                StreamBuilder<QuerySnapshot>(
-                    stream: FirebaseFirestore.instance
-                        .collection("credits")
-                        .where("userid",
-                            isEqualTo: FirebaseAuth.instance.currentUser?.uid)
-                        .snapshots(),
-                    builder: (BuildContext context, AsyncSnapshot snapshot) {
-                      if (snapshot.data == null) {
-                        const Text("${44}" " " "EGP",
+              Text("77" " " "EGP",
                             style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white));
-                      }
-                      var creditdocument =
-                          snapshot.data!.docs[0]['credit'] ?? 0;
-                      if (snapshot.hasData) {
-                        return Text("$creditdocument" " " "EGP",
-                            style: const TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white));
-                      }
-                      return const Text("${44}" " " "EGP");
-                    })
+                                color: Colors.white))
+
               ],
             ),
             const Spacer(),

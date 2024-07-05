@@ -6,6 +6,7 @@ import 'package:ealanat_baladna/controller/masrofy_controller.dart';
 
 import 'package:ealanat_baladna/firebase_options.dart';
 import 'package:ealanat_baladna/views/Masrofy/masrofy_screen.dart';
+import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
 
 import 'package:ealanat_baladna/views/user_panel/login_screen.dart';
 import 'package:ealanat_baladna/views/user_panel/register_screen.dart';
@@ -80,27 +81,27 @@ class _MyAppState extends State<MyApp> {
       //   disabledColor: Colors.grey,
       //  ),
       // ),
-      // home: StreamBuilder(
-      //   stream: FirebaseAuth.instance.authStateChanges(),
-      //   builder: (context, snapshot) {
-      //     if (snapshot.connectionState == ConnectionState.waiting) {
-      //       return const CircularProgressIndicator();
-      //     }
-      //     if (snapshot.hasError) {
-      //       return const Text("there Error");
-      //     }
-      //     // ignore: unnecessary_null_comparison
-      //     if (snapshot.data == null) {
-      //       return LoginScreen();
-      //     }
-      //     if (snapshot.hasData) {
-      //       print(snapshot.data);
-      //       return const MasrofyScreen();
-      //     }
-      //     return const Text("");
-      //   },
-      // ),
-      home: RegisterScreen(),
+      home: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const CircularProgressIndicator();
+          }
+          if (snapshot.hasError) {
+            return const Text("there Error");
+          }
+          // ignore: unnecessary_null_comparison
+          if (snapshot.data == null) {
+            return LoginScreen();
+          }
+          if (snapshot.hasData) {
+            print(snapshot.data);
+            return const HomeScreen();
+          }
+          return const Text("");
+        },
+      ),
+      // home: RegisterScreen(),
 
       //getPages: [GetPage(name: '/home', page: () => HomeScreen())],
     );
