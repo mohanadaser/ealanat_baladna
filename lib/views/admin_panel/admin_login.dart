@@ -44,7 +44,7 @@ class AdminLogin extends StatelessWidget {
                         },
                         text: "الاسم",
                         type: TextInputType.name,
-                        name: controller.username),
+                        name: controller.useradmin),
                     const SizedBox(height: 15),
                     CustomPass(
                       validator: (Value) {
@@ -55,7 +55,7 @@ class AdminLogin extends StatelessWidget {
                       },
                       text: "الرقم السرى",
                       type: TextInputType.visiblePassword,
-                      name: controller.password,
+                      name: controller.passwordAdmin,
                       issecure: true,
                     ),
                     const SizedBox(height: 15),

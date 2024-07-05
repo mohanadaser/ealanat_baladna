@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ealanat_baladna/controller/masrofy_controller.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -40,19 +41,27 @@ class BalanceScreen extends StatelessWidget {
                 StreamBuilder<QuerySnapshot>(
                     stream: FirebaseFirestore.instance
                         .collection("credits")
+                        .where("userid",
+                            isEqualTo: FirebaseAuth.instance.currentUser?.uid)
                         .snapshots(),
                     builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      if (snapshot.data == null) {
+                        const Text("${44}" " " "EGP",
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white));
+                      }
+                      var creditdocument =
+                          snapshot.data!.docs[0]['credit'] ?? 0;
                       if (snapshot.hasData) {
-                        var creditdocument =
-                            snapshot.data!.docs[0]['credit'] ?? 0;
                         return Text("$creditdocument" " " "EGP",
                             style: const TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white));
-                      } else {
-                        return const Text("0");
                       }
+                      return const Text("${44}" " " "EGP");
                     })
               ],
             ),

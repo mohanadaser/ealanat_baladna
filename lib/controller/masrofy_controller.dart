@@ -12,7 +12,16 @@ class MasrofyController extends GetxController {
   final TextEditingController amount = TextEditingController();
   final currentuser = FirebaseAuth.instance.currentUser?.uid;
   oninInit() {
+    print(currentuser);
     super.onInit();
+  }
+
+  @override
+  void dispose() {
+    credit.dispose();
+    masrof.dispose();
+    amount.dispose();
+    super.dispose();
   }
 
   void addCredit() async {
@@ -23,7 +32,7 @@ class MasrofyController extends GetxController {
       //double parsedCurrency = double.parse(formattedCurrency);
 
       if (credit.text.isNotEmpty) {
-        await FirebaseFirestore.instance.collection("credits").doc(currentuser).update({
+        await FirebaseFirestore.instance.collection("credits").doc().update({
           "credit": FieldValue.increment(int.parse(credit.text)),
         });
         update();
@@ -32,9 +41,9 @@ class MasrofyController extends GetxController {
         //       .doc(currentuser)
         //       .set({"credit": int.parse(credit.text), "userid": currentuser});
         //   update();
-        //   // Get.snackbar("success", "تم اضافة الرصيد بنجاح",
-        //   //     snackPosition: SnackPosition.TOP,
-        //   //     colorText: Colors.white,
+        // Get.snackbar("success", "تم اضافة الرصيد بنجاح",
+        //     snackPosition: SnackPosition.TOP,
+        //     colorText: Colors.white,
         //   //     backgroundColor: Colors.deepPurple);
         credit.clear();
       }

@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
+
 import 'package:hexcolor/hexcolor.dart';
 
 Widget CustomForm(
@@ -24,9 +24,9 @@ Widget CustomForm(
       validator: validator,
       keyboardType: type,
       decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
+          // border: OutlineInputBorder(
+          //   borderRadius: BorderRadius.circular(20),
+          // ),
           suffixIcon: sufxicon,
           hintText: text,
           filled: true,
@@ -45,9 +45,9 @@ Widget CustomPass(
       validator: validator,
       keyboardType: type,
       decoration: InputDecoration(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
+        // border: OutlineInputBorder(
+        //   borderRadius: BorderRadius.circular(10),
+        // ),
         suffixIcon: sufxicon,
         hintText: text,
         filled: true,

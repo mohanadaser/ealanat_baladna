@@ -1,6 +1,7 @@
 // ignore_for_file: unrelated_type_equality_checks, unnecessary_overrides
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ealanat_baladna/views/Masrofy/masrofy_screen.dart';
 import 'package:ealanat_baladna/views/admin_panel/home_admin.dart';
 import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
 import 'package:ealanat_baladna/views/user_panel/main_screen.dart';
@@ -14,17 +15,20 @@ class RegisterController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    print(FirebaseAuth.instance.currentUser);
   }
 
   @override
   void dispose() {
-    username.dispose();
-    password.dispose();
+    useradmin.dispose();
+    passwordAdmin.dispose();
+    
     super.dispose();
   }
 
-  TextEditingController username = TextEditingController();
-  TextEditingController password = TextEditingController();
+  TextEditingController useradmin = TextEditingController();
+  TextEditingController passwordAdmin = TextEditingController();
+  
   // final keyform = GlobalKey<FormState>();
   bool isloading = false;
 
@@ -38,13 +42,13 @@ class RegisterController extends GetxController {
       // }
       QuerySnapshot q = await FirebaseFirestore.instance
           .collection("adminusers")
-          .where("name", isEqualTo: username.text)
-          .where("password", isEqualTo: password.text)
+          .where("name", isEqualTo: useradmin.text)
+          .where("password", isEqualTo: passwordAdmin.text)
           .get();
       if (q.docs.isNotEmpty) {
         Get.to(() => const HomeAdmin());
-        username.clear();
-        password.clear();
+        useradmin.clear();
+        passwordAdmin.clear();
         update();
       } else {
         Get.snackbar("😉", "اطلع بره لو سمحت ", colorText: Colors.red);
@@ -55,7 +59,30 @@ class RegisterController extends GetxController {
       print(e.toString());
     }
   }
-  //=====================clear textfields=====================
+
+  //=====================login users=====================
+  // void loginuser() async {
+  //   try {
+  //     QuerySnapshot q = await FirebaseFirestore.instance
+  //         .collection("users")
+  //         .where("email", isEqualTo: emailaddress.text)
+  //         .where("password", isEqualTo: password.text)
+  //         .get();
+  //     if (q.docs.isNotEmpty) {
+  //       Get.to(() => const MasrofyScreen());
+  //       emailaddress.clear();
+  //       password.clear();
+  //       update();
+  //     } else {
+  //       Get.snackbar("😉", "خطأ فى الايميل او الباسوورد",
+  //           backgroundColor: Colors.amber, colorText: Colors.red);
+  //     }
+  //   } on FirebaseAuthException catch (e) {
+  //     Get.snackbar("faild", e.toString(), colorText: Colors.red);
+  //   } catch (e) {
+  //     print(e.toString());
+  //   }
+  // }
 
 //===========================================Google Sign in=====================
   Future signInWithGoogle() async {
