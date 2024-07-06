@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ealanat_baladna/Services/auth_service.dart';
+
 import 'package:ealanat_baladna/views/user_panel/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

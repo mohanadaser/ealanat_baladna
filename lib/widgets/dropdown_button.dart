@@ -11,7 +11,7 @@ class _MasrofItemState extends State<MasrofItem> {
   List<String> items = [
     "كهربا",
     "غاز",
-    "الماء",
+    "مياه",
     "ايجار",
     "مواصلات",
     "قروض",
@@ -20,20 +20,23 @@ class _MasrofItemState extends State<MasrofItem> {
     "ايجار",
     "صيانه واصلاع",
     "كهربا",
-    "مدارس ودروس واعياد"
+    "مدارس ودروس واعياد",
+    "مصاريف اخرى"
   ];
 
-  String dropdownValue = "كهربا";
+  String? dropdownValue;
 
   @override
   Widget build(BuildContext context) {
     return DropdownButton(
+      dropdownColor: Colors.white,
+      value: dropdownValue,
       isExpanded: true,
       hint: const Text("اختر المصروف"),
       items: items
           .map((e) => DropdownMenuItem(
                 value: e,
-                child: Text(e),
+                child: Text(e.toString()),
               ))
           .toList(),
       onChanged: (value) {

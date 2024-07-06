@@ -1,11 +1,11 @@
 // ignore_for_file: must_be_immutable
 
-import 'dart:ffi';
+
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ealanat_baladna/Services/auth_service.dart';
+
 import 'package:ealanat_baladna/views/Masrofy/masrofy_screen.dart';
-import 'package:ealanat_baladna/views/user_panel/main_screen.dart';
+
 import 'package:ealanat_baladna/views/user_panel/register_screen.dart';
 import 'package:ealanat_baladna/widgets/components.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,7 +15,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-import 'home_screen.dart';
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

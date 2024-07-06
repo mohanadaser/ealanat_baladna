@@ -5,10 +5,17 @@ import '../../controller/masrofy_controller.dart';
 import '../../widgets/components.dart';
 import '../../widgets/dropdown_button.dart';
 
-class add_transaction extends StatelessWidget {
+class add_transaction extends StatefulWidget {
   const add_transaction({
     super.key,
   });
+
+  @override
+  State<add_transaction> createState() => _add_transactionState();
+}
+
+class _add_transactionState extends State<add_transaction> {
+  var items = "كهربا";
 
   @override
   Widget build(BuildContext context) {
