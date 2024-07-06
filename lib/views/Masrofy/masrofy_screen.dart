@@ -1,10 +1,11 @@
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
 import 'package:hexcolor/hexcolor.dart';
 
+import '../user_panel/login_screen.dart';
 import 'add_transaction.dart';
 import 'balance_screen.dart';
 
@@ -14,6 +15,20 @@ class MasrofyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: HexColor("0e2f44"),
+        actions: [
+          IconButton(
+              onPressed: () async {
+                await FirebaseAuth.instance.signOut();
+                Get.offAll(() => const LoginScreen());
+              },
+              icon: const Icon(
+                Icons.login_outlined,
+                color: Colors.amber,
+              ))
+        ],
+      ),
       backgroundColor: HexColor("0e2f44"),
       body: SafeArea(
         child: SingleChildScrollView(

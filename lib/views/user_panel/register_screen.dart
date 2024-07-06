@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ealanat_baladna/Services/auth_service.dart';
 import 'package:ealanat_baladna/views/user_panel/login_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -14,14 +16,83 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  bool issecure = true;
+  bool isloading = false;
   TextEditingController emailaddress = TextEditingController();
 
   TextEditingController password = TextEditingController();
 
   TextEditingController username = TextEditingController();
+  @override
+  void initState() {
+    emailaddress.text = "";
+    password.text = "";
+    username.text = "";
+    isloading = false;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    emailaddress.dispose();
+    password.dispose();
+    username.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    //============================Register user==================================
+    Future<void> signupUser({
+      required String email,
+      required String password,
+      required String name,
+    }) async {
+      try {
+        if (email.isNotEmpty || password.isNotEmpty || name.isNotEmpty) {
+          isloading = true;
+          setState(() {});
+          // register user in auth with email and password
+          UserCredential cred =
+              await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: email,
+            password: password,
+          );
+          // add user to your  firestore database
+          print(cred.user!.uid);
+          await FirebaseFirestore.instance
+              .collection("users")
+              .doc(cred.user!.uid)
+              .set({
+            'name': name,
+            'uid': cred.user!.uid,
+            'email': email,
+          });
+          isloading = false;
+          setState(() {});
+          Get.snackbar("👍", "تم التسجيل بنجاح",
+              backgroundColor: Colors.white, colorText: Colors.red);
+        } else {
+          Get.snackbar("😒", "خطأ فى الايميل او الباسوورد",
+              backgroundColor: Colors.white, colorText: Colors.red);
+        }
+      } catch (err) {
+        if (err.toString() ==
+            "[firebase_auth/email-already-in-use] The email address is already in use by another account.") {
+          Get.snackbar("😒", "الايميل مستخدم من قبل",
+              backgroundColor: Colors.white, colorText: Colors.red);
+          isloading = false;
+          setState(() {});
+        } else {
+          Get.snackbar("😒", err.toString(),
+              backgroundColor: Colors.amber, colorText: Colors.red);
+          isloading = false;
+          setState(() {});
+        }
+      }
+    }
+
+    //===================================================================================
     return Scaffold(
       //appBar: AppBar(),
       body: SingleChildScrollView(
@@ -82,46 +153,48 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   CustomPass(
                       text: "ادخل كلمة المرور",
                       type: TextInputType.visiblePassword,
-                      issecure: AuthMethod.issecure,
+                      issecure: issecure,
                       name: password,
                       sufxicon: InkWell(
                         onTap: () {
-                          AuthMethod.issecure = !AuthMethod.issecure;
+                          issecure = !issecure;
                           setState(() {});
                         },
-                        child: Icon(AuthMethod.issecure
-                            ? Icons.visibility_off
-                            : Icons.visibility),
+                        child: Icon(
+                            issecure ? Icons.visibility_off : Icons.visibility),
                       )),
                   const SizedBox(
                     height: 30.0,
                   ),
                   GestureDetector(
-                    onTap: () {
-                      AuthMethod().signupUser(
-                          email: emailaddress.text,
-                          password: password.text,
-                          name: username.text);
-                    },
-                    child: Container(
-                        padding: const EdgeInsets.symmetric(vertical: 15.0),
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(colors: [
-                              HexColor("666666"),
-                              HexColor("333333"),
-                              HexColor("101010")
-                            ]),
-                            borderRadius: BorderRadius.circular(30)),
-                        child: const Center(
-                            child: Text(
-                          "تسجيل الحساب",
-                          style: TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white),
-                        ))),
-                  ),
+                      onTap: () {
+                        signupUser(
+                            email: emailaddress.text,
+                            password: password.text,
+                            name: username.text);
+                      },
+                      child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 15.0),
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(colors: [
+                                HexColor("666666"),
+                                HexColor("333333"),
+                                HexColor("101010")
+                              ]),
+                              borderRadius: BorderRadius.circular(30)),
+                          child: Center(
+                              child: isloading
+                                  ? const Center(
+                                      child: CircularProgressIndicator())
+                                  : const Center(
+                                      child: Text(
+                                      "تسجيل الدخول",
+                                      style: TextStyle(
+                                          fontSize: 25,
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.white),
+                                    ))))),
                   const SizedBox(
                     height: 30.0,
                   ),

@@ -35,7 +35,7 @@ class _FirebaseDropdownMenuItemState extends State<FirebaseDropdownMenuItem> {
             final selectcompany = snapshot.data?.docs.reversed.toList();
             if (selectcompany != null) {
               for (var company in selectcompany) {
-                companiesname.add(
+                companiesname.add(  
                   DropdownMenuItem(
                     value: company['companyname'],
                     child: Text(

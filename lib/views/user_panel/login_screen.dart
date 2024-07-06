@@ -2,13 +2,20 @@
 
 import 'dart:ffi';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ealanat_baladna/Services/auth_service.dart';
+import 'package:ealanat_baladna/views/Masrofy/masrofy_screen.dart';
+import 'package:ealanat_baladna/views/user_panel/main_screen.dart';
 import 'package:ealanat_baladna/views/user_panel/register_screen.dart';
 import 'package:ealanat_baladna/widgets/components.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:hexcolor/hexcolor.dart';
+
+import 'home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -18,20 +25,72 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool ischecked = false;
+  final localstorage = GetStorage();
+  bool issecure = true;
+  bool isloading = false;
   TextEditingController email = TextEditingController();
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   TextEditingController password = TextEditingController();
+
+//=========================================================================
   @override
   void initState() {
-    email.text = AuthMethod.localstorage.read("email") ?? "";
-    password.text = AuthMethod.localstorage.read("password") ?? "";
-    AuthMethod.ischecked = false;
-    AuthMethod.isloading = false;
+    email.text = localstorage.read("email") ?? "";
+    password.text = localstorage.read("password") ?? "";
+    ischecked = false;
+    isloading = false;
     super.initState();
   }
 
   @override
+  void dispose() {
+    email.dispose();
+    password.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    //==================================login user================
+    Future<void> loginUser({
+      required String email,
+      required String password,
+    }) async {
+      try {
+        if (email.isNotEmpty || password.isNotEmpty) {
+          if (ischecked == true) {
+            localstorage.write("email", email.trim());
+            localstorage.write("password", password.trim());
+          }
+
+          isloading = true;
+          setState(() {});
+          // logging in user with email and password
+          await _auth.signInWithEmailAndPassword(
+            email: email,
+            password: password,
+          );
+          Get.off(() => const MasrofyScreen());
+          setState(() {});
+          isloading = false;
+        } else {
+          Get.snackbar("😊", "حاول مره اخرى",
+              backgroundColor: Colors.white, colorText: Colors.red);
+          setState(() {});
+          isloading = false;
+        }
+      } catch (err) {
+        Get.snackbar("😒", err.toString(),
+            backgroundColor: Colors.white, colorText: Colors.red);
+        setState(() {});
+        isloading = false;
+      }
+    }
+
+//==========================================================================================
     return Scaffold(
       //appBar: AppBar(),
       body: SingleChildScrollView(
@@ -83,24 +142,22 @@ class _LoginScreenState extends State<LoginScreen> {
                   CustomPass(
                       text: "ادخل كلمة المرور",
                       type: TextInputType.visiblePassword,
-                      issecure: AuthMethod.issecure,
+                      issecure: issecure,
                       name: password,
                       sufxicon: InkWell(
                         onTap: () {
-                          AuthMethod.issecure = !AuthMethod.issecure;
+                          issecure = !issecure;
                           setState(() {});
                         },
-                        child: Icon(AuthMethod.issecure
-                            ? Icons.visibility_off
-                            : Icons.visibility),
+                        child: Icon(
+                            issecure ? Icons.visibility_off : Icons.visibility),
                       )),
                   const SizedBox(
                     height: 30.0,
                   ),
                   GestureDetector(
                     onTap: () {
-                      AuthMethod().loginUser(
-                          email: email.text, password: password.text);
+                      loginUser(email: email.text, password: password.text);
                     },
                     child: Container(
                         padding: const EdgeInsets.symmetric(vertical: 15.0),
@@ -112,7 +169,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               HexColor("101010")
                             ]),
                             borderRadius: BorderRadius.circular(30)),
-                        child: AuthMethod.isloading
+                        child: isloading
                             ? const Center(child: CircularProgressIndicator())
                             : const Center(
                                 child: Text(
@@ -137,9 +194,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           activeColor: HexColor("8a2be2"),
                           checkColor: Colors.white,
                           side: const BorderSide(color: Colors.black),
-                          value: AuthMethod.ischecked,
+                          value: ischecked,
                           onChanged: (value) {
-                            AuthMethod.ischecked = !AuthMethod.ischecked;
+                            ischecked = !ischecked;
                             setState(() {});
                           }),
                     ],

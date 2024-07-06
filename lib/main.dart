@@ -9,6 +9,7 @@ import 'package:ealanat_baladna/views/Masrofy/masrofy_screen.dart';
 import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
 
 import 'package:ealanat_baladna/views/user_panel/login_screen.dart';
+import 'package:ealanat_baladna/views/user_panel/main_screen.dart';
 import 'package:ealanat_baladna/views/user_panel/register_screen.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -96,7 +97,7 @@ class _MyAppState extends State<MyApp> {
           }
           if (snapshot.hasData) {
             print(snapshot.data);
-            return const HomeScreen();
+            return const MainScreen();
           }
           return const Text("");
         },

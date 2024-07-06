@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../controller/masrofy_controller.dart';
 import '../../widgets/components.dart';
+import '../../widgets/dropdown_button.dart';
 
 class add_transaction extends StatelessWidget {
   const add_transaction({
@@ -35,6 +36,8 @@ class add_transaction extends StatelessWidget {
                       type: TextInputType.name,
                       name: controller.masrof,
                     ),
+                    const SizedBox(height: 10.0),
+                    const MasrofItem(),
                     const SizedBox(height: 10.0),
                     CustomForm(
                       text: " المبلغ",

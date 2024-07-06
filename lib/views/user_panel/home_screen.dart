@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
               centerTitle: true,
               leading: IconButton(
                 onPressed: () async {
-                  await AuthMethod().signOut();
+                  await FirebaseAuth.instance.signOut();
                   Get.offAll(() => LoginScreen());
                 },
                 icon: const Icon(Icons.logout),

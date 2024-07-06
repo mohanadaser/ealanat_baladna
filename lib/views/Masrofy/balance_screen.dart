@@ -23,75 +23,92 @@ class BalanceScreen extends StatelessWidget {
         decoration: BoxDecoration(
             color: HexColor("000000"),
             borderRadius: BorderRadius.circular(20.0)),
-        child: Row(
-          children: [
-            const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  " رصيدك حاليا",
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                ),
-                SizedBox(
-                  height: 10.0,
-                ),
-              Text("77" " " "EGP",
-                            style: TextStyle(
+        child: StreamBuilder<QuerySnapshot>(
+            stream:
+                FirebaseFirestore.instance.collection("credits").snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              if (snapshot.hasData) {
+                return Row(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          " رصيدك حاليا",
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                        const SizedBox(
+                          height: 10.0,
+                        ),
+                        Text(
+                            snapshot.data?.docs[0]['credit'] == null
+                                ? "0"
+                                : "${snapshot.data?.docs[0]['credit']}"
+                                    " "
+                                    "EGP",
+                            style: const TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white))
-
-              ],
-            ),
-            const Spacer(),
-            CircleAvatar(
-              backgroundColor: Colors.cyan,
-              radius: 25,
-              child: IconButton(
-                  onPressed: () {
-                    //=============================================alert dialog=============================
-                    Get.dialog(AlertDialog(actions: [
-                      CustomForm(
-                        text: " الرصيد الجديد",
-                        type: TextInputType.number,
-                        name: controller.credit,
-                      ),
-                      const SizedBox(
-                        height: 15.0,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.deepPurple,
-                                  foregroundColor: Colors.white),
-                              onPressed: () {
-                                controller.addCredit();
-                                Get.back();
-                              },
-                              child: const Text(
-                                "اضافة الرصيد",
-                                style: TextStyle(
-                                    fontSize: 12, fontWeight: FontWeight.bold),
-                              )),
-                          IconButton(
-                              onPressed: () {
-                                Get.back();
-                              },
-                              icon: const Icon(Icons.cancel))
-                        ],
-                      ),
-                    ]));
-                  },
-                  //====================================================================================================
-                  icon: const Icon(Icons.add)),
-            )
-          ],
-        ),
+                      ],
+                    ),
+                    const Spacer(),
+                    CircleAvatar(
+                      backgroundColor: Colors.cyan,
+                      radius: 25,
+                      child: IconButton(
+                          onPressed: () {
+                            //=============================================alert dialog=============================
+                            Get.dialog(AlertDialog(actions: [
+                              CustomForm(
+                                text: " الرصيد الجديد",
+                                type: TextInputType.number,
+                                name: controller.credit,
+                              ),
+                              const SizedBox(
+                                height: 15.0,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.deepPurple,
+                                          foregroundColor: Colors.white),
+                                      onPressed: () {
+                                        controller.addCredit();
+                                        Get.back();
+                                      },
+                                      child: const Text(
+                                        "اضافة الرصيد",
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold),
+                                      )),
+                                  IconButton(
+                                      onPressed: () {
+                                        Get.back();
+                                      },
+                                      icon: const Icon(Icons.cancel))
+                                ],
+                              ),
+                            ]));
+                          },
+                          //====================================================================================================
+                          icon: const Icon(Icons.add)),
+                    )
+                  ],
+                );
+              }
+              return const Center(child: CircularProgressIndicator());
+            }),
       ),
     );
   }

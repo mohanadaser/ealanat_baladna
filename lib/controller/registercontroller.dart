@@ -4,11 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:ealanat_baladna/views/admin_panel/home_admin.dart';
 
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 
 class RegisterController extends GetxController {
   @override
@@ -58,6 +56,8 @@ class RegisterController extends GetxController {
       print(e.toString());
     }
   }
+
+  
 }
 
 //   //=====================login users=====================
