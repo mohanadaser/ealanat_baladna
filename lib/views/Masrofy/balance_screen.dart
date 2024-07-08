@@ -24,8 +24,7 @@ class BalanceScreen extends StatelessWidget {
             color: HexColor("000000"),
             borderRadius: BorderRadius.circular(20.0)),
         child: StreamBuilder<QuerySnapshot>(
-            stream:
-                FirebaseFirestore.instance.collection("credits").snapshots(),
+            stream: FirebaseFirestore.instance.collection("users").snapshots(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(child: CircularProgressIndicator());
@@ -47,9 +46,9 @@ class BalanceScreen extends StatelessWidget {
                           height: 10.0,
                         ),
                         Text(
-                            snapshot.data?.docs[0]['credit'] == null
+                            snapshot.data?.docs[0]['current_balance'] == null
                                 ? "0"
-                                : "${snapshot.data?.docs[0]['credit']}"
+                                : "${snapshot.data?.docs[0]['current_balance']}"
                                     " "
                                     "EGP",
                             style: const TextStyle(
@@ -69,7 +68,7 @@ class BalanceScreen extends StatelessWidget {
                               CustomForm(
                                 text: " الرصيد الجديد",
                                 type: TextInputType.number,
-                                name: controller.credit,
+                                name: controller.balance,
                               ),
                               const SizedBox(
                                 height: 15.0,
@@ -83,7 +82,7 @@ class BalanceScreen extends StatelessWidget {
                                           backgroundColor: Colors.deepPurple,
                                           foregroundColor: Colors.white),
                                       onPressed: () {
-                                        controller.addCredit();
+                                        controller.addbalance();
                                         Get.back();
                                       },
                                       child: const Text(

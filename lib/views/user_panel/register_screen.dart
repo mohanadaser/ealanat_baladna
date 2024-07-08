@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:ealanat_baladna/views/user_panel/login_screen.dart';
+import 'package:ealanat_baladna/views/user_panel/main_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -67,11 +68,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
             'name': name,
             'uid': cred.user!.uid,
             'email': email,
+            'current_balance': 0,
           });
           isloading = false;
           setState(() {});
-          Get.snackbar("👍", "تم التسجيل بنجاح",
-              backgroundColor: Colors.white, colorText: Colors.red);
+          // Get.snackbar("👍", "تم التسجيل بنجاح",
+          //     backgroundColor: Colors.white, colorText: Colors.red);
+
+          Get.offAll(() => const MainScreen());
         } else {
           Get.snackbar("😒", "خطأ فى الايميل او الباسوورد",
               backgroundColor: Colors.white, colorText: Colors.red);

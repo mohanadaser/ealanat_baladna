@@ -5,37 +5,39 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:uuid/uuid.dart';
 
 class MasrofyController extends GetxController {
   final TextEditingController credit = TextEditingController();
   final TextEditingController masrof = TextEditingController();
-  final TextEditingController amount = TextEditingController();
+  final TextEditingController balance = TextEditingController();
   final currentuser = FirebaseAuth.instance.currentUser?.uid;
   oninInit() {
     print(currentuser);
+    balance.clear();
     super.onInit();
   }
 
   @override
   void dispose() {
-    credit.dispose();
-    masrof.dispose();
-    amount.dispose();
+    // credit.dispose();
+    // masrof.dispose();
+    balance.dispose();
     super.dispose();
   }
 
-  void addCredit() async {
-     final uuid = const Uuid().v4();
+  void addbalance() async {
     try {
-    
-        }
-
-    
-      
-     catch (e) {
+      //FirebaseFirestore.instance.collection("users").get();
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(currentuser)
+          .update({
+        "current_balance": FieldValue.increment(int.parse(balance.text)),
+      });
+//update();
+      balance.clear();
+    } catch (e) {
       print(e.toString());
     }
-    
   }
 }

@@ -38,18 +38,18 @@ class _add_transactionState extends State<add_transaction> {
                 onPressed: () {
                   Get.dialog(AlertDialog(actions: [
                     const SizedBox(height: 10.0),
-                    CustomForm(
-                      text: " الاسم",
-                      type: TextInputType.name,
-                      name: controller.masrof,
-                    ),
+                    // CustomForm(
+                    //   text: " الاسم",
+                    //   type: TextInputType.name,
+                    //   name: controller.masrof,
+                    // ),
                     const SizedBox(height: 10.0),
                     const MasrofItem(),
                     const SizedBox(height: 10.0),
                     CustomForm(
                       text: " المبلغ",
                       type: TextInputType.number,
-                      name: controller.amount,
+                      name: controller.balance,
                     ),
                     const SizedBox(
                       height: 15.0,
