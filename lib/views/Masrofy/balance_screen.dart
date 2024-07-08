@@ -24,7 +24,10 @@ class BalanceScreen extends StatelessWidget {
             color: HexColor("000000"),
             borderRadius: BorderRadius.circular(20.0)),
         child: StreamBuilder<QuerySnapshot>(
-            stream: FirebaseFirestore.instance.collection("users").snapshots(),
+            stream: FirebaseFirestore.instance
+                .collection("users")
+                .where("uid", isEqualTo: FirebaseAuth.instance.currentUser?.uid)
+                .snapshots(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(child: CircularProgressIndicator());
@@ -82,7 +85,7 @@ class BalanceScreen extends StatelessWidget {
                                           backgroundColor: Colors.deepPurple,
                                           foregroundColor: Colors.white),
                                       onPressed: () {
-                                        controller.addbalance();
+                                        controller.addbalance(snapshot.data?.docs[0]['uid']);
                                         Get.back();
                                       },
                                       child: const Text(

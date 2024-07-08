@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:ealanat_baladna/views/user_panel/login_screen.dart';
 import 'package:ealanat_baladna/views/user_panel/main_screen.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,6 +25,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController password = TextEditingController();
 
   TextEditingController username = TextEditingController();
+
   @override
   void initState() {
     emailaddress.text = "";
@@ -43,6 +45,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool validateEmail(String email) {
+      const pattern = r'^[a-zA-Z0-9._%+-]+@(gmail\.com|outlook\.com)$';
+      final regex = RegExp(pattern);
+      return regex.hasMatch(email);
+    }
+
     //============================Register user==================================
     Future<void> signupUser({
       required String email,
@@ -50,6 +58,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
       required String name,
     }) async {
       try {
+        if (validateEmail(email) == false) {
+          Get.snackbar("😒", " @gmail او @outlook البريد الالكترونى غير صحيح",
+              backgroundColor: Colors.white, colorText: Colors.red);
+          // isloading = false;
+
+          return;
+        }
         if (email.isNotEmpty || password.isNotEmpty || name.isNotEmpty) {
           isloading = true;
           setState(() {});
@@ -146,6 +161,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     height: 30.0,
                   ),
                   CustomForm(
+                    validator: (value) {
+                      if (validateEmail(emailaddress.text)) {
+                        return null; // Valid email
+                      } else {
+                        return 'Please enter a valid email address (gmail.com or outlook.com)';
+                      }
+                    },
                     text: "ادخل ايميلك",
                     type: TextInputType.emailAddress,
                     name: emailaddress,

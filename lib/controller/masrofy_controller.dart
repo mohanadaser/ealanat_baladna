@@ -25,13 +25,12 @@ class MasrofyController extends GetxController {
     super.dispose();
   }
 
-  void addbalance() async {
+  void addbalance(userid) async {
     try {
-      //FirebaseFirestore.instance.collection("users").get();
-      await FirebaseFirestore.instance
-          .collection("users")
-          .doc(currentuser)
-          .update({
+      DocumentReference ref =
+          FirebaseFirestore.instance.collection("users").doc(userid);
+
+      ref.update({
         "current_balance": FieldValue.increment(int.parse(balance.text)),
       });
 //update();
