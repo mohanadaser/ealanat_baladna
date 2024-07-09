@@ -161,13 +161,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     height: 30.0,
                   ),
                   CustomForm(
-                    validator: (value) {
-                      if (validateEmail(emailaddress.text)) {
-                        return null; // Valid email
-                      } else {
-                        return 'Please enter a valid email address (gmail.com or outlook.com)';
-                      }
-                    },
                     text: "ادخل ايميلك",
                     type: TextInputType.emailAddress,
                     name: emailaddress,
