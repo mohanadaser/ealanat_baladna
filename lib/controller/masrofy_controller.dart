@@ -33,7 +33,7 @@ class MasrofyController extends GetxController {
       ref.update({
         "current_balance": FieldValue.increment(int.parse(balance.text)),
       });
-//update();
+      update();
       balance.clear();
     } catch (e) {
       print(e.toString());
