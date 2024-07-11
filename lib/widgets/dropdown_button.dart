@@ -1,4 +1,6 @@
+import 'package:ealanat_baladna/controller/masrofy_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MasrofItem extends StatefulWidget {
   const MasrofItem({super.key});
@@ -17,33 +19,34 @@ class _MasrofItemState extends State<MasrofItem> {
     "قروض",
     "اقساط",
     "اكل وشرب",
-    "ايجار",
+    "استثمار",
     "صيانه واصلاع",
     "كهربا",
     "مدارس ودروس واعياد",
     "مصاريف اخرى"
   ];
 
-  String? dropdownValue;
-
   @override
   Widget build(BuildContext context) {
-    return DropdownButton(
-      dropdownColor: Colors.white,
-      value: dropdownValue,
-      isExpanded: true,
-      hint: const Text("اختر المصروف"),
-      items: items
-          .map((e) => DropdownMenuItem(
-                value: e,
-                child: Text(e.toString()),
-              ))
-          .toList(),
-      onChanged: (value) {
-        setState(() {
-          dropdownValue = value.toString();
-        });
-      },
+    return GetBuilder<MasrofyController>(
+      builder: (MasrofyController controller) => DropdownButton(
+        dropdownColor: Colors.white,
+        value: controller.dropdownValue,
+        isExpanded: true,
+        hint: const Text("اختر المصروف"),
+        items: items
+            .map((e) => DropdownMenuItem(
+                  value: e,
+                  child: Text(e.toString()),
+                ))
+            .toList(),
+        onChanged: (value) {
+          setState(() {
+            controller.dropdownValue = value.toString();
+            print(controller.dropdownValue);
+          });
+        },
+      ),
     );
   }
 }

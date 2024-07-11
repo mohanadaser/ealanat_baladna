@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,8 +17,6 @@ class add_transaction extends StatefulWidget {
 }
 
 class _add_transactionState extends State<add_transaction> {
-  var items = "كهربا";
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<MasrofyController>(
@@ -49,7 +49,7 @@ class _add_transactionState extends State<add_transaction> {
                     CustomForm(
                       text: " المبلغ",
                       type: TextInputType.number,
-                      name: controller.balance,
+                      name: controller.amount,
                     ),
                     const SizedBox(
                       height: 15.0,
@@ -62,6 +62,7 @@ class _add_transactionState extends State<add_transaction> {
                                 backgroundColor: Colors.deepPurple,
                                 foregroundColor: Colors.white),
                             onPressed: () {
+                              controller.addtransaction();
                               Get.back();
                             },
                             child: const Text(
@@ -69,11 +70,25 @@ class _add_transactionState extends State<add_transaction> {
                               style: TextStyle(
                                   fontSize: 12, fontWeight: FontWeight.bold),
                             )),
-                        IconButton(
-                            onPressed: () {
-                              Get.back();
-                            },
-                            icon: const Icon(Icons.cancel))
+                        StreamBuilder<QuerySnapshot>(
+                            stream: FirebaseFirestore.instance
+                                .collection("users")
+                                .where("uid",
+                                    isEqualTo:
+                                        FirebaseAuth.instance.currentUser?.uid)
+                                .snapshots(),
+                            builder: (context,
+                                AsyncSnapshot<QuerySnapshot> snapshot) {
+                              if (snapshot.hasData) {
+                                return IconButton(
+                                    onPressed: () {
+                                      Get.back();
+                                    },
+                                    icon: const Icon(Icons.cancel));
+                              } else {
+                                return const Text("لا يوجد مصروفات");
+                              }
+                            })
                       ],
                     ),
                   ]));
