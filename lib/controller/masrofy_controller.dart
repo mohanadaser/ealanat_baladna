@@ -1,9 +1,10 @@
 // ignore_for_file: avoid_single_cascade_in_expression_statements
 
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ealanat_baladna/widgets/dropdown_button.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,6 +12,7 @@ import 'package:intl/intl.dart';
 
 class MasrofyController extends GetxController {
   String? dropdownValue;
+ 
   final TextEditingController amount = TextEditingController();
   final TextEditingController balance = TextEditingController();
   final currentuser = FirebaseAuth.instance.currentUser?.uid;
@@ -26,7 +28,7 @@ class MasrofyController extends GetxController {
   @override
   void dispose() {
     amount.dispose();
-    balance.dispose();
+    //balance.dispose();
     super.dispose();
   }
 
@@ -44,6 +46,7 @@ class MasrofyController extends GetxController {
       print(e.toString());
     }
   }
+
 //=======================Add transactions==========================================
   void addtransaction() async {
     try {
@@ -59,6 +62,7 @@ class MasrofyController extends GetxController {
         "current_date": formatter.format(now),
         "amount": int.parse(amount.text)
       });
+    
       amount.clear();
       dropdownValue == null;
 
@@ -67,4 +71,29 @@ class MasrofyController extends GetxController {
       print(e.toString());
     }
   }
+
+  //=====================sum of transactions==========================================
+
+  // int gettotalbalance() {
+  //   try {
+  //     FirebaseFirestore.instance
+  //         .collection('users')
+  //         .doc(currentuser)
+  //         .collection("transactions")
+  //         .get()
+  //         .then((querySnapshot) {
+  //       for (var result in querySnapshot.docs) {
+  //         totamasrofat += int.parse(result.data()["amount"].toString());
+  //         sum = sum + totamasrofat;
+  //         return sum;
+  //       }
+  //       update();
+  //     }).catchError((error) {
+  //       print('Error getting documents: $error');
+  //     });
+  //   } catch (e) {
+  //     print(e.toString());
+  //   }
+  //   return 0;
+  // }
 }

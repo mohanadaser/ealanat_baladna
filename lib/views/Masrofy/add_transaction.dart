@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 
 import '../../controller/masrofy_controller.dart';
@@ -17,6 +18,11 @@ class add_transaction extends StatefulWidget {
 }
 
 class _add_transactionState extends State<add_transaction> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<MasrofyController>(
@@ -70,25 +76,11 @@ class _add_transactionState extends State<add_transaction> {
                               style: TextStyle(
                                   fontSize: 12, fontWeight: FontWeight.bold),
                             )),
-                        StreamBuilder<QuerySnapshot>(
-                            stream: FirebaseFirestore.instance
-                                .collection("users")
-                                .where("uid",
-                                    isEqualTo:
-                                        FirebaseAuth.instance.currentUser?.uid)
-                                .snapshots(),
-                            builder: (context,
-                                AsyncSnapshot<QuerySnapshot> snapshot) {
-                              if (snapshot.hasData) {
-                                return IconButton(
-                                    onPressed: () {
-                                      Get.back();
-                                    },
-                                    icon: const Icon(Icons.cancel));
-                              } else {
-                                return const Text("لا يوجد مصروفات");
-                              }
-                            })
+                        IconButton(
+                            onPressed: () {
+                              Get.back();
+                            },
+                            icon: const Icon(Icons.cancel)),
                       ],
                     ),
                   ]));
@@ -98,6 +90,27 @@ class _add_transactionState extends State<add_transaction> {
           const SizedBox(
             width: 20.0,
           ),
+          StreamBuilder<QuerySnapshot>(
+              stream: FirebaseFirestore.instance
+                  .collection('users')
+                  .doc(FirebaseAuth.instance.currentUser?.uid)
+                  .collection("transactions")
+                  .snapshots(),
+              builder: (context, AsyncSnapshot snapshot) {
+                int totamasrofat = 0;
+                int sum = 0;
+                if (snapshot.hasData) {
+                  for (var result in snapshot.data!.docs) {
+                    sum = sum + int.parse(result.data()['amount'].toString());
+                  }
+                  totamasrofat = sum;
+                }
+                return Text(totamasrofat.toString(),
+                    style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white));
+              }),
         ],
       ),
     );

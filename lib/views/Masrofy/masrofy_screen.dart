@@ -55,10 +55,10 @@ class MasrofyScreen extends StatelessWidget {
                 height: 20.0,
               ),
               const add_transaction(),
-              const Divider(
-                thickness: 4.0,
-                color: Colors.amber,
-              ),
+              // const Divider(
+              //   thickness: 4.0,
+              //   color: Colors.amber,
+              // ),
               SizedBox(
                 height: Get.height * .5,
                 child: StreamBuilder<QuerySnapshot>(
