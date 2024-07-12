@@ -9,10 +9,13 @@ import '../../widgets/components.dart';
 import '../../widgets/dropdown_button.dart';
 
 class add_transaction extends StatelessWidget {
+  final usercurrent;
   const add_transaction({
     super.key,
+    required this.usercurrent,
   });
 
+  @override
   @override
   Widget build(BuildContext context) {
     return GetBuilder<MasrofyController>(
@@ -53,15 +56,14 @@ class add_transaction extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        //===========================Add Transactions===========================
-
                         //========================================Add Transactions=============================
+
                         ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.deepPurple,
                                 foregroundColor: Colors.white),
                             onPressed: () {
-                              controller.addtransaction();
+                              controller.addtransaction(usercurrent);
 
                               Get.back();
                             },

@@ -1,13 +1,12 @@
 // ignore_for_file: avoid_single_cascade_in_expression_statements, collection_methods_unrelated_type
 
-import 'dart:ffi';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:intl/intl.dart';
 
 class MasrofyController extends GetxController {
@@ -19,13 +18,15 @@ class MasrofyController extends GetxController {
   final TextEditingController amount = TextEditingController();
   final TextEditingController balance = TextEditingController();
   final currentuser = FirebaseAuth.instance.currentUser?.uid;
+
   final DateTime now = DateTime.now();
   final DateFormat formatter = DateFormat('yyyy-MM-dd');
   oninInit() {
     amount.clear();
-    dropdownValue == null;
+    dropdownValue == "";
     balance.clear();
     super.onInit();
+    update();
   }
 
   @override
@@ -66,25 +67,25 @@ class MasrofyController extends GetxController {
   }
 
 //=======================Add transactions==========================================
-  void addtransaction() async {
+  void addtransaction(usercurrent) async {
     try {
-      if (amount.text.isEmpty || dropdownValue == null) {
+      if (amount.text.isEmpty || dropdownValue!.isEmpty) {
         return;
       }
+
       await FirebaseFirestore.instance
           .collection("users")
-          .doc(currentuser)
+          .doc(usercurrent)
           .collection("transactions")
           .add({
         "masrofitem": dropdownValue.toString(),
         "current_date": formatter.format(now),
         "amount": int.parse(amount.text)
       });
+      update();
       editbalance();
       amount.clear();
-      dropdownValue == null;
-
-      update();
+      dropdownValue == "";
     } catch (e) {
       print(e.toString());
     }

@@ -1,3 +1,4 @@
+import 'package:ealanat_baladna/views/Masrofy/masrofy_screen.dart';
 import 'package:ealanat_baladna/views/Tic_Tac_Toe/login_game.dart';
 import 'package:ealanat_baladna/views/chatBot/chat_bot.dart';
 import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
@@ -17,6 +18,7 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(),
         body: Column(
           children: [
             Container(
@@ -33,7 +35,7 @@ class MainScreen extends StatelessWidget {
                   //================================الصفحه الرئيسيه=====================
                   GestureDetector(
                     onTap: () {
-                      Get.to(() => const HomeScreen());
+                      Get.off(() => const HomeScreen());
                     },
                     child: Container(
                       margin: const EdgeInsets.all(5.0),
@@ -121,7 +123,7 @@ class MainScreen extends StatelessWidget {
                           ),
                           const Spacer(),
                           const Text(
-                            "chat with Ai",
+                            "Chat With GPT",
                             style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
@@ -131,7 +133,40 @@ class MainScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  //=========================================================================
+                  //====================================Masrofaty=====================================
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => const MasrofyScreen());
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.all(5.0),
+                      padding: const EdgeInsets.all(8.0),
+                      height: Get.height * 0.1,
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            'assets/animations/masrofaty.png',
+                            color: Colors.white,
+                          ),
+                          const Spacer(),
+                          const Text(
+                            "مصروفاتى",
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             )

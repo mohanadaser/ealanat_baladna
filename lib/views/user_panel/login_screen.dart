@@ -2,7 +2,8 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:ealanat_baladna/views/Masrofy/masrofy_screen.dart';
+
+import 'package:ealanat_baladna/views/user_panel/main_screen.dart';
 
 import 'package:ealanat_baladna/views/user_panel/register_screen.dart';
 import 'package:ealanat_baladna/widgets/components.dart';
@@ -69,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
             email: email,
             password: password,
           );
-          Get.offAll(() => const MasrofyScreen());
+          Get.offAll(() => const MainScreen());
           setState(() {});
           isloading = false;
         } else {

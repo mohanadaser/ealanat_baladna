@@ -21,6 +21,7 @@ class MasrofyScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: HexColor("0e2f44"),
       appBar: AppBar(
+        foregroundColor: Colors.white,
         backgroundColor: HexColor("0e2f44"),
         title: GetBuilder<MasrofyController>(
           builder: (MasrofyController controller) => TextButton(
@@ -70,7 +71,20 @@ class MasrofyScreen extends StatelessWidget {
               const SizedBox(
                 height: 20.0,
               ),
-              const add_transaction(),
+              StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance
+                      .collection("users")
+                      .where("uid",
+                          isEqualTo: FirebaseAuth.instance.currentUser?.uid)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return add_transaction(
+                        usercurrent: snapshot.data?.docs[0]['uid'],
+                      );
+                    }
+                    return const Center(child: CircularProgressIndicator());
+                  }),
               // const Divider(
               //   thickness: 4.0,
               //   color: Colors.amber,
@@ -84,6 +98,12 @@ class MasrofyScreen extends StatelessWidget {
                         .collection("transactions")
                         .snapshots(),
                     builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(
+                            child: CircularProgressIndicator(
+                          backgroundColor: Colors.amber,
+                        ));
+                      }
                       if (snapshot.hasData) {
                         return ListView.separated(
                             scrollDirection: Axis.vertical,
