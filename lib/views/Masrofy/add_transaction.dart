@@ -8,20 +8,10 @@ import '../../controller/masrofy_controller.dart';
 import '../../widgets/components.dart';
 import '../../widgets/dropdown_button.dart';
 
-class add_transaction extends StatefulWidget {
+class add_transaction extends StatelessWidget {
   const add_transaction({
     super.key,
   });
-
-  @override
-  State<add_transaction> createState() => _add_transactionState();
-}
-
-class _add_transactionState extends State<add_transaction> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +59,7 @@ class _add_transactionState extends State<add_transaction> {
                                 foregroundColor: Colors.white),
                             onPressed: () {
                               controller.addtransaction();
+                             
                               Get.back();
                             },
                             child: const Text(
@@ -90,6 +81,7 @@ class _add_transactionState extends State<add_transaction> {
           const SizedBox(
             width: 20.0,
           ),
+          //============================Total Masrof============================
           StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance
                   .collection('users')
@@ -99,17 +91,24 @@ class _add_transactionState extends State<add_transaction> {
               builder: (context, AsyncSnapshot snapshot) {
                 int totamasrofat = 0;
                 int sum = 0;
+
                 if (snapshot.hasData) {
                   for (var result in snapshot.data!.docs) {
                     sum = sum + int.parse(result.data()['amount'].toString());
                   }
                   totamasrofat = sum;
+
+                  //     totamasrofat;
                 }
-                return Text(totamasrofat.toString(),
+                return Text(
+                    // ignore: unnecessary_brace_in_string_interps
+                    "$totamasrofat"
+                    " "
+                    "EGP",
                     style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white));
+                        color: Colors.red));
               }),
         ],
       ),

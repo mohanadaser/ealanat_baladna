@@ -21,7 +21,7 @@ class _MasrofItemState extends State<MasrofItem> {
     "اكل وشرب",
     "استثمار",
     "صيانه واصلاع",
-    "كهربا",
+    
     "مدارس ودروس واعياد",
     "مصاريف اخرى"
   ];

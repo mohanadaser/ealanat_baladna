@@ -1,6 +1,7 @@
 // ignore_for_file: collection_methods_unrelated_type
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ealanat_baladna/controller/masrofy_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -18,8 +19,24 @@ class MasrofyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: HexColor("0e2f44"),
       appBar: AppBar(
         backgroundColor: HexColor("0e2f44"),
+        title: GetBuilder<MasrofyController>(
+          builder: (MasrofyController controller) => TextButton(
+            onPressed: () {
+              controller.resetBalance();
+            },
+            child: const Text(
+              "Reset Balance",
+              style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+            ),
+          ),
+        ),
+        centerTitle: true,
         actions: [
           IconButton(
               onPressed: () async {
@@ -28,11 +45,10 @@ class MasrofyScreen extends StatelessWidget {
               },
               icon: const Icon(
                 Icons.login_outlined,
-                color: Colors.amber,
-              ))
+                color: Colors.red,
+              )),
         ],
       ),
-      backgroundColor: HexColor("0e2f44"),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

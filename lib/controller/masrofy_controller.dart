@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_single_cascade_in_expression_statements
+// ignore_for_file: avoid_single_cascade_in_expression_statements, collection_methods_unrelated_type
 
 import 'dart:ffi';
 
@@ -12,7 +12,10 @@ import 'package:intl/intl.dart';
 
 class MasrofyController extends GetxController {
   String? dropdownValue;
- 
+  int totalmasrof = 0;
+  int total = 0;
+  int sum = 0;
+  int totalbalance = 0;
   final TextEditingController amount = TextEditingController();
   final TextEditingController balance = TextEditingController();
   final currentuser = FirebaseAuth.instance.currentUser?.uid;
@@ -28,12 +31,27 @@ class MasrofyController extends GetxController {
   @override
   void dispose() {
     amount.dispose();
-    //balance.dispose();
+    balance.dispose();
+
     super.dispose();
   }
 
+//=======================Add Balance==============================================
   void addbalance(userid) async {
     try {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(currentuser)
+          .collection("transactions")
+          .get()
+          .then((querySnapshot) {
+        for (var result in querySnapshot.docs) {
+          totalmasrof =
+              totalmasrof + int.parse(result.data()['amount'].toString());
+        }
+        update();
+      });
+
       DocumentReference ref =
           FirebaseFirestore.instance.collection("users").doc(userid);
 
@@ -62,7 +80,7 @@ class MasrofyController extends GetxController {
         "current_date": formatter.format(now),
         "amount": int.parse(amount.text)
       });
-    
+      editbalance();
       amount.clear();
       dropdownValue == null;
 
@@ -72,28 +90,35 @@ class MasrofyController extends GetxController {
     }
   }
 
-  //=====================sum of transactions==========================================
+  //=====================Edit Current Balance==========================================
+  void editbalance() async {
+    try {
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser?.uid)
+          .update({
+        "current_balance": FieldValue.increment(-int.parse(amount.text)),
+      });
 
-  // int gettotalbalance() {
-  //   try {
-  //     FirebaseFirestore.instance
-  //         .collection('users')
-  //         .doc(currentuser)
-  //         .collection("transactions")
-  //         .get()
-  //         .then((querySnapshot) {
-  //       for (var result in querySnapshot.docs) {
-  //         totamasrofat += int.parse(result.data()["amount"].toString());
-  //         sum = sum + totamasrofat;
-  //         return sum;
-  //       }
-  //       update();
-  //     }).catchError((error) {
-  //       print('Error getting documents: $error');
-  //     });
-  //   } catch (e) {
-  //     print(e.toString());
-  //   }
-  //   return 0;
-  // }
+      update();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  //=====================Reset Balance==========================================
+
+  void resetBalance() async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser?.uid)
+          .update({
+        "current_balance": 0,
+      });
+      update();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 }
