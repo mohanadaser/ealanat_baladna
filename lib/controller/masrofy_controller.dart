@@ -39,18 +39,18 @@ class MasrofyController extends GetxController {
 //=======================Add Balance==============================================
   void addbalance(userid) async {
     try {
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(currentuser)
-          .collection("transactions")
-          .get()
-          .then((querySnapshot) {
-        for (var result in querySnapshot.docs) {
-          totalmasrof =
-              totalmasrof + int.parse(result.data()['amount'].toString());
-        }
-        update();
-      });
+      // await FirebaseFirestore.instance
+      //     .collection('users')
+      //     .doc(currentuser)
+      //     .collection("transactions")
+      //     .get()
+      //     .then((querySnapshot) {
+      //   for (var result in querySnapshot.docs) {
+      //     totalmasrof =
+      //         totalmasrof + int.parse(result.data()['amount'].toString());
+      //   }
+      //   update();
+      // });
 
       DocumentReference ref =
           FirebaseFirestore.instance.collection("users").doc(userid);

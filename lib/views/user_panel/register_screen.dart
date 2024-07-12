@@ -69,7 +69,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
           return;
         }
-        if (email.isNotEmpty || password.isNotEmpty || name.isNotEmpty) {
+        if (email.isNotEmpty && password.isNotEmpty && name.isNotEmpty) {
           isloading = true;
           setState(() {});
           // register user in auth with email and password
@@ -78,8 +78,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             email: email,
             password: password,
           );
-              //==== add user to your  firestore database=================
-        
+          //==== add user to your  firestore database=================
+
           await FirebaseFirestore.instance
               .collection("users")
               .doc(cred.user!.uid)
@@ -97,7 +97,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
           Get.offAll(() => const MainScreen());
         } else {
-          Get.snackbar("😒", "خطأ فى الايميل او الباسوورد",
+          Get.snackbar("😒", "تأكد من ملىء جميع الخانات",
               backgroundColor: Colors.white, colorText: Colors.red);
         }
       } catch (err) {

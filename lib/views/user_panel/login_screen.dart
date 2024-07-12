@@ -1,7 +1,5 @@
 // ignore_for_file: must_be_immutable
 
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:ealanat_baladna/views/Masrofy/masrofy_screen.dart';
@@ -14,8 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hexcolor/hexcolor.dart';
-
-
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -73,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
             email: email,
             password: password,
           );
-          Get.off(() => const MasrofyScreen());
+          Get.offAll(() => const MasrofyScreen());
           setState(() {});
           isloading = false;
         } else {

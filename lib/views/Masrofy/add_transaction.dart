@@ -53,13 +53,16 @@ class add_transaction extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        //===========================Add Transactions===========================
+
+                        //========================================Add Transactions=============================
                         ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.deepPurple,
                                 foregroundColor: Colors.white),
                             onPressed: () {
                               controller.addtransaction();
-                             
+
                               Get.back();
                             },
                             child: const Text(
@@ -67,6 +70,8 @@ class add_transaction extends StatelessWidget {
                               style: TextStyle(
                                   fontSize: 12, fontWeight: FontWeight.bold),
                             )),
+
+                        //========================================================================
                         IconButton(
                             onPressed: () {
                               Get.back();
