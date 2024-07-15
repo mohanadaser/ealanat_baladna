@@ -40,19 +40,6 @@ class MasrofyController extends GetxController {
 //=======================Add Balance==============================================
   void addbalance(userid) async {
     try {
-      // await FirebaseFirestore.instance
-      //     .collection('users')
-      //     .doc(currentuser)
-      //     .collection("transactions")
-      //     .get()
-      //     .then((querySnapshot) {
-      //   for (var result in querySnapshot.docs) {
-      //     totalmasrof =
-      //         totalmasrof + int.parse(result.data()['amount'].toString());
-      //   }
-      //   update();
-      // });
-
       DocumentReference ref =
           FirebaseFirestore.instance.collection("users").doc(userid);
 
@@ -72,7 +59,12 @@ class MasrofyController extends GetxController {
       if (amount.text.isEmpty || dropdownValue!.isEmpty) {
         return;
       }
-
+      QuerySnapshot db = await FirebaseFirestore.instance
+          .collection("users")
+          .doc(usercurrent)
+          .collection("transactions")
+          .get();
+//========================Add Transaction=============================
       await FirebaseFirestore.instance
           .collection("users")
           .doc(usercurrent)
@@ -84,6 +76,15 @@ class MasrofyController extends GetxController {
       });
       update();
       editbalance();
+      //=====================check if more than 15 transactions =================================
+      if (db.docs.length > 14) {
+        deletetransaction(usercurrent);
+        Get.snackbar("تحذير",
+            "بعد عمل اكثر من 15 حركة سيتم حذفهم دون المساس برصيدك \nويمكنك اضافة حركات جديده ويمكنك الضغط ايضا على Reset TRansactions",
+            duration: const Duration(seconds: 15),
+            backgroundColor: Colors.white);
+      }
+      update();
       amount.clear();
       dropdownValue == "";
     } catch (e) {
@@ -117,6 +118,24 @@ class MasrofyController extends GetxController {
           .update({
         "current_balance": 0,
       });
+      update();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  //=================================delete transaction=============================
+  void deletetransaction(id) async {
+    try {
+      var collection = FirebaseFirestore.instance
+          .collection("users")
+          .doc(id)
+          .collection("transactions");
+      var snapshot = await collection.get();
+      for (var doc in snapshot.docs) {
+        doc.reference.delete();
+      }
+
       update();
     } catch (e) {
       print(e.toString());

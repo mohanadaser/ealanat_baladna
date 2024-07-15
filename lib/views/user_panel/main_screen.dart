@@ -3,13 +3,12 @@ import 'package:ealanat_baladna/views/Tic_Tac_Toe/login_game.dart';
 import 'package:ealanat_baladna/views/chatBot/chat_bot.dart';
 import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
 import 'package:ealanat_baladna/widgets/banner_screen.dart';
-import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -18,7 +17,7 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(),
+        backgroundColor: HexColor("f0f8ff"),
         body: Column(
           children: [
             Container(
@@ -29,9 +28,6 @@ class MainScreen extends StatelessWidget {
               scrollDirection: Axis.vertical,
               child: Column(
                 children: [
-                  const SizedBox(
-                    height: 10.0,
-                  ),
                   //================================الصفحه الرئيسيه=====================
                   GestureDetector(
                     onTap: () {

@@ -12,8 +12,7 @@ import 'package:ealanat_baladna/widgets/textrich.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../widgets/hexecolor.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -118,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     padding: EdgeInsets.all(3.0),
                                     //=======================================filter chips=============
                                     child: FilterChip(
-                                      backgroundColor: hexlist[index],
+                                      backgroundColor: HexColor('33383d'),
                                       onSelected: (bool val) {
                                         controller.filterProductsByCompany(
                                             doc["companyname"]);
@@ -130,14 +129,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                               doc["companyname"],
                                               style: TextStyle(
                                                   fontSize: 15.0,
-                                                  color: Colors.black,
+                                                  color: Colors.white,
                                                   fontWeight: FontWeight.bold),
                                             )
                                           : Text(
                                               doc["companyname"],
                                               style: TextStyle(
                                                   fontSize: 15.0,
-                                                  color: Colors.black,
+                                                  color: Colors.white,
                                                   fontWeight: FontWeight.bold),
                                             ),
                                     ),

@@ -8,7 +8,7 @@ class BannerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: Get.height * .2,
+      height: Get.height * .3,
       child: Stack(
         children: [
           Container(

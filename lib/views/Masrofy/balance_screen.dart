@@ -57,7 +57,7 @@ class BalanceScreen extends StatelessWidget {
                             style: const TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white))
+                                color: Colors.green))
                       ],
                     ),
                     const Spacer(),
@@ -85,7 +85,8 @@ class BalanceScreen extends StatelessWidget {
                                           backgroundColor: Colors.deepPurple,
                                           foregroundColor: Colors.white),
                                       onPressed: () {
-                                        controller.addbalance(snapshot.data?.docs[0]['uid']);
+                                        controller.addbalance(
+                                            snapshot.data?.docs[0]['uid']);
                                         Get.back();
                                       },
                                       child: const Text(

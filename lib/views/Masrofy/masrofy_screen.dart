@@ -25,6 +25,9 @@ class MasrofyScreen extends StatelessWidget {
         backgroundColor: HexColor("0e2f44"),
         title: GetBuilder<MasrofyController>(
           builder: (MasrofyController controller) => TextButton(
+            style: TextButton.styleFrom(
+              backgroundColor: Colors.black,
+            ),
             onPressed: () {
               controller.resetBalance();
             },
@@ -59,15 +62,34 @@ class MasrofyScreen extends StatelessWidget {
               ),
               const BalanceScreen(),
               const SizedBox(
-                height: 20.0,
+                height: 10.0,
               ),
-              const Text(
-                "حركة مصروفاتك الشهريه",
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              ),
+              //================================Delete Transaction==========================
+              StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance
+                      .collection("users")
+                      .where("uid",
+                          isEqualTo: FirebaseAuth.instance.currentUser?.uid)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    return TextButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor: Colors.amber,
+                      ),
+                      onPressed: () {
+                        Get.find<MasrofyController>()
+                            .deletetransaction(snapshot.data?.docs[0]['uid']);
+                      },
+                      child: const Text(
+                        "ٌReset Transactions",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.red),
+                      ),
+                    );
+                    //==========================================================================
+                  }),
               const SizedBox(
                 height: 20.0,
               ),

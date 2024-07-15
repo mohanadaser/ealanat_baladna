@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_overrides, unused_field, unrelated_type_equality_checks, unused_element, await_only_futures, collection_methods_unrelated_type, void_checks, avoid_print
+// ignore_for_file: unnecessary_overrides, unused_field, unrelated_type_equality_checks, unused_element, await_only_futures, collection_methods_unrelated_type, void_checks, avoid_print, dead_code
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -156,5 +156,16 @@ class MainController extends GetxController {
     }
   }
 
-  //==========================Get length of likes=========
+  //==========================search text Of company=========
+
+  searchCompany() async {
+    QuerySnapshot q =
+        await FirebaseFirestore.instance.collection("companies").get();
+    return q.docs
+        .where(
+            (element) => element['companyname'].contains(searchtxt.text.trim()))
+        .toList();
+
+    update();
+  }
 }
