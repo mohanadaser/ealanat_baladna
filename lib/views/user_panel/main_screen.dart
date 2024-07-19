@@ -18,15 +18,17 @@ class MainScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: HexColor("f0f8ff"),
-        body: Column(
-          children: [
-            Container(
-              margin: const EdgeInsets.all(5.0),
-              child: const BannerScreen(),
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
+        body: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          scrollDirection: Axis.vertical,
+          child: Column(
+            children: [
+              SizedBox(height: Get.height * 0.02),
+              Container(
+                margin: const EdgeInsets.all(5.0),
+                child: const BannerScreen(),
+              ),
+              Column(
                 children: [
                   //================================الصفحه الرئيسيه=====================
                   GestureDetector(
@@ -164,9 +166,9 @@ class MainScreen extends StatelessWidget {
                     ),
                   ),
                 ],
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );

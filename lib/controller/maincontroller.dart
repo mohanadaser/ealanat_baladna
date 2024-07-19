@@ -158,14 +158,22 @@ class MainController extends GetxController {
 
   //==========================search text Of company=========
 
-  searchCompany() async {
-    QuerySnapshot q =
-        await FirebaseFirestore.instance.collection("companies").get();
-    return q.docs
-        .where(
-            (element) => element['companyname'].contains(searchtxt.text.trim()))
-        .toList();
+  searchCompany(txtsearch) async {
+    if (txtsearch != null) {
+     try {
+      pro.clear();
+      update();
+      QuerySnapshot q =
+          await FirebaseFirestore.instance.collection("products").get();
 
-    update();
+      pro.addAll(q.docs
+          .where((element) => element["company"].contains(txtsearch))
+          .toList());
+
+      update();
+    } catch (e) {
+      print(e.toString());
+    }
+    }
   }
 }

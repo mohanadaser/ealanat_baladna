@@ -14,18 +14,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   //==============================Search============================
                   CustomForm(
                       onchange: (Value) {
-                        setState(() {});
+                        controller.searchCompany(Value);
                       },
                       text: "البحث عن محلات ومطاعم وعيادات",
                       type: TextInputType.name,
@@ -117,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     padding: EdgeInsets.all(3.0),
                                     //=======================================filter chips=============
                                     child: FilterChip(
-                                      backgroundColor: HexColor('33383d'),
+                                      backgroundColor: HexColor('0e2f44'),
                                       onSelected: (bool val) {
                                         controller.filterProductsByCompany(
                                             doc["companyname"]);
