@@ -5,11 +5,12 @@ import 'package:ealanat_baladna/controller/maincontroller.dart';
 import 'package:ealanat_baladna/widgets/like_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:like_button/like_button.dart';
+
+import '../views/user_panel/users_reveiew_screen.dart';
 
 class CardProducts extends StatefulWidget {
   final int index;
@@ -158,9 +159,10 @@ class _CardProductsState extends State<CardProducts> {
                     ),
                     Expanded(
                         child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(5.0),
                           child: Like_Button(
                             ontab: togglelike,
                             isliked: isliked,
@@ -173,7 +175,22 @@ class _CardProductsState extends State<CardProducts> {
                             builder: (context, snapshot) {
                               return Text("$countlike  اعجبنى");
                             }),
-                        const Spacer(),
+                        //==================Add Reveiw====================
+                        ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.amber,
+                            ),
+                            onPressed: () {
+                              Get.to(() =>
+                                  UsersReveiewScreen(proid: widget.proid));
+                            },
+                            child: const Text(
+                              "Add Review",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            )),
+                        //===================================================
                         const Text("اتصال"),
                         IconButton(
                           onPressed: () {
