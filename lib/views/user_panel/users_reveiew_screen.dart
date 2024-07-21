@@ -1,5 +1,6 @@
 import 'package:ealanat_baladna/widgets/components.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -12,7 +13,6 @@ class UsersReveiewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ctrl = Get.put(Reviewcontroller());
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
@@ -20,56 +20,62 @@ class UsersReveiewScreen extends StatelessWidget {
             title: const Text("اراء المتابعين على المنتج"),
           ),
           backgroundColor: HexColor("eeeeee"),
-          body: Container(
-            margin: const EdgeInsets.all(10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text("Add Review",
-                    style: TextStyle(
-                        fontSize: 20.0,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold)),
-                const SizedBox(
-                  height: 10.0,
-                ),
-                RatingBar.builder(
-                  initialRating: 3,
-                  minRating: 1,
-                  direction: Axis.horizontal,
-                  allowHalfRating: true,
-                  itemCount: 5,
-                  itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
-                  itemBuilder: (context, _) => const Icon(
-                    Icons.star,
-                    color: Colors.amber,
-                  ),
-                  onRatingUpdate: (rating) {
-                    print(rating);
-                  },
-                ),
-                const SizedBox(
-                  height: 10.0,
-                ),
-                CustomForm(
-                    text: "التعليق",
-                    type: TextInputType.text,
-                    name: ctrl.reviewfeedback),
-                const SizedBox(
-                  height: 10.0,
-                ),
-                ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.amber,
-                    ),
-                    onPressed: () {},
-                    child: const Text(
-                      "Add",
+          body: GetBuilder<Reviewcontroller>(
+            builder: (Reviewcontroller ctrl) => Container(
+              margin: const EdgeInsets.all(10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text("Add Review",
                       style: TextStyle(
-                          color: Colors.black, fontWeight: FontWeight.bold),
-                    )),
-                //================
-              ],
+                          fontSize: 20.0,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold)),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  RatingBar.builder(
+                    initialRating: 3,
+                    minRating: 1,
+                    direction: Axis.horizontal,
+                    allowHalfRating: true,
+                    itemCount: 5,
+                    itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                    itemBuilder: (context, _) => const Icon(
+                      Icons.star,
+                      color: Colors.amber,
+                    ),
+                    onRatingUpdate: (rating) {
+                      ctrl.productrating = rating;
+                      print(ctrl.productrating);
+                    },
+                  ),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  CustomForm(
+                      text: "التعليق",
+                      type: TextInputType.text,
+                      name: ctrl.reviewfeedback),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.amber,
+                      ),
+                      onPressed: () {
+                        EasyLoading.show(status: "please wait...");
+                        ctrl.addreview(proid);
+                      },
+                      child: const Text(
+                        "Add",
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.bold),
+                      )),
+                  //================
+                ],
+              ),
             ),
           )),
     );
