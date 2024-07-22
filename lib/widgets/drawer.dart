@@ -1,13 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:ealanat_baladna/controller/maincontroller.dart';
-import 'package:ealanat_baladna/views/Tic_Tac_Toe/login_game.dart';
 import 'package:ealanat_baladna/views/admin_panel/admin_login.dart';
-import 'package:ealanat_baladna/views/admin_panel/home_admin.dart';
-import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
 import 'package:ealanat_baladna/views/user_panel/main_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 class MyDrawer extends StatefulWidget {

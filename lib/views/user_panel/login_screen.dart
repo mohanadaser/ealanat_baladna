@@ -2,7 +2,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-
 import 'package:ealanat_baladna/views/user_panel/main_screen.dart';
 
 import 'package:ealanat_baladna/views/user_panel/register_screen.dart';
@@ -27,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool issecure = true;
   bool isloading = false;
   TextEditingController email = TextEditingController();
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  //final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   TextEditingController password = TextEditingController();

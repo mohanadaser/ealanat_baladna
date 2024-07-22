@@ -1,6 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:ealanat_baladna/views/Tic_Tac_Toe/login_game.dart';
-import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';

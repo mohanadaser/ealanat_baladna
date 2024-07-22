@@ -66,7 +66,7 @@ class _MyAppState extends State<MyApp> {
       title: 'Flutter Demo',
       theme: ThemeData(
         textTheme: GoogleFonts.cairoTextTheme(Theme.of(context).textTheme),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        //colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
         scaffoldBackgroundColor: HexColor('F5F5F5'),
 
         // brightness: Brightness.light,

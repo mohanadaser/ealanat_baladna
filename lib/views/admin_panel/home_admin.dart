@@ -30,7 +30,7 @@ class _HomeAdminState extends State<HomeAdmin> {
           leading: IconButton(
             onPressed: () async {
               await FirebaseAuth.instance.signOut();
-              Get.offAll(() => LoginScreen());
+              Get.offAll(() => const LoginScreen());
             },
             icon: const Icon(Icons.logout),
             color: Colors.red,

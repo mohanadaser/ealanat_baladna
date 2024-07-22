@@ -1,10 +1,11 @@
+// ignore_for_file: void_checks
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:uuid/uuid.dart';
 
 class Reviewcontroller extends GetxController {
   final DateTime now = DateTime.now();
@@ -17,7 +18,7 @@ class Reviewcontroller extends GetxController {
   void onInit() {
     currentuser;
     getusername();
-
+    username;
     super.onInit();
   }
 
@@ -30,11 +31,14 @@ class Reviewcontroller extends GetxController {
   Future<String> getusername() async {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      DocumentSnapshot userDoc = await FirebaseFirestore.instance
+      Stream<QuerySnapshot> userDoc = FirebaseFirestore.instance
           .collection('users')
-          .doc(user.uid)
-          .get();
-      return username = userDoc['name'];
+          .where("uid", isEqualTo: currentuser)
+          .snapshots();
+
+      userDoc.forEach((e) {
+        return username = e.docs[0]['name'];
+      });
     }
     update();
     return "no one";
@@ -47,13 +51,19 @@ class Reviewcontroller extends GetxController {
       if (reviewfeedback.text.isEmpty) {
         Get.snackbar("لا يمكنك ترك هذا الحقل فارغ", "الرجاء تعبئة هذا الحقل",
             colorText: Colors.red);
+        EasyLoading.dismiss();
+        return;
+      }
+      if (productrating == 0.0) {
+        Get.snackbar("تحزير", "الرجاء اختيار التقييم", colorText: Colors.red);
+        EasyLoading.dismiss();
+        return;
       }
       await FirebaseFirestore.instance
           .collection("products")
           .doc(proid)
           .collection("reviews")
-          .doc(username)
-          .set({
+          .add({
         "feedback": reviewfeedback.text.trim(),
         "rating": productrating.toString(),
         "username": username,
@@ -61,6 +71,7 @@ class Reviewcontroller extends GetxController {
       });
       EasyLoading.dismiss();
       reviewfeedback.clear();
+      productrating = 0.0;
       update();
     } catch (e) {
       Get.snackbar("faild", e.toString(),

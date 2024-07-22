@@ -1,5 +1,4 @@
 import 'package:ealanat_baladna/controller/registercontroller.dart';
-import 'package:ealanat_baladna/views/admin_panel/home_admin.dart';
 import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
 import 'package:ealanat_baladna/widgets/components.dart';
 import 'package:flutter/material.dart';
