@@ -161,7 +161,7 @@ class _CardProductsState extends State<CardProducts> {
                       ),
                       Expanded(
                           child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(5.0),

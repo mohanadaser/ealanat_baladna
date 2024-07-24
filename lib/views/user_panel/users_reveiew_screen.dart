@@ -112,7 +112,7 @@ class UsersReveiewScreen extends StatelessWidget {
                               shrinkWrap: true,
                               scrollDirection: Axis.vertical,
                               // physics: const BouncingScrollPhysics(),
-                              itemCount: snapshot.data!.docs.length,
+                              itemCount: snapshot.data!.docs.take(15).length,
                               itemBuilder: (context, index) => Card(
                                     elevation: 5.0,
                                     child: ListTile(

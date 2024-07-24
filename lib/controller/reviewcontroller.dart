@@ -18,7 +18,7 @@ class Reviewcontroller extends GetxController {
   void onInit() {
     currentuser;
     getusername();
-    username;
+   
     super.onInit();
   }
 
@@ -48,17 +48,7 @@ class Reviewcontroller extends GetxController {
 
   addreview(proid) async {
     try {
-      if (reviewfeedback.text.isEmpty) {
-        Get.snackbar("لا يمكنك ترك هذا الحقل فارغ", "الرجاء تعبئة هذا الحقل",
-            colorText: Colors.red);
-        EasyLoading.dismiss();
-        return;
-      }
-      if (productrating == 0.0) {
-        Get.snackbar("تحزير", "الرجاء اختيار التقييم", colorText: Colors.red);
-        EasyLoading.dismiss();
-        return;
-      }
+      validaterating();
       await FirebaseFirestore.instance
           .collection("products")
           .doc(proid)
@@ -76,6 +66,20 @@ class Reviewcontroller extends GetxController {
     } catch (e) {
       Get.snackbar("faild", e.toString(),
           colorText: Colors.red, snackPosition: SnackPosition.BOTTOM);
+    }
+  }
+
+//=================================validate rating=============================
+  void validaterating() {
+    if (reviewfeedback.text.isEmpty) {
+      Get.snackbar("تحذير", "الرجاء اضافة تعليق", colorText: Colors.red);
+      EasyLoading.dismiss();
+      return;
+    }
+    if (productrating == 0.0) {
+      Get.snackbar("تحذير", "الرجاء اختيار التقييم", colorText: Colors.red);
+      EasyLoading.dismiss();
+      return;
     }
   }
 }
