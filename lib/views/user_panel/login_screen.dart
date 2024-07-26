@@ -1,8 +1,5 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ealanat_baladna/controller/reviewcontroller.dart';
-
 import 'package:ealanat_baladna/views/user_panel/main_screen.dart';
 
 import 'package:ealanat_baladna/views/user_panel/register_screen.dart';
@@ -22,7 +19,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
- 
   bool ischecked = false;
   final localstorage = GetStorage();
   bool issecure = true;
@@ -71,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
             email: email,
             password: password,
           );
-        
+
           Get.offAll(() => const MainScreen());
           setState(() {});
           isloading = false;
@@ -105,9 +101,9 @@ class _LoginScreenState extends State<LoginScreen> {
               HexColor("101010")
             ])),
             //child: Lottie.asset("assets/animations/login.json.json"),
-            child: const Text(
-              "❤ مرحبا بعودتك",
-              style: TextStyle(
+            child: Text(
+              "❤ مرحبا بعودتك".tr,
+              style: const TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.w700,
                   color: Colors.white),
@@ -130,7 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 30.0,
                   ),
                   CustomForm(
-                    text: "ادخل ايميلك",
+                    text: "ادخل ايميلك".tr,
                     type: TextInputType.emailAddress,
                     name: email,
                     sufxicon: const Icon(Icons.email),
@@ -139,7 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 30.0,
                   ),
                   CustomPass(
-                      text: "ادخل كلمة المرور",
+                      text: "ادخل كلمة المرور".tr,
                       type: TextInputType.visiblePassword,
                       issecure: issecure,
                       name: password,
@@ -170,10 +166,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             borderRadius: BorderRadius.circular(30)),
                         child: isloading
                             ? const Center(child: CircularProgressIndicator())
-                            : const Center(
+                            : Center(
                                 child: Text(
-                                "تسجيل الدخول",
-                                style: TextStyle(
+                                "تسجيل الدخول".tr,
+                                style: const TextStyle(
                                     fontSize: 25,
                                     fontWeight: FontWeight.w700,
                                     color: Colors.white),
@@ -184,9 +180,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   Row(
                     children: [
-                      const Text(
-                        "تذكرني",
-                        style: TextStyle(
+                      Text(
+                        "تذكرني".tr,
+                        style: const TextStyle(
                             color: Colors.black, fontWeight: FontWeight.bold),
                       ),
                       Checkbox(
@@ -205,18 +201,19 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   Row(
                     children: [
-                      const Center(
+                      Center(
                           child: Text(
-                        "ليس لديك حساب؟",
-                        style: TextStyle(
+                        "ليس لديك حساب؟".tr,
+                        style: const TextStyle(
                             color: Colors.black, fontWeight: FontWeight.bold),
                       )),
                       TextButton(
                           onPressed: () {
                             Get.to(() => const RegisterScreen());
                           },
-                          child: const Text("تسجيل الحساب",
-                              style: TextStyle(fontWeight: FontWeight.bold)))
+                          child: Text("تسجيل الحساب".tr,
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold)))
                     ],
                   ),
                 ])),

@@ -8,6 +8,7 @@ import 'package:ealanat_baladna/firebase_options.dart';
 
 import 'package:ealanat_baladna/views/user_panel/login_screen.dart';
 import 'package:ealanat_baladna/views/user_panel/main_screen.dart';
+import 'package:ealanat_baladna/widgets/splash_screen.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -21,6 +22,7 @@ import 'package:hexcolor/hexcolor.dart';
 
 import 'controller/network/dependency_injection.dart';
 import 'controller/reviewcontroller.dart';
+import 'language/language.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -61,6 +63,10 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     DependencyInjection.init();
     return GetMaterialApp(
+      translations: Languages(),
+      locale: Get.deviceLocale,
+
+      fallbackLocale: Get.deviceLocale,
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.system,
       title: 'Flutter Demo',
@@ -93,11 +99,11 @@ class _MyAppState extends State<MyApp> {
           }
           // ignore: unnecessary_null_comparison
           if (snapshot.data == null) {
-            return LoginScreen();
+            return SplashScreen();
           }
           if (snapshot.hasData) {
             print(snapshot.data);
-            return const MainScreen();
+            return const SplashScreen();
           }
           return const Text("");
         },

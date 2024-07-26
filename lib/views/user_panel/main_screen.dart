@@ -62,17 +62,17 @@ class MainScreen extends StatelessWidget {
                           color: Colors.black,
                           borderRadius: BorderRadius.circular(20.0),
                         ),
-                        child: const Row(
+                        child: Row(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.home,
                               size: 50,
                               color: Colors.white,
                             ),
-                            Spacer(),
+                            const Spacer(),
                             Text(
-                              " محلات بلدنا",
-                              style: TextStyle(
+                              "عروض بلدنا".tr,
+                              style: const TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
@@ -97,17 +97,17 @@ class MainScreen extends StatelessWidget {
                           color: Colors.black,
                           borderRadius: BorderRadius.circular(20.0),
                         ),
-                        child: const Row(
+                        child: Row(
                           children: [
-                            Icon(
+                            const Icon(
                               FontAwesomeIcons.xbox,
                               size: 50,
                               color: Colors.white,
                             ),
-                            Spacer(),
+                            const Spacer(),
                             Text(
-                              "tic tac toe لعبة ",
-                              style: TextStyle(
+                              "tic tac toe".tr,
+                              style: const TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
@@ -173,9 +173,9 @@ class MainScreen extends StatelessWidget {
                               color: Colors.white,
                             ),
                             const Spacer(),
-                            const Text(
-                              "مصروفاتى",
-                              style: TextStyle(
+                            Text(
+                              "مصروفاتى".tr,
+                              style: const TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
@@ -206,9 +206,9 @@ class MainScreen extends StatelessWidget {
                               color: Colors.white,
                             ),
                             const Spacer(),
-                            const Text(
-                              "تواصل معنا",
-                              style: TextStyle(
+                            Text(
+                              "تواصل معنا".tr,
+                              style: const TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),

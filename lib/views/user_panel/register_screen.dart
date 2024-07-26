@@ -118,7 +118,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     //===================================================================================
     return Scaffold(
-      //appBar: AppBar(),
       body: SingleChildScrollView(
         child: Stack(children: [
           Container(
@@ -132,9 +131,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
               HexColor("101010")
             ])),
             //child: Lottie.asset("assets/animations/login.json.json"),
-            child: const Text(
-              "👋 مرحبا بك",
-              style: TextStyle(
+            child: Text(
+              "👋مرحبا بك".tr,
+              style: const TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.w700,
                   color: Colors.white),
@@ -155,7 +154,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 height: 30.0,
               ),
               CustomForm(
-                text: "ادخل اسمك",
+                text: "ادخل اسمك".tr,
                 type: TextInputType.name,
                 name: username,
                 sufxicon: const Icon(Icons.person),
@@ -164,7 +163,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 height: 30.0,
               ),
               CustomForm(
-                text: "ادخل ايميلك",
+                text: "ادخل ايميلك".tr,
                 type: TextInputType.emailAddress,
                 name: emailaddress,
                 sufxicon: const Icon(Icons.email),
@@ -173,7 +172,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 height: 30.0,
               ),
               CustomPass(
-                  text: "ادخل كلمة المرور",
+                  text: "ادخل كلمة المرور".tr,
                   type: TextInputType.visiblePassword,
                   issecure: issecure,
                   name: password,
@@ -208,10 +207,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       child: Center(
                           child: isloading
                               ? const Center(child: CircularProgressIndicator())
-                              : const Center(
+                              : Center(
                                   child: Text(
-                                  "تسجيل الدخول",
-                                  style: TextStyle(
+                                  "تسجيل الدخول".tr,
+                                  style: const TextStyle(
                                       fontSize: 25,
                                       fontWeight: FontWeight.w700,
                                       color: Colors.white),
@@ -221,18 +220,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               Row(
                 children: [
-                  const Center(
+                  Center(
                       child: Text(
-                    "لديك حساب بالفعل؟",
-                    style: TextStyle(
+                    "لديك حساب بالفعل؟".tr,
+                    style: const TextStyle(
                         color: Colors.black, fontWeight: FontWeight.bold),
                   )),
                   TextButton(
                       onPressed: () {
                         Get.to(() => const LoginScreen());
                       },
-                      child: const Text("تسجيل الدخول",
-                          style: TextStyle(fontWeight: FontWeight.bold)))
+                      child: Text("تسجيل الدخول".tr,
+                          style: const TextStyle(fontWeight: FontWeight.bold)))
                 ],
               ),
             ]),

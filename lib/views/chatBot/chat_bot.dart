@@ -62,7 +62,7 @@ class _ChatBotState extends State<ChatBot> {
         appBar: AppBar(
           centerTitle: true,
           title: const Text(
-            "Chat With Ai",
+            "اسأل الذكاء الصناعى",
             style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
           ),
         ),
