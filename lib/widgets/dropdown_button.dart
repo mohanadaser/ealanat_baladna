@@ -21,7 +21,6 @@ class _MasrofItemState extends State<MasrofItem> {
     "اكل وشرب",
     "استثمار",
     "صيانه واصلاع",
-    
     "مدارس ودروس واعياد",
     "مصاريف اخرى"
   ];
@@ -33,11 +32,11 @@ class _MasrofItemState extends State<MasrofItem> {
         dropdownColor: Colors.white,
         value: controller.dropdownValue,
         isExpanded: true,
-        hint: const Text("اختر المصروف"),
+        hint: Text("اختر المصروف".tr),
         items: items
             .map((e) => DropdownMenuItem(
                   value: e,
-                  child: Text(e.toString()),
+                  child: Text(e.toString().tr),
                 ))
             .toList(),
         onChanged: (value) {

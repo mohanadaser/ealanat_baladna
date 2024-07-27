@@ -4,6 +4,7 @@ import 'dart:async';
 
 import 'package:ealanat_baladna/views/user_panel/login_screen.dart';
 import 'package:ealanat_baladna/views/user_panel/register_screen.dart';
+import 'package:ealanat_baladna/widgets/textrich.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -26,48 +27,55 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-            width: Get.width,
-            child: Lottie.asset("assets/animations/logo.json.json"),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ElevatedButton(
-                  onPressed: () {
-                    Get.updateLocale(const Locale('en'));
-                    Get.offAll(() => const RegisterScreen());
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
-                      foregroundColor: Colors.white),
-                  child: const Text(
-                    "English",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  )),
-              ElevatedButton(
-                  onPressed: () {
-                    //Get.updateLocale(const Locale('ar'));
-                    Get.offAll(() => const RegisterScreen());
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
-                      foregroundColor: Colors.white),
-                  child: const Text(
-                    "العربيه",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ))
-            ],
-          )
-        ],
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              width: Get.width,
+              child: Lottie.asset("assets/animations/logo.json.json"),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const TextRich(),
+            const SizedBox(
+              height: 40,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                    onPressed: () {
+                      Get.updateLocale(const Locale('en'));
+                      Get.offAll(() => const RegisterScreen());
+                    },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        foregroundColor: Colors.white),
+                    child: const Text(
+                      "English",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    )),
+                ElevatedButton(
+                    onPressed: () {
+                      //Get.updateLocale(const Locale('ar'));
+                      Get.offAll(() => const RegisterScreen());
+                    },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        foregroundColor: Colors.white),
+                    child: const Text(
+                      "العربيه",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ))
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

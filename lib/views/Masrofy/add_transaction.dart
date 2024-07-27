@@ -22,8 +22,8 @@ class add_transaction extends StatelessWidget {
       builder: (MasrofyController controller) => Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text("اضافة مصروف",
-              style: TextStyle(
+          Text("اضافة المصروف".tr,
+              style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: Colors.white)),
@@ -46,7 +46,7 @@ class add_transaction extends StatelessWidget {
                     const MasrofItem(),
                     const SizedBox(height: 10.0),
                     CustomForm(
-                      text: " المبلغ",
+                      text: "المبلغ".tr,
                       type: TextInputType.number,
                       name: controller.amount,
                     ),
@@ -67,9 +67,9 @@ class add_transaction extends StatelessWidget {
 
                               Get.back();
                             },
-                            child: const Text(
-                              "اضافة المصروف",
-                              style: TextStyle(
+                            child: Text(
+                              "اضافة المصروف".tr,
+                              style: const TextStyle(
                                   fontSize: 12, fontWeight: FontWeight.bold),
                             )),
 

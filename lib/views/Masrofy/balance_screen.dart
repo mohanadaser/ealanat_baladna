@@ -38,9 +38,9 @@ class BalanceScreen extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          " رصيدك حاليا",
-                          style: TextStyle(
+                        Text(
+                          "رصيدك حاليا".tr,
+                          style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
@@ -69,7 +69,7 @@ class BalanceScreen extends StatelessWidget {
                             //=============================================alert dialog=============================
                             Get.dialog(AlertDialog(actions: [
                               CustomForm(
-                                text: " الرصيد الجديد",
+                                text: "الرصيد الجديد".tr,
                                 type: TextInputType.number,
                                 name: controller.balance,
                               ),
@@ -89,9 +89,9 @@ class BalanceScreen extends StatelessWidget {
                                             snapshot.data?.docs[0]['uid']);
                                         Get.back();
                                       },
-                                      child: const Text(
-                                        "اضافة الرصيد",
-                                        style: TextStyle(
+                                      child: Text(
+                                        "اضافة الرصيد".tr,
+                                        style: const TextStyle(
                                             fontSize: 12,
                                             fontWeight: FontWeight.bold),
                                       )),

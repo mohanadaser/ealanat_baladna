@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:http/http.dart' as http;
 
@@ -61,9 +62,9 @@ class _ChatBotState extends State<ChatBot> {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text(
-            "اسأل الذكاء الصناعى",
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          title: Text(
+            "اسأل الذكاء الصناعى".tr,
+            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
           ),
         ),
         backgroundColor: HexColor("f9d9da"),

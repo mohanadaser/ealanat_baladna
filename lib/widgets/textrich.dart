@@ -10,7 +10,7 @@ class TextRich extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedTextKit(
       animatedTexts: [
-        WavyAnimatedText('Luxor Hyper',
+        WavyAnimatedText('Luxor Go',
             textStyle: const TextStyle(
                 color: Colors.amber,
                 fontSize: 30,
