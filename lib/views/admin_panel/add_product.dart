@@ -6,6 +6,7 @@ import 'package:ealanat_baladna/widgets/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class AddProduct extends StatelessWidget {
   const AddProduct({super.key});
@@ -16,7 +17,9 @@ class AddProduct extends StatelessWidget {
     double h = MediaQuery.of(context).size.height;
     return GetBuilder<HomeController>(
       builder: (HomeController controller) => Scaffold(
+          backgroundColor: HexColor('efeee5'),
           appBar: AppBar(
+            backgroundColor: HexColor('efeee5'),
             title: const Text(
               "اضافة منتج جديد",
               style: TextStyle(

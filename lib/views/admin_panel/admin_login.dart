@@ -3,6 +3,7 @@ import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
 import 'package:ealanat_baladna/widgets/components.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class AdminLogin extends StatelessWidget {
   const AdminLogin({super.key});
@@ -13,7 +14,9 @@ class AdminLogin extends StatelessWidget {
     return GetBuilder<RegisterController>(
         builder: (RegisterController controller) {
       return Scaffold(
+          backgroundColor: HexColor('efeee5'),
           appBar: AppBar(
+            backgroundColor: HexColor('efeee5'),
             leading: IconButton(
                 onPressed: () {
                   Get.off(() => const HomeScreen());

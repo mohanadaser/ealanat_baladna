@@ -73,7 +73,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         textTheme: GoogleFonts.cairoTextTheme(Theme.of(context).textTheme),
         //colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
-        scaffoldBackgroundColor: HexColor('F5F5F5'),
+        scaffoldBackgroundColor: HexColor('000000'),
 
         // brightness: Brightness.light,
         useMaterial3: true,
@@ -103,7 +103,7 @@ class _MyAppState extends State<MyApp> {
           }
           if (snapshot.hasData) {
             print(snapshot.data);
-            return const SplashScreen();
+            return const MainScreen();
           }
           return const Text("");
         },

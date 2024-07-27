@@ -43,6 +43,12 @@ class Languages extends Translations {
           "صيانه واصلاع": "Repair and maintenance",
           "مدارس ودروس واعياد": "Schools and courses",
           "مصاريف اخرى": "Other expenses",
+          'اعادة تعيين كلمة المرور': 'Forgot password',
+          'مشاركة تطبيقنا مع الغير': 'Share App with friends',
+          'ارسال الاشعارات': 'Send Notifications',
+          'الاعدادات': 'Settings',
+          'العوده للقائمة الرئيسيه': 'Back to Home Page',
+          'خاص بأدارة التطبيق':'Application Manager',
         },
       };
 }

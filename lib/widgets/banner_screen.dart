@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class BannerScreen extends StatelessWidget {
   const BannerScreen({super.key});
@@ -18,6 +19,11 @@ class BannerScreen extends StatelessWidget {
               // height: double.infinity,
               padding: const EdgeInsets.all(10.0),
               decoration: BoxDecoration(
+                  gradient: LinearGradient(colors: [
+                    HexColor("8a2be2"),
+                    HexColor("000080"),
+                    HexColor("101010")
+                  ]),
                   borderRadius: BorderRadius.circular(20),
                   color: Colors.deepPurple),
               child: Text(

@@ -11,6 +11,8 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hexcolor/hexcolor.dart';
 
+import 'forgotpassword_screen.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -194,6 +196,15 @@ class _LoginScreenState extends State<LoginScreen> {
                             ischecked = !ischecked;
                             setState(() {});
                           }),
+                      const Spacer(),
+                      TextButton(
+                          onPressed: () {
+                            Get.to(() => const ForgotPasswordScreen());
+                          },
+                          child: Text(
+                            "اعادة تعيين كلمة المرور".tr,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ))
                     ],
                   ),
                   const SizedBox(

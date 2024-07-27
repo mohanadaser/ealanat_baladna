@@ -55,24 +55,24 @@ class _MyDrawerState extends State<MyDrawer> {
           // ),
           ListTile(
             leading: const Icon(Icons.share),
-            title: const Text('مشاركة تطبيقنا مع الغير'),
+            title: Text('مشاركة تطبيقنا مع الغير'.tr),
             onTap: () {},
           ),
-          const ListTile(
+          ListTile(
             leading: Icon(Icons.notifications),
-            title: Text('ارسال الاشعارات'),
+            title: Text('ارسال الاشعارات'.tr),
           ),
           const Divider(),
           ListTile(
             leading: const Icon(Icons.settings),
-            title: const Text('الاعدادات'),
+            title: Text('الاعدادات'.tr),
             onTap: () {
               Get.offAll(() => AdminLogin());
             },
           ),
           const Divider(),
           ListTile(
-            title: const Text('العوده للقائمة الرئيسيه'),
+            title: Text('العوده للقائمة الرئيسيه'.tr),
             leading: const Icon(Icons.exit_to_app),
             onTap: () {
               Get.to(() => MainScreen());

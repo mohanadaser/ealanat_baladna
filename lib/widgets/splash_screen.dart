@@ -52,7 +52,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       Get.to(() => const RegisterScreen());
                     },
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
+                        backgroundColor: Colors.blue,
                         foregroundColor: Colors.white),
                     child: const Text(
                       "English",
@@ -65,7 +65,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       Get.to(() => const RegisterScreen());
                     },
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
+                        backgroundColor: Colors.amber,
                         foregroundColor: Colors.white),
                     child: const Text(
                       "العربيه",

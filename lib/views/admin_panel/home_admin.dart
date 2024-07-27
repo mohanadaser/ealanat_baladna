@@ -7,6 +7,7 @@ import 'package:ealanat_baladna/views/user_panel/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class HomeAdmin extends StatefulWidget {
   const HomeAdmin({super.key});
@@ -20,7 +21,9 @@ class _HomeAdminState extends State<HomeAdmin> {
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
       builder: (HomeController ctrl) => Scaffold(
+        backgroundColor: HexColor('efeee5'),
         appBar: AppBar(
+          backgroundColor: HexColor('efeee5'),
           title: const Text(
             "قائمة المنتجات",
             style: TextStyle(

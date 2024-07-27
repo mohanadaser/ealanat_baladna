@@ -33,10 +33,10 @@ class MainScreen extends StatelessWidget {
 //==============================================================================
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: HexColor("f0f8ff"),
-        body: SingleChildScrollView(
+    return Scaffold(
+      // backgroundColor: HexColor("f5f5dc"),
+      body: SafeArea(
+        child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.vertical,
           child: SingleChildScrollView(
@@ -59,6 +59,11 @@ class MainScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         height: Get.height * 0.1,
                         decoration: BoxDecoration(
+                          gradient: LinearGradient(colors: [
+                            HexColor("00B2E7"),
+                            HexColor("E064F7"),
+                            HexColor("FF8D6C")
+                          ]),
                           color: Colors.black,
                           borderRadius: BorderRadius.circular(20.0),
                         ),
@@ -94,6 +99,11 @@ class MainScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         height: Get.height * 0.1,
                         decoration: BoxDecoration(
+                          gradient: LinearGradient(colors: [
+                            HexColor("00B2E7"),
+                            HexColor("E064F7"),
+                            HexColor("FF8D6C")
+                          ]),
                           color: Colors.black,
                           borderRadius: BorderRadius.circular(20.0),
                         ),
@@ -129,6 +139,11 @@ class MainScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         height: Get.height * 0.1,
                         decoration: BoxDecoration(
+                          gradient: LinearGradient(colors: [
+                            HexColor("00B2E7"),
+                            HexColor("E064F7"),
+                            HexColor("FF8D6C")
+                          ]),
                           color: Colors.black,
                           borderRadius: BorderRadius.circular(20.0),
                         ),
@@ -163,6 +178,11 @@ class MainScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         height: Get.height * 0.1,
                         decoration: BoxDecoration(
+                          gradient: LinearGradient(colors: [
+                            HexColor("00B2E7"),
+                            HexColor("E064F7"),
+                            HexColor("FF8D6C")
+                          ]),
                           color: Colors.black,
                           borderRadius: BorderRadius.circular(20.0),
                         ),
@@ -196,6 +216,11 @@ class MainScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         height: Get.height * 0.1,
                         decoration: BoxDecoration(
+                          gradient: LinearGradient(colors: [
+                            HexColor("00B2E7"),
+                            HexColor("E064F7"),
+                            HexColor("FF8D6C")
+                          ]),
                           color: Colors.black,
                           borderRadius: BorderRadius.circular(20.0),
                         ),
