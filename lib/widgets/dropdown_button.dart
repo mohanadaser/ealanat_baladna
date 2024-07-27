@@ -24,6 +24,20 @@ class _MasrofItemState extends State<MasrofItem> {
     "مدارس ودروس واعياد",
     "مصاريف اخرى"
   ];
+  List<String> items2 = [
+    "Electricity",
+    "Gas",
+    "Water",
+    "Rental",
+    "Utilities",
+    "Loans",
+    "Installments",
+    "Food and drink",
+    "Investment",
+    "Repair and maintenance",
+    "Schools and courses",
+    "Other expenses"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -33,16 +47,22 @@ class _MasrofItemState extends State<MasrofItem> {
         value: controller.dropdownValue,
         isExpanded: true,
         hint: Text("اختر المصروف".tr),
-        items: items
-            .map((e) => DropdownMenuItem(
-                  value: e,
-                  child: Text(e.toString().tr),
-                ))
-            .toList(),
+        items: Get.locale!.languageCode == "en"
+            ? items2
+                .map((e) => DropdownMenuItem(
+                      value: e,
+                      child: Text(e.toString().tr),
+                    ))
+                .toList()
+            : items
+                .map((x) => DropdownMenuItem(
+                      value: x,
+                      child: Text(x.toString().tr),
+                    ))
+                .toList(),
         onChanged: (value) {
           setState(() {
             controller.dropdownValue = value.toString();
-            print(controller.dropdownValue);
           });
         },
       ),

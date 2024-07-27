@@ -49,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 ElevatedButton(
                     onPressed: () {
                       Get.updateLocale(const Locale('en'));
-                      Get.offAll(() => const RegisterScreen());
+                      Get.to(() => const RegisterScreen());
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,
@@ -62,7 +62,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 ElevatedButton(
                     onPressed: () {
                       //Get.updateLocale(const Locale('ar'));
-                      Get.offAll(() => const RegisterScreen());
+                      Get.to(() => const RegisterScreen());
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,

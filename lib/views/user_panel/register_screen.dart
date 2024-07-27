@@ -118,6 +118,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     //===================================================================================
     return Scaffold(
+      
       body: SingleChildScrollView(
         child: Stack(children: [
           Container(

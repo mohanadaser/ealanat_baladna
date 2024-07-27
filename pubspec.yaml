@@ -43,7 +43,6 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_easyloading: ^3.0.5
-  
   flutter_phone_direct_caller: ^2.1.1
   flutter_rating_bar: ^4.0.1
   font_awesome_flutter: ^10.7.0
@@ -51,6 +50,7 @@ dependencies:
   get_storage: ^2.1.1
   google_fonts: ^6.2.1
   google_sign_in: ^6.2.1
+  
   hexcolor: ^3.0.1
   http: ^1.2.1
   image_picker: ^1.1.2

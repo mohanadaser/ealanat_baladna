@@ -14,6 +14,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 
+import '../../widgets/companies_filter.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -75,7 +77,7 @@ class HomeScreen extends StatelessWidget {
                       sufxicon: const Icon(Icons.search)),
 
                   SizedBox(
-                    height: Get.height * 0.05,
+                    height: Get.height * 0.08,
                     //========================companies===================================
                     child: StreamBuilder<QuerySnapshot>(
                         stream: FirebaseFirestore.instance
@@ -106,30 +108,7 @@ class HomeScreen extends StatelessWidget {
                                   return Padding(
                                     padding: EdgeInsets.all(3.0),
                                     //=======================================filter chips=============
-                                    child: FilterChip(
-                                      backgroundColor: HexColor('0e2f44'),
-                                      onSelected: (bool val) {
-                                        controller.filterProductsByCompany(
-                                            doc["companyname"]);
-                                      }, //======Select to Sgow Products
-                                      materialTapTargetSize:
-                                          MaterialTapTargetSize.shrinkWrap,
-                                      label: controller.searchtxt.text.isEmpty
-                                          ? Text(
-                                              doc["companyname"],
-                                              style: TextStyle(
-                                                  fontSize: 15.0,
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold),
-                                            )
-                                          : Text(
-                                              doc["companyname"],
-                                              style: TextStyle(
-                                                  fontSize: 15.0,
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                    ),
+                                    child: CompaniesFilter(doc: doc),
                                   );
                                 }),
                                 separatorBuilder: (context, index) =>
@@ -141,9 +120,9 @@ class HomeScreen extends StatelessWidget {
                         }),
                   ),
                   //=================================================menu=========================
-                  const SizedBox(height: 10.0),
+                  // const SizedBox(height: 10.0),
                   SizedBox(
-                    height: Get.height * 0.75,
+                    height: Get.height * 0.73,
                     child: RefreshIndicator(
                       onRefresh: () {
                         return controller.refreshProducts();
