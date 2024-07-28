@@ -116,16 +116,20 @@ class _HomeAdminState extends State<HomeAdmin> {
             Row(
               children: [
                 ElevatedButton(
-                    onPressed: () {
-                      Get.changeTheme(Get.isDarkMode
-                          ? ThemeData.light()
-                          : ThemeData.dark());
-                    },
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.black,
+                    ),
+                    onPressed: () {},
                     child: const Text("الشركات")),
                 const SizedBox(
                   width: 10,
                 ),
                 ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.black,
+                    ),
                     onPressed: () {
                       Get.to(() => const HomeScreen());
                     },

@@ -54,14 +54,14 @@ class _MyDrawerState extends State<MyDrawer> {
           //   },
           // ),
           ListTile(
-            leading: const Icon(Icons.share),
-            title: Text('مشاركة تطبيقنا مع الغير'.tr),
-            onTap: () {},
-          ),
-          ListTile(
-            leading: Icon(Icons.notifications),
-            title: Text('ارسال الاشعارات'.tr),
-          ),
+              leading: const Icon(Icons.share),
+              title: Text('مشاركة تطبيقنا مع الغير'.tr),
+              onTap: () {}),
+          // ),
+          // ListTile(
+          //   leading: Icon(Icons.notifications),
+          //   title: Text('ارسال الاشعارات'.tr),
+          // ),
           const Divider(),
           ListTile(
             leading: const Icon(Icons.settings),

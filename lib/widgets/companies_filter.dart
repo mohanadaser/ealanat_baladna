@@ -16,24 +16,29 @@ class CompaniesFilter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<MainController>(
-        builder: (MainController controller) => Container(
-              margin: EdgeInsets.only(top: Get.height * 0.01),
-              padding: EdgeInsets.only(top: Get.height * 0.01),
-              width: Get.width * .3,
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(colors: [
-                    HexColor("00B2E7"),
-                    HexColor("E064F7"),
-                    HexColor("FF8D6C")
-                  ]),
-                  borderRadius: BorderRadius.circular(13.0)),
-              child: Text(
-                textAlign: TextAlign.center,
-                doc["companyname"],
-                style: const TextStyle(
-                    fontSize: 15.0,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
+        builder: (MainController controller) => GestureDetector(
+              onTap: () {
+                controller.filterProductsByCompany(doc["companyname"]);
+              },
+              child: Container(
+                margin: EdgeInsets.only(top: Get.height * 0.01),
+                padding: EdgeInsets.only(top: Get.height * 0.01),
+                width: Get.width * .3,
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(colors: [
+                      HexColor("00B2E7"),
+                      HexColor("E064F7"),
+                      HexColor("FF8D6C")
+                    ]),
+                    borderRadius: BorderRadius.circular(13.0)),
+                child: Text(
+                  textAlign: TextAlign.center,
+                  doc["companyname"],
+                  style: const TextStyle(
+                      fontSize: 15.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                ),
               ),
             )
         //  FilterChip(
