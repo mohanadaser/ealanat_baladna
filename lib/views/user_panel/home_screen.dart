@@ -12,7 +12,7 @@ import 'package:ealanat_baladna/widgets/textrich.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hexcolor/hexcolor.dart';
+
 
 import '../../widgets/companies_filter.dart';
 

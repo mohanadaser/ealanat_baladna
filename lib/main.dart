@@ -68,12 +68,12 @@ class _MyAppState extends State<MyApp> {
 
       fallbackLocale: Get.deviceLocale,
       debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.system,
+      //themeMode: ThemeMode.system,
       title: 'Flutter Demo',
       theme: ThemeData(
         textTheme: GoogleFonts.cairoTextTheme(Theme.of(context).textTheme),
         //colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
-        scaffoldBackgroundColor: HexColor('000000'),
+        scaffoldBackgroundColor: HexColor('00253F'),
 
         // brightness: Brightness.light,
         useMaterial3: true,

@@ -27,7 +27,7 @@ class BannerScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                   color: Colors.deepPurple),
               child: Text(
-                "تطبيق الاقصر جوو يرحب بأعلاناتكم \n يمكنك وضع اعلان لشركتك \nاو مطعمك او عيادتك\n او اى نشاط لك"
+                "تطبيق الاقصر بلدنا يرحب بأعلاناتكم \n يمكنك وضع اعلان لشركتك \nاو مطعمك او عيادتك\n او اى نشاط لك"
                     .tr,
                 style: const TextStyle(
                     fontSize: 15,
