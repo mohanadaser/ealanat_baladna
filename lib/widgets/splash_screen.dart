@@ -1,12 +1,13 @@
 // ignore_for_file: sized_box_for_whitespace
 
 import 'dart:async';
+import 'dart:collection';
 
-import 'package:ealanat_baladna/views/user_panel/login_screen.dart';
 import 'package:ealanat_baladna/views/user_panel/register_screen.dart';
 import 'package:ealanat_baladna/widgets/textrich.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -29,6 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: HexColor("00253F"),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [

@@ -2,6 +2,7 @@ import 'package:ealanat_baladna/views/Tic_Tac_Toe/tic_tac_scren.dart';
 import 'package:ealanat_baladna/widgets/components.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class LoginGame extends StatefulWidget {
   const LoginGame({super.key});
@@ -18,7 +19,10 @@ class _LoginGameState extends State<LoginGame> {
     final fkey = GlobalKey<FormState>();
 
     return Scaffold(
-        appBar: AppBar(),
+        backgroundColor: HexColor("efeee5"),
+        appBar: AppBar(
+          backgroundColor: HexColor("efeee5"),
+        ),
         body: Form(
           key: fkey,
           child: Column(

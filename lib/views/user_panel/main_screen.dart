@@ -7,6 +7,7 @@ import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
 import 'package:ealanat_baladna/widgets/banner_screen.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -33,10 +34,16 @@ class MainScreen extends StatelessWidget {
 //==============================================================================
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // backgroundColor: HexColor("f5f5dc"),
-      body: SafeArea(
-        child: SingleChildScrollView(
+    return SafeArea(
+        child: AnnotatedRegion(
+      value: const SystemUiOverlayStyle(
+        statusBarColor: Colors.black,
+        statusBarIconBrightness: Brightness.light,
+      ),
+      child: Scaffold(
+        backgroundColor: HexColor("00253F"),
+        //======black nearly color
+        body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.vertical,
           child: SingleChildScrollView(
@@ -249,6 +256,6 @@ class MainScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ));
   }
 }

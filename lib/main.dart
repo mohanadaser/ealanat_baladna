@@ -14,6 +14,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import 'package:get/get.dart';
@@ -30,6 +31,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   Get.put(HomeController());
   Get.put(MainController());
   Get.put(MasrofyController());
@@ -73,7 +75,6 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         textTheme: GoogleFonts.cairoTextTheme(Theme.of(context).textTheme),
         //colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
-        scaffoldBackgroundColor: HexColor('00253F'),
 
         // brightness: Brightness.light,
         useMaterial3: true,
