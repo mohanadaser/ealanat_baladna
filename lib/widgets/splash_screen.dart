@@ -6,6 +6,7 @@ import 'dart:collection';
 import 'package:ealanat_baladna/views/user_panel/register_screen.dart';
 import 'package:ealanat_baladna/widgets/textrich.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:lottie/lottie.dart';
@@ -29,6 +30,11 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+        child: AnnotatedRegion(
+      value: const SystemUiOverlayStyle(
+        statusBarColor: Colors.black,
+        statusBarIconBrightness: Brightness.light,
+      ),
       child: Scaffold(
         backgroundColor: HexColor("00253F"),
         body: Column(
@@ -79,6 +85,6 @@ class _SplashScreenState extends State<SplashScreen> {
           ],
         ),
       ),
-    );
+    ));
   }
 }
