@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_types_as_parameter_names, unused_local_variable, prefer_const_constructors, body_might_complete_normally_nullable
+// ignore_for_file: avoid_types_as_parameter_names, unused_local_variable, prefer_const_constructors, body_might_complete_normally_nullable, non_constant_identifier_names
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 

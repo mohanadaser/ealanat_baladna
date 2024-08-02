@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_types_as_parameter_names, non_constant_identifier_names
+
 import 'package:ealanat_baladna/controller/registercontroller.dart';
 import 'package:ealanat_baladna/views/user_panel/home_screen.dart';
 import 'package:ealanat_baladna/widgets/components.dart';

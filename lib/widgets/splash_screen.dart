@@ -1,7 +1,6 @@
 // ignore_for_file: sized_box_for_whitespace
 
-import 'dart:async';
-import 'dart:collection';
+
 
 import 'package:ealanat_baladna/views/user_panel/register_screen.dart';
 import 'package:ealanat_baladna/widgets/textrich.dart';

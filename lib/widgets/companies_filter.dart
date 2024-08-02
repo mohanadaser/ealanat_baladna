@@ -23,7 +23,7 @@ class CompaniesFilter extends StatelessWidget {
               child: Container(
                 margin: EdgeInsets.only(top: Get.height * 0.01),
                 padding: EdgeInsets.only(top: Get.height * 0.01),
-                width: Get.width * .3,
+                width: Get.width * .4,
                 decoration: BoxDecoration(
                     gradient: LinearGradient(colors: [
                       HexColor("00B2E7"),
