@@ -144,6 +144,7 @@ class MainController extends GetxController {
         "likes":
             FieldValue.arrayRemove([FirebaseAuth.instance.currentUser?.uid])
       });
+
       update();
     } else {
       await FirebaseFirestore.instance
@@ -152,6 +153,7 @@ class MainController extends GetxController {
           .update({
         "likes": FieldValue.arrayUnion([FirebaseAuth.instance.currentUser?.uid])
       });
+
       update();
     }
   }
@@ -160,20 +162,20 @@ class MainController extends GetxController {
 
   searchCompany(txtsearch) async {
     if (txtsearch != null) {
-     try {
-      pro.clear();
-      update();
-      QuerySnapshot q =
-          await FirebaseFirestore.instance.collection("products").get();
+      try {
+        pro.clear();
+        update();
+        QuerySnapshot q =
+            await FirebaseFirestore.instance.collection("products").get();
 
-      pro.addAll(q.docs
-          .where((element) => element["company"].contains(txtsearch))
-          .toList());
+        pro.addAll(q.docs
+            .where((element) => element["company"].contains(txtsearch))
+            .toList());
 
-      update();
-    } catch (e) {
-      print(e.toString());
-    }
+        update();
+      } catch (e) {
+        print(e.toString());
+      }
     }
   }
 }

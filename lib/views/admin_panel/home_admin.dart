@@ -139,6 +139,8 @@ class _HomeAdminState extends State<HomeAdmin> {
           ],
         ),
         floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.deepPurple,
+          foregroundColor: Colors.white,
           onPressed: () {
             Get.to(() => const AddProduct());
           },

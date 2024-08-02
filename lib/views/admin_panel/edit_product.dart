@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ealanat_baladna/widgets/components.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
 
 class EditProduct extends StatefulWidget {
@@ -58,9 +59,9 @@ class _EditProductState extends State<EditProduct> {
 
   void updateproducts() async {
     //=========================convert currency to egypt==========
-    final number = double.parse(price.text.replaceAll(RegExp(r'[^0-9.]'),''));
-    final curency = NumberFormat.currency(locale: 'ar_EG', symbol: 'ج.م.');
-    final formattedCurrency = curency.format(number);
+    // final number = double.parse(price.text.replaceAll(RegExp(r'[^0-9.]'), ''));
+    // final curency = NumberFormat.currency(locale: 'ar_EG', symbol: 'ج.م.');
+    // final formattedCurrency = curency.format(number);
 //==================================================================================
 
     try {
@@ -72,7 +73,7 @@ class _EditProductState extends State<EditProduct> {
         "addresscompany": address.text,
         "phoncompany": phone.text,
         "productdesc": desc.text,
-        "productprice": formattedCurrency
+        "productprice": price.text,
       });
 
       Get.snackbar("Success", "تم التعديل بنجاح",
@@ -85,7 +86,9 @@ class _EditProductState extends State<EditProduct> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: HexColor('efeee5'),
         appBar: AppBar(
+          backgroundColor: HexColor('efeee5'),
           title: const Text(
             "تعديل المنتج",
             style: TextStyle(
@@ -131,7 +134,8 @@ class _EditProductState extends State<EditProduct> {
                     },
                     child: const Text(
                       "تعديل المنتج",
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ))
               ],
             ),
