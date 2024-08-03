@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_single_cascade_in_expression_statements, collection_methods_unrelated_type
 
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -49,7 +51,7 @@ class MasrofyController extends GetxController {
       update();
       balance.clear();
     } catch (e) {
-      print(e.toString());
+      log(e.toString());
     }
   }
 
@@ -88,7 +90,7 @@ class MasrofyController extends GetxController {
       amount.clear();
       dropdownValue == "";
     } catch (e) {
-      print(e.toString());
+      log(e.toString());
     }
   }
 
@@ -104,7 +106,7 @@ class MasrofyController extends GetxController {
 
       update();
     } catch (e) {
-      print(e.toString());
+      log(e.toString());
     }
   }
 
@@ -120,7 +122,7 @@ class MasrofyController extends GetxController {
       });
       update();
     } catch (e) {
-      print(e.toString());
+      log(e.toString());
     }
   }
 
@@ -138,7 +140,7 @@ class MasrofyController extends GetxController {
 
       update();
     } catch (e) {
-      print(e.toString());
+      log(e.toString());
     }
   }
 }

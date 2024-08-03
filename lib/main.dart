@@ -1,12 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:developer';
 
 import 'package:ealanat_baladna/controller/homecontroller.dart';
 import 'package:ealanat_baladna/controller/maincontroller.dart';
 import 'package:ealanat_baladna/controller/masrofy_controller.dart';
 
 import 'package:ealanat_baladna/firebase_options.dart';
-
 
 import 'package:ealanat_baladna/views/user_panel/main_screen.dart';
 import 'package:ealanat_baladna/widgets/splash_screen.dart';
@@ -20,7 +20,6 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 
 import 'controller/network/dependency_injection.dart';
 import 'controller/reviewcontroller.dart';
@@ -53,9 +52,9 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user == null) {
-        print('=========User is currently signed out!');
+        log('=========User is currently signed out!');
       } else {
-        print('========User is signed in!');
+        log('========User is signed in!');
       }
     });
     super.initState();
@@ -104,7 +103,7 @@ class _MyAppState extends State<MyApp> {
             return SplashScreen();
           }
           if (snapshot.hasData) {
-            print(snapshot.data);
+            log(snapshot.data.toString());
             return const MainScreen();
           }
           return const Text("");

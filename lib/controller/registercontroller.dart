@@ -1,5 +1,7 @@
 // ignore_for_file: unrelated_type_equality_checks, unnecessary_overrides
 
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:ealanat_baladna/views/admin_panel/home_admin.dart';
@@ -12,7 +14,7 @@ class RegisterController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    print(FirebaseAuth.instance.currentUser);
+    log(FirebaseAuth.instance.currentUser.toString());
   }
 
   @override
@@ -53,11 +55,9 @@ class RegisterController extends GetxController {
     } on FirebaseAuthException catch (e) {
       Get.snackbar("faild", e.toString(), colorText: Colors.red);
     } catch (e) {
-      print(e.toString());
+      log(e.toString());
     }
   }
-
-  
 }
 
 //   //=====================login users=====================

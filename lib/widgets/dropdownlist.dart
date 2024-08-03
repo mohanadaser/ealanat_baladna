@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ealanat_baladna/controller/homecontroller.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +37,7 @@ class _FirebaseDropdownMenuItemState extends State<FirebaseDropdownMenuItem> {
             final selectcompany = snapshot.data?.docs.reversed.toList();
             if (selectcompany != null) {
               for (var company in selectcompany) {
-                companiesname.add(  
+                companiesname.add(
                   DropdownMenuItem(
                     value: company['companyname'],
                     child: Text(
@@ -65,7 +67,7 @@ class _FirebaseDropdownMenuItemState extends State<FirebaseDropdownMenuItem> {
                   onChanged: (value) {
                     setState(() {
                       ctrl.selectedValue = value;
-                      print(value);
+                      log(value);
                     });
                   },
                 ),

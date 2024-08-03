@@ -5,7 +5,7 @@ import 'package:ealanat_baladna/widgets/components.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:intl/intl.dart';
+
 
 class EditProduct extends StatefulWidget {
   final String oldproname;

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +51,7 @@ class _ChatBotState extends State<ChatBot> {
         typing.remove(bot);
         setState(() {});
       } else {
-        print("something error");
+        log("something error");
       }
     }).catchError((err) {});
   }

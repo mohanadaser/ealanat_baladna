@@ -26,10 +26,13 @@ class CardProducts extends StatefulWidget {
   State<CardProducts> createState() => _CardProductsState();
 }
 
-class _CardProductsState extends State<CardProducts> {
+class _CardProductsState extends State<CardProducts>
+    with AutomaticKeepAliveClientMixin {
   bool isliked = true;
   int countlike = 0;
 
+  @override
+  bool get wantKeepAlive => true;
   @override
   void initState() {
     isliked = widget.likes.contains(FirebaseAuth.instance.currentUser?.uid);
@@ -44,11 +47,14 @@ class _CardProductsState extends State<CardProducts> {
     });
     DocumentReference reflikes =
         FirebaseFirestore.instance.collection("products").doc(widget.proid);
+
     if (isliked) {
       countlike++;
       reflikes.update({
         "likes": FieldValue.arrayUnion([FirebaseAuth.instance.currentUser?.uid])
       });
+
+      FirebaseFirestore.instance.collection("products").doc(widget.proid).get();
     } else {
       countlike--;
       reflikes.update({
@@ -64,6 +70,7 @@ class _CardProductsState extends State<CardProducts> {
   TapDownDetails? _doubleTapDetails;
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     //======================== canera zoom===============================
     void handleDoubleTap() {
       if (_transformationController.value != Matrix4.identity()) {

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ealanat_baladna/widgets/components.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +51,7 @@ class UsersReveiewScreen extends StatelessWidget {
                     ),
                     onRatingUpdate: (rating) {
                       ctrl.productrating = rating;
-                      print(ctrl.productrating);
+                      log(ctrl.productrating.toString());
                     },
                   ),
                   const SizedBox(
